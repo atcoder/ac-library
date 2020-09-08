@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Appendix / FAQ</h1>
+<h2>動作環境</h2>
+<ul>
+<li><code>ATCODER_</code>で始まる名前のマクロを使わないでください。</li>
+<li>多くの環境で動くように作っていますが、C++標準からある程度の拡張機能を要求します。具体的には以下のことを仮定します。<ul>
+<li><code>__int128 / unsigned __int128(g++, clang++)</code> か <code>_mul128 / _umul128(Visual Studio)</code> が使えること</li>
+<li><code>__builtin_(ctz/ctzll/clz/clzll/popcount)(g++, clang++)</code> か <code>_BitScan(Forward/Reverse)(Visual Studio)</code> が使えること</li>
+<li><code>char / short / int / ll</code>が <code>8 / 16 / 32 / 64</code> bit、またその<code>unsigned</code>型(および<code>signed char</code>)も同じbit長</li>
+<li>💻 <a href="https://cpprefjp.github.io/lang/cpp20/signed_integers_are_twos_complement.html">符号付き整数型が2の補数表現であることを規定</a></li>
+</ul>
+</li>
+</ul>
+<h2>インストール方法</h2>
+<h3>g++ / clang++へのインストール方法</h3>
+<p>一番わかりやすい方法は、トップページに書いたように、<code>main.cpp</code>と同じ場所に<code>atcoder</code>フォルダを置いて、<code>g++ main.cpp -std=c++14 -I .</code>と実行することです。ここで、<code>.</code>はフォルダを表す記号です(本当に I の後にスペース、点、と入力します。)</p>
+<p><code>atcoder</code>フォルダをいちいちコピーしたくない場合は以下のような方法があります。</p>
+<ul>
+<li><code>g++ main.cpp -std=c++14 -I /path/to/ac-library/atcoder</code>のように指定する。</li>
+<li>環境変数 <code>CPLUS_INCLUDE_PATH</code> で、<code>CPLUS_INCLUDE_PATH="/path/to/ac-library/atcoder"</code>のように<code>atcoder</code>フォルダの場所を指定する。(Windowsの場合は、<a href="https://www.k-cube.co.jp/wakaba/server/images/environ.jpg">ユーザー環境変数の設定画面</a> で、変数の欄に <code>CPLUS_INCLUDE_PATH</code> 値の欄に <code>C:\path\to\ac-library\atcoder</code>　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に<code>g++ main.cpp -std=c++14</code>とコンパイルできる。</li>
+</ul>
+<h3>Visual Studioへのインストール方法</h3>
+<p>古いVisual Studioを使っている場合、アップデートしてください。Visual Studio 2017 / 2019をサポートしています。</p>
+<p>Visual Studioがインストールされているならば、以下のようなフォルダがあるはずです。</p>
+<ul>
+<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include</code></li>
+<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2017\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.10.25017)\include</code></li>
+</ul>
+<p>このなかに丸ごと <code>atcoder</code> フォルダをコピーしてください。つまり、</p>
+<ul>
+<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include\atcoder\dsu.hpp</code></li>
+</ul>
+<p>となるように配置してください。</p>
+<h2>他のジャッジへの提出方法</h2>
+<p><code>expander.py</code>というスクリプト(python3.5 or later)を用意しています。
+<code>python3 expander.py main.cpp</code>と実行すると<code>combined.cpp</code>が生成され、これは他のオンラインジャッジに提出できる形になっています。</p>
+<p>テストはしていますが、サポート保証外です。</p>
+<h2>ドキュメントの表記法 / 明記されていないこと</h2>
+<h3>💻マーク</h3>
+<p>C++初心者には難しいかもしれない機能を表すマークです。AC Libraryは、このマークの付いた箇所を無視してもアルゴリズム的に困らないように設計されています。modintなどが該当します。</p>
+<h3>テンプレート関数</h3>
+<p>例えば<code>suffix_array(v)</code>は<code>vector&lt;int&gt;</code>, <code>vector&lt;ll&gt;</code>などを引数に取れるのですが、これらをまとめて<code>suffix_array&lt;T&gt;(vector&lt;T&gt; v)</code>と表記します。</p>
+<p>例えば<code>vector&lt;int&gt;</code>に格納された整数列 $v$ の suffix array を求めたいとき、</p>
+<pre><code class="cpp">vector&lt;int&gt; sa = suffix_array(v);
+// vector&lt;int&gt; sa = suffix_array&lt;int&gt;(v); ではないことに注意
+</code></pre>
+
+<p>と使います。</p>
+<h3>デフォルトコンストラクタ</h3>
+<p>構造体、例えば<code>scc_graph</code> などは、サンプルのように</p>
+<pre><code class="cpp">#include &lt;atcoder/scc&gt;;
+using namespace atcoder;
+
+int main() {
+    int n;
+    scanf(&quot;%d&quot;, &amp;n);
+    scc_graph g(n); // n 頂点からなるグラフを生成
+    return 0;
+}
+</code></pre>
+
+<p>といった宣言方法だけでなく、次のように初期化なしで宣言することも出来ます。</p>
+<pre><code class="cpp">#include &lt;atcoder/scc&gt;;
+using namespace atcoder;
+
+scc_graph g;
+
+int main() {
+    return 0;
+}
+</code></pre>
+
+<p>このように宣言したときの挙動（デフォルトコンストラクタ）は、</p>
+<ul>
+<li>$O(1)$</li>
+<li>生成されたものへのメンバ変数のアクセス, メンバ関数の呼び出しの挙動は全て未定義</li>
+</ul>
+<p>となります。また、構造体に後から代入することも出来ます。</p>
+<pre><code class="cpp">#include &lt;atcoder/scc&gt;;
+using namespace atcoder;
+
+scc_graph g;
+
+int main() {
+    g = scc_graph(10);
+    return 0;
+}
+</code></pre>
+
+<h3>辺の型</h3>
+<p>最大流ライブラリなどでは、辺の型として <code>mf_graph&lt;Cap&gt;::edge</code> というのを使います。</p>
+<p>例えば、<code>mf_graph&lt;int&gt;</code> の辺の型は <code>mf_graph&lt;int&gt;::edge</code> です。
+<code>::</code> が見慣れないかもしれないですが、<code>mf_graph&lt;int&gt;::edge</code> という文字列を<code>int</code>や<code>string</code>のように扱えばよいです。例えば</p>
+<pre><code class="cpp">vector&lt;mf_graph&lt;int&gt;::edge&gt; v;
+mf_graph&lt;int&gt;::edge e;
+</code></pre>
+
+<p>のようになります。</p>
+<h3>デフォルトテンプレート引数</h3>
+<p>convolution のように、以下のような表記法を用いることがあります。</p>
+<pre><code class="cpp">vector&lt;T&gt; convolution&lt;int m = 998244353&gt;(vector&lt;T&gt; a, vector&lt;T&gt; b)
+</code></pre>
+
+<p>これは、二通りの使い方ができることを表します。</p>
+<pre><code class="cpp">vector&lt;long long&gt; c = convolution(a, b);
+vector&lt;long long&gt; c = convolution&lt;924844033&gt;(a, b);
+</code></pre>
+
+<p>上段のように使った場合は、$m$ の値は自動的に $998244353$ となります。
+下段のように使った場合は、$m$ の値は明示的に与えた値 (この場合は $924844033$) となります。</p>
+<h2>Segtree / LazySegtree の厳密な要件</h2>
+<p>Segtree / LazySegtree を使いたい状況において、扱う代数構造が無限集合である場合があります。たとえば、与えられた区間の $\mathrm{max}$ を求める、与えられた区間内の全ての要素に定数を足す、の二種類のクエリに対応する LazySegtree はよくありますが、このときたとえば $S = \mathrm{int}$ としてしまうと、$S$ は加法について閉じていない (overflow を起こす可能性がある) ため、厳密な意味でドキュメント本編の制約を満たしません。そこで、AC Library では以下のような場合正しく動くことを保証しています。</p>
+<h3>Segtree</h3>
+<ul>
+<li>$S$ はドキュメント本編の条件を満たすような代数構造である。</li>
+<li>$e \in S' \subseteq S$</li>
+<li>ライブラリに与える型や演算は、引数および演算結果が全て $S'$ に含まれる場合、正しく動く</li>
+<li>任意の時点の、任意の連続な部分列 $a_l, a_{l+1}, \cdots, a_{r-1}$ について、積$a_l \cdot a_{l+1} \cdot \ldots \cdot a_{r-1}$ が $S'$ に含まれる。</li>
+</ul>
+<h3>LazySegtree</h3>
+<ul>
+<li>$(S, F)$ はドキュメント本編の条件を満たすような代数構造である。</li>
+<li>$e \in S' \subseteq S, \mathrm{id} \in F' \subseteq F$</li>
+<li>ライブラリに与える型や演算は、引数および演算結果が全て $S', F'$ に含まれる場合、正しく動く</li>
+<li>任意の時点の、任意の連続な部分列 $a_l, a_{l+1}, \cdots, a_{r-1}$ について、積$a_l \cdot a_{l+1} \cdot \ldots \cdot a_{r-1}$ が $S'$ に含まれる。</li>
+<li>任意の要素に対し、その要素に適用された関数を順に $f_0, f_1, ..., f_{k-1} \in F$ としたとき、任意の連続な部分列 $f_l, \cdots, f_{r-1}$ について、合成 $f_{r-1} \circ f_{l+1} \circ \dots \circ f_{l}$ が $F'$ に含まれる。</li>
+</ul>
+<p>たとえば、最初の例で自然に $(S, F)$ を定めると以下のようになりますが、これは無限集合です。</p>
+<ul>
+<li>$S = \mathbb{Z} \cup {-\infty}$</li>
+<li>$S$ 上の二項演算 $\cdot$ は $\mathrm{max}$ ($e = -\infty$)</li>
+<li>$F$ は整数定数を加える写像全体の集合 ($\mathrm{id}$ は $0$ を加える写像)</li>
+</ul>
+<p>$(S', F')$ を以下のように定めることで、制約が十分小さければこのライブラリで扱うことができます。</p>
+<ul>
+<li>$S' = (\mathbb{Z} \cap (-2^{31}, 2^{31})) \cup {-\infty}$</li>
+<li>$S’$ を表す型として $\mathrm{int}$ を選択し、$-\infty$ は $\mathrm{int}$ の元 $-2^{31}$ として、その他はそのまま表す</li>
+<li>$F'$ は区間 $[-2^{31}, 2^{31})$ 内の整数定数を加える写像全体の集合で、型 $\mathrm{int}$ を用いて自然な対応で表す</li>
+</ul>
+<h2>maxflowの挙動</h2>
+<p>内部では各辺 $e$ について $2$ つの変数、流量 $f_e$ と容量 $c_e$ を管理しています。頂点 $v$ から出る辺の集合を $\mathrm{out}(v)$, 入る辺の集合を$\mathrm{in}(v)$ 、また頂点 $v$ について $g(v, f) = \sum_{e \in \mathrm{in}(v)}{f_e} - \sum_{e \in \mathrm{out}(v)}{f_e}$ とします。</p>
+<h3><code>flow(s, t)</code></h3>
+<p>これを呼ぶと各辺の流量を変更します。厳密には変更前と変更後の流量を $f_e$, $f'_e$ として、以下の条件を満たすように変更します。</p>
+<ul>
+<li>$0 \leq f'_e \leq c_e$</li>
+<li>$s, t$ 以外の全ての頂点 $v$ について、$g(v, f) = g(v, f')$</li>
+<li>(flow_limitを指定した場合) $g(t, f') - g(t, f) \leq \mathrm{flow\_limit}$</li>
+<li>$g(t, f') - g(t, f)$ が以上の条件を満たすうち最大。この $g(t, f') - g(t, f)$ を返す</li>
+</ul>
+<h3><code>min_cut(s)</code></h3>
+<p>各辺 $e = (u, v, f_e, c_e)$について、$f_e \lt c_e$ ならば辺 $(u, v)$ を張り、$0 \lt f_e$ ならば辺 $(v, u)$ を張ったと仮定したとき、頂点 $s$ から到達可能な頂点の集合を返します。</p>
+<h3><code>change_edge(i, new_cap, new_flow)</code></h3>
+<p>辺 $i$ の流量、容量のみを <code>new_flow</code>, <code>new_cap</code> へ変更します。</p>
+        </div>
+    </section>
+</body>
+
+</html>

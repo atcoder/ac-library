@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>MaxFlow</h1>
+<p>It solves <a href="https://en.wikipedia.org/wiki/Maximum_flow_problem">maximum flow problem</a>.</p>
+<h2>Constructor</h2>
+<pre><code class="cpp">mf_graph&lt;Cap&gt; graph(int n)
+</code></pre>
+
+<p>It creates a graph of <code>n</code> vertices and $0$ edges. <code>Cap</code> is the type of the capacity.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+<li><code>Cap</code> is <code>int</code> or <code>ll</code></li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>add_edge</h2>
+<pre><code class="cpp">int graph.add_edge(int from, int to, Cap cap);
+</code></pre>
+
+<p>It adds an edge oriented from the vertex <code>from</code> to the vertex <code>to</code> with the capacity <code>cap</code> and the flow amount $0$. It returns an integer $k$ such that this is the $k$-th edge that is added.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq \mathrm{from}, \mathrm{to} \lt n$</li>
+<li>$0 \leq \mathrm{cap}$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(1)$ amortized</li>
+</ul>
+<h2>flow</h2>
+<pre><code class="cpp">(1) Cap graph.flow(int s, int t);
+(2) Cap graph.flow(int s, int t, Cap flow_limit);
+</code></pre>
+
+<ul>
+<li>It augments the flow from $s$ to $t$ as much as possible. It returns the amount of the flow augmented.</li>
+<li>You may call it multiple times. See <a href="./appendix.html">Appendix</a> for further details.</li>
+</ul>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>The answer should be in <code>Cap</code>.</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\min(n^{\frac{2}{3}}m, m^{\frac{3}{2}}))$ (if all the capacities are $1$) or</li>
+<li>$O(n^2 m)$ (general),</li>
+</ul>
+<p>where $m$ is the number of added edges.</p>
+<h2>min_cut</h2>
+<pre><code class="cpp">vector&lt;bool&gt; graph.min_cut(int s)
+</code></pre>
+
+<p>It returns a vector of length $n$, such that the $i$-th element is <code>true</code> if and only if there is a directed path from $s$ to $i$ in the residual network.
+The returned vector corresponds to a $s-t$ minimum cut after calling <code>flow(s, t)</code> exactly once without <code>flow_limit</code>. See <a href="./appendix.html">Appendix</a> for further details.</p>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(n + m)$, where $m$ is the number of added edges.</li>
+</ul>
+<h2>get_edge / edges</h2>
+<pre><code class="cpp">struct mf_graph&lt;Cap&gt;::edge {
+    int from, to;
+    Cap cap, flow;
+};
+
+(1) mf_graph&lt;Cap&gt;::edge graph.get_edge(int i);
+(2) vector&lt;mf_graph&lt;Cap&gt;::edge&gt; graph.edges();
+</code></pre>
+
+<ul>
+<li>It returns the current internal state of the edges.</li>
+<li>The edges are ordered in the same order as added by <code>add_edge</code>.</li>
+</ul>
+<p><strong>Constraints</strong></p>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>(1): $O(1)$</li>
+<li>(2): $O(m)$, where $m$ is the number of added edges.</li>
+</ul>
+<h2>change_edge</h2>
+<pre><code class="cpp">void graph.change_cap(int i, Cap new_cap, Cap new_flow);
+</code></pre>
+
+<p>It changes the capacity and the flow amount of the $i$-th edge to <code>new_cap</code> and <code>new_flow</code>, respectively. It doesn't change the capacity or the flow amount of other edges. See <a href="./appendix.html">Appendix</a> for further details.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq \mathrm{newflow} \leq \mathrm{newcap}$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2>Examples</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_d">https://atcoder.jp/contests/practice2/tasks/practice2_d</a></h3>
+<div class="sample-code">#include &lt;atcoder/maxflow&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int main() {
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+
+    vector&lt;string&gt; grid(n);
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; grid[i];
+    }
+
+    /**
+     * generate (s -&gt; even grid -&gt; odd grid -&gt; t) graph
+     * grid(i, j) correspond to vertex (i * m + j)
+     **/
+    mf_graph&lt;int&gt; g(n * m + 2);
+    int s = n * m, t = n * m + 1;
+
+    // s -&gt; even / odd -&gt; t
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; m; j++) {
+            if (grid[i][j] == &#39;#&#39;) continue;
+            int v = i * m + j;
+            if ((i + j) % 2 == 0) {
+                g.add_edge(s, v, 1);
+            } else {
+                g.add_edge(v, t, 1);
+            }
+        }
+    }
+
+    // even -&gt; odd
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; m; j++) {
+            if ((i + j) % 2 || grid[i][j] == &#39;#&#39;) continue;
+            int v0 = i * m + j;
+            if (i &amp;&amp; grid[i - 1][j] == &#39;.&#39;) {
+                int v1 = (i - 1) * m + j;
+                g.add_edge(v0, v1, 1);
+            }
+            if (j &amp;&amp; grid[i][j - 1] == &#39;.&#39;) {
+                int v1 = i * m + (j - 1);
+                g.add_edge(v0, v1, 1);
+            }
+            if (i + 1 &lt; n &amp;&amp; grid[i + 1][j] == &#39;.&#39;) {
+                int v1 = (i + 1) * m + j;
+                g.add_edge(v0, v1, 1);
+            }
+            if (j + 1 &lt; m &amp;&amp; grid[i][j + 1] == &#39;.&#39;) {
+                int v1 = i * m + (j + 1);
+                g.add_edge(v0, v1, 1);
+            }
+        }
+    }
+
+    cout &lt;&lt; g.flow(s, t) &lt;&lt; endl;
+
+    auto edges = g.edges();
+    for (auto e : edges) {
+        if (e.from == s || e.to == t || e.flow == 0) continue;
+        int i0 = e.from / m, j0 = e.from % m;
+        int i1 = e.to / m, j1 = e.to % m;
+
+        if (i0 == i1 + 1) {
+            grid[i1][j1] = &#39;v&#39;;
+            grid[i0][j0] = &#39;^&#39;;
+        } else if (j0 == j1 + 1) {
+            grid[i1][j1] = &#39;&gt;&#39;; grid[i0][j0] = &#39;&lt;&#39;;
+        } else if (i0 == i1 - 1) {
+            grid[i0][j0] = &#39;v&#39;;
+            grid[i1][j1] = &#39;^&#39;;
+        } else {
+            grid[i0][j0] = &#39;&gt;&#39;; grid[i1][j1] = &#39;&lt;&#39;;
+        }
+    }
+
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; grid[i] &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

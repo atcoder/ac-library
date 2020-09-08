@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Fenwick Tree</h1>
+<p>Given an array of length $N$, it processes the following queries in $O(\log N)$ time.</p>
+<ul>
+<li>Updating an element</li>
+<li>Calculating the sum of the elements of an interval</li>
+</ul>
+<h2>Constructor</h2>
+<pre><code class="cpp">fenwick_tree&lt;T&gt; fw(int n)
+</code></pre>
+
+<ul>
+<li>It creates an array $a_0, a_1, \cdots, a_{n-1}$ of length $n$. All the elements are initialized to $0$.</li>
+</ul>
+<p><strong>Constraints</strong></p>
+<ul>
+<li><code>T</code> is <code>int</code>, <code>uint</code>, <code>ll</code>, <code>ull</code>, or <code>modint</code></li>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>add</h2>
+<pre><code class="cpp">void fw.add(int p, T x)
+</code></pre>
+
+<p>It processes <code>a[p] += x</code>.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>sum</h2>
+<pre><code class="cpp">T fw.sum(int l, int r)
+</code></pre>
+
+<p>It returns <code>a[l] + a[l - 1] + ... + a[r - 1]</code>.
+If <code>T</code> is integer type(<code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code>), it returns the answer in $\bmod 2^{\mathrm{bit}}$, if overflowed.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq l \leq r \leq n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>Examples</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_b">https://atcoder.jp/contests/practice2/tasks/practice2_b</a></h3>
+<div class="sample-code">#include &lt;atcoder/fenwicktree&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int main() {
+    int n, q;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
+
+    fenwick_tree&lt;long long&gt; fw(n);
+    for (int i = 0; i &lt; n; i++) {
+        int a;
+        scanf(&#34;%d&#34;, &amp;a);
+        fw.add(i, a);
+    }
+
+    for (int i = 0; i &lt; q; i++) {
+        int t;
+        scanf(&#34;%d&#34;, &amp;t);
+        if (t == 0) {
+            int p, x;
+            scanf(&#34;%d %d&#34;, &amp;p, &amp;x);
+            fw.add(p, x);
+        } else {
+            int l, r;
+            scanf(&#34;%d %d&#34;, &amp;l, &amp;r);
+            printf(&#34;%lld\n&#34;, fw.sum(l, r));
+        }
+    }
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

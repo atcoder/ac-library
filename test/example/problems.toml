@@ -1,0 +1,19 @@
+[sources]
+    # practice2
+    dsu_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_a"
+    fenwick_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_b"
+    floor_sum_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_c"
+    maxflow_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_d"
+    mincostflow_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_e"
+    convolution_int_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_f"
+    convolution_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_f"
+    scc_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_g"
+    twosat_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_h"
+    sa_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_i"
+    segtree_practice = "https://atcoder.jp/contests/practice2/tasks/practice2_j"
+    lazyseg_practice1 = "https://atcoder.jp/contests/practice2/tasks/practice2_k"
+    lazyseg_practice2 = "https://atcoder.jp/contests/practice2/tasks/practice2_l"
+
+    # usage
+    modint_usage = ""
+    sa_usage = ""

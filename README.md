@@ -7,6 +7,8 @@ You may refer to the following links for more details:
 - [The Announcement of AtCoder](https://atcoder.jp/posts/518)
 - [The Announcement of Codeforces](https://codeforces.com/blog/entry/82400)
 - [Practice Contest](https://atcoder.jp/contests/practice2)
+- [AC Library Document(en)](https://atcoder.github.io/ac-library/document_en/)
+- [AC Library Document(ja)](https://atcoder.github.io/ac-library/document_ja/)
 
 ## Direction of this project
 

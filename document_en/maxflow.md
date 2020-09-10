@@ -95,7 +95,7 @@ struct mf_graph<Cap>::edge {
 ## change_edge
 
 ```cpp
-void graph.change_cap(int i, Cap new_cap, Cap new_flow);
+void graph.change_edge(int i, Cap new_cap, Cap new_flow);
 ```
 
 It changes the capacity and the flow amount of the $i$-th edge to `new_cap` and `new_flow`, respectively. It doesn't change the capacity or the flow amount of other edges. See [Appendix](./appendix.html) for further details.

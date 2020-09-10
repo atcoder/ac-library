@@ -21,8 +21,11 @@ template <class Cap> struct mf_graph {
         assert(0 <= cap);
         int m = int(pos.size());
         pos.push_back({from, int(g[from].size())});
-        g[from].push_back(_edge{to, int(g[to].size()), cap});
-        g[to].push_back(_edge{from, int(g[from].size()) - 1, 0});
+        int from_id = int(g[from].size());
+        int to_id = int(g[to].size());
+        if (from == to) to_id++;
+        g[from].push_back(_edge{to, to_id, cap});
+        g[to].push_back(_edge{from, from_id, 0});
         return m;
     }
 

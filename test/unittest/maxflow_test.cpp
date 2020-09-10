@@ -169,3 +169,12 @@ TEST(MaxflowTest, BoundUint) {
     e = {0, 2, INF, INF};
     edge_eq(e, g.get_edge(2));
 }
+
+// https://github.com/atcoder/ac-library/issues/1
+TEST(MaxflowTest, SelfLoop) {
+    mf_graph<int> g(3);
+    ASSERT_EQ(0, g.add_edge(0, 0, 100));
+
+    mf_graph<int>::edge e = {0, 0, 100, 0};
+    edge_eq(e, g.get_edge(0));
+}

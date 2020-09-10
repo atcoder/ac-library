@@ -70,3 +70,12 @@ TEST(MincostflowTest, OutOfRange) {
     EXPECT_DEATH(g.slope(-1, 3), ".*");
     EXPECT_DEATH(g.slope(3, 3), ".*");
 }
+
+// https://github.com/atcoder/ac-library/issues/1
+TEST(MaxflowTest, SelfLoop) {
+    mcf_graph<int, int> g(3);
+    ASSERT_EQ(0, g.add_edge(0, 0, 100, 123));
+
+    mcf_graph<int, int>::edge e = {0, 0, 100, 0, 123};
+    edge_eq(e, g.get_edge(0));
+}

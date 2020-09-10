@@ -22,7 +22,7 @@ struct barrett {
     unsigned int _m;
     unsigned long long im;
 
-    // @param m `1 <= m <= 2^31`
+    // @param m `1 <= m < 2^31`
     barrett(unsigned int m) : _m(m), im((unsigned long long)(-1) / m + 1) {}
 
     // @return m

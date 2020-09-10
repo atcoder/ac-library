@@ -15,7 +15,7 @@ constexpr long long safe_mod(long long x, long long m) {
     return x;
 }
 
-// Fast moduler by barrett reduction
+// Fast modular by barrett reduction
 // Reference: https://en.wikipedia.org/wiki/Barrett_reduction
 // NOTE: reconsider after Ice Lake
 struct barrett {

@@ -181,7 +181,7 @@ Precisely, it changes the flow amount as follows.
 
 - $0 \leq f'_e \leq c_e$
 - $g(v, f) = g(v, f')$ holds for all vertices $v$ other than $s$ and $t$.
-- If flow_limit is specified, $g(t, f') - g(t, f) \leq \mathrm{flow\_limit}$.
+- If flow_limit is specified, $g(t, f') - g(t, f) \leq \mathrm{flow\\_limit}$.
 - $g(t, f') - g(t, f)$ is maximized under these conditions. It returns this $g(t, f') - g(t, f)$.
 
 ### `min_cut(s)`

@@ -162,7 +162,7 @@ If `f` is monotone, this is the maximum `r` that satisfies `g(op(a[l], a[l + 1],
 It returns an index `l` that satisfies both of the following.
 
 - `l = r` or `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`
-- `l = 0` or `g(op(a[l - 1], a[l + 1], ..., a[r - 1])) = false`
+- `l = 0` or `g(op(a[l - 1], a[l], ..., a[r - 1])) = false`
 
 If `f` is monotone, this is the minimum `l` that satisfies `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`.
 

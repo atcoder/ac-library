@@ -99,7 +99,7 @@ $m$ を追加された辺数として
 ## change_edge
 
 ```cpp
-void graph.change_cap(int i, Cap new_cap, Cap new_flow);
+void graph.change_edge(int i, Cap new_cap, Cap new_flow);
 ```
 
 $i$ 番目に変更された辺の容量、流量を`new_cap`, `new_flow`に変更する。他の辺の容量、流量は変更しない。詳細は [Appendix](./appendix.html) を参照してください

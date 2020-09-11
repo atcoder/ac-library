@@ -335,7 +335,7 @@ TEST(ConvolutionTest, ConvLLBound) {
     static constexpr unsigned long long M1M3 = MOD1 * MOD3;
     static constexpr unsigned long long M1M2 = MOD1 * MOD2;
     for (int i = -1000; i <= 1000; i++) {
-        std::vector<ll> a = {(long long)(-M1M2 - M1M3 - M2M3 + i)};
+        std::vector<ll> a = {(long long)(0ULL - M1M2 - M1M3 - M2M3 + i)};
         std::vector<ll> b = {1};
 
         ASSERT_EQ(a, convolution_ll(a, b));

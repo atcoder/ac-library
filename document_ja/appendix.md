@@ -17,8 +17,8 @@
 
 `atcoder`フォルダをいちいちコピーしたくない場合は以下のような方法があります。
 
-- `g++ main.cpp -std=c++14 -I /path/to/ac-library/atcoder`のように指定する。
-- 環境変数 `CPLUS_INCLUDE_PATH` で、`CPLUS_INCLUDE_PATH="/path/to/ac-library/atcoder"`のように`atcoder`フォルダの場所を指定する。(Windowsの場合は、[ユーザー環境変数の設定画面](https://www.k-cube.co.jp/wakaba/server/images/environ.jpg) で、変数の欄に `CPLUS_INCLUDE_PATH` 値の欄に `C:\path\to\ac-library\atcoder`　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に`g++ main.cpp -std=c++14`とコンパイルできる。
+- `g++ main.cpp -std=c++14 -I /path/to/ac-library`のように指定する (`/path/to/ac-library` は自分のPCの `ac-library` を置いてある場所へ書き換えてください)。
+- 環境変数 `CPLUS_INCLUDE_PATH` で、`CPLUS_INCLUDE_PATH="/path/to/ac-library"`のように`atcoder`フォルダの場所を指定する。(Windowsの場合は、[ユーザー環境変数の設定画面](https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png) で、変数の欄に `CPLUS_INCLUDE_PATH` 値の欄に `C:\path\to\ac-library`　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に`g++ main.cpp -std=c++14`とコンパイルできる。
 
 ### Visual Studioへのインストール方法
 

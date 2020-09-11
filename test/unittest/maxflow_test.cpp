@@ -178,3 +178,10 @@ TEST(MaxflowTest, SelfLoop) {
     mf_graph<int>::edge e = {0, 0, 100, 0};
     edge_eq(e, g.get_edge(0));
 }
+
+TEST(MaxflowTest, Invalid) {
+    mf_graph<int> g(2);
+    // https://github.com/atcoder/ac-library/issues/5
+    EXPECT_DEATH(g.flow(0, 0), ".*");
+    EXPECT_DEATH(g.flow(0, 0, 0), ".*");
+}

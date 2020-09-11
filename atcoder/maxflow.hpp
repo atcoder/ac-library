@@ -65,6 +65,7 @@ template <class Cap> struct mf_graph {
     Cap flow(int s, int t, Cap flow_limit) {
         assert(0 <= s && s < _n);
         assert(0 <= t && t < _n);
+        assert(s != t);
 
         std::vector<int> level(_n), iter(_n);
         internal::simple_queue<int> que;

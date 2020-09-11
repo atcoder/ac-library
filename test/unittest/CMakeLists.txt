@@ -15,7 +15,7 @@ if(NOT MSVC)
     add_link_options(-fsanitize=undefined,address)
 else()
     message("Use MSVC")
-    add_compile_options(/W4 /permissive-)
+    add_compile_options(/W4 /permissive- /std:c++14)
 endif()
 
 add_subdirectory(googletest)

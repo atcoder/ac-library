@@ -137,12 +137,12 @@ It returns an index `r` that satisfies both of the followings.
 - `r = l` or `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`
 - `r = n` or `g(op(a[l], a[l + 1], ..., a[r])) = false`
 
-If `f` is monotone, this is the maximum `r` that satisfies `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`.
+If `g` is monotone, this is the maximum `r` that satisfies `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`.
 
 **@{keyword.constraints}**
 
-- if `f` is called with the same argument, it returns the same value, i.e., `f` has no side effect.
-- `f(e_s()) = true`
+- if `g` is called with the same argument, it returns the same value, i.e., `g` has no side effect.
+- `g(e()) = true`
 - $0 \leq l \leq n$
 
 **@{keyword.complexity}**
@@ -164,12 +164,12 @@ It returns an index `l` that satisfies both of the following.
 - `l = r` or `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`
 - `l = 0` or `g(op(a[l - 1], a[l], ..., a[r - 1])) = false`
 
-If `f` is monotone, this is the minimum `l` that satisfies `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`.
+If `g` is monotone, this is the minimum `l` that satisfies `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`.
 
 **@{keyword.constraints}**
 
-- if `f` is called with the same argument, it returns the same value, i.e., `f` has no side effect.
-- `f(e_s()) = true`
+- if `g` is called with the same argument, it returns the same value, i.e., `g` has no side effect.
+- `g(e()) = true`
 - $0 \leq r \leq n$
 
 **@{keyword.complexity}**

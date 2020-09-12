@@ -107,12 +107,12 @@ S seg.all_prod()
 ## apply
 
 ```cpp
-(1) void seg.apply(int p, T x)
-(2) void seg.apply(int l, int r, T x)
+(1) void seg.apply(int p, F f)
+(2) void seg.apply(int l, int r, F f)
 ```
 
-- (1) `a[p] = op_st(a[p], x)`
-- (2) `i = l..r-1`について`a[i] = op_st(a[i], x)`
+- (1) `a[p] = f(a[p])`
+- (2) `i = l..r-1`について`a[i] = f(a[i])`
 
 **@{keyword.constraints}**
 

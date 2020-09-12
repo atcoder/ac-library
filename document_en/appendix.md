@@ -33,6 +33,8 @@ Copy `atcoder` folder into it, i.e., put it so that the path will be as follows.
 
 - `C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include\atcoder\dsu.hpp`
 
+Visual Studio only supports 64bit projects. For 32bit(x86) projects, the error *'_umul128': identifier not found* occurs.
+
 ## How to Submit to Other Online Judge Systems
 
 We prepared the script `expander.py` (python3.5 or later).

@@ -1,3 +1,5 @@
+[日本語版 README_ja.md はこちら](README_ja.md)。
+
 # AC(AtCoder) Library
 
 AC Library is the official library of [AtCoder](https://atcoder.jp/home). This repository manages the contents of AC Library.

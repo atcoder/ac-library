@@ -106,12 +106,12 @@ It returns `op(a[0], ..., a[n - 1])`, assuming the properties of the monoid. It 
 ## apply
 
 ```cpp
-(1) void seg.apply(int p, T x)
-(2) void seg.apply(int l, int r, T x)
+(1) void seg.apply(int p, F f)
+(2) void seg.apply(int l, int r, F f)
 ```
 
-- (1) It applies `a[p] = op_st(a[p], x)`.
-- (2) It applies `a[i] = op_st(a[i], x)` for all `i = l..r-1`.
+- (1) It applies `a[p] = f(a[p])`.
+- (2) It applies `a[i] = f(a[i])` for all `i = l..r-1`.
 
 **@{keyword.constraints}**
 

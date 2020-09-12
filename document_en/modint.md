@@ -9,6 +9,7 @@ For most of the problems, it is sufficient to use `modint998244353`, `modint1000
 #include <iostream>
 
 using namespace std;
+using namespace atcoder;
 
 using mint = modint998244353;
 // or: typedef modint998244353 mint;

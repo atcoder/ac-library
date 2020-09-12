@@ -138,12 +138,12 @@ S seg.all_prod()
 - `r = l` もしくは `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`
 - `r = n` もしくは `g(op(a[l], a[l + 1], ..., a[r])) = false`
 
-`f`が単調だとすれば、`g(op(a[l], a[l + 1], ..., a[r - 1])) = true` となる最大の `r`、と解釈することが可能です。
+`g`が単調だとすれば、`g(op(a[l], a[l + 1], ..., a[r - 1])) = true` となる最大の `r`、と解釈することが可能です。
 
 **@{keyword.constraints}**
 
-- `f`を同じ引数で呼んだ時、返り値は等しい(=副作用はない)
-- `f(e_s()) = true`
+- `g`を同じ引数で呼んだ時、返り値は等しい(=副作用はない)
+- `g(e()) = true`
 - $0 \leq l \leq n$
 
 **@{keyword.complexity}**
@@ -165,12 +165,12 @@ S seg.all_prod()
 - `l = r` もしくは `g(op(a[l], a[l + 1], ..., a[r - 1])) = true`
 - `l = 0` もしくは `g(op(a[l - 1], a[l], ..., a[r - 1])) = false`
 
-`f`が単調だとすれば、`g(op(a[l], a[l + 1], ..., a[r - 1])) = true` となる最小の `l`、と解釈することが可能です。
+`g`が単調だとすれば、`g(op(a[l], a[l + 1], ..., a[r - 1])) = true` となる最小の `l`、と解釈することが可能です。
 
 **@{keyword.constraints}**
 
-- `f`を同じ引数で呼んだ時、返り値は等しい(=副作用はない)
-- `f(e_s()) = true`
+- `g`を同じ引数で呼んだ時、返り値は等しい(=副作用はない)
+- `g(e()) = true`
 - $0 \leq r \leq n$
 
 **@{keyword.complexity}**

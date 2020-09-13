@@ -18,9 +18,9 @@ Here, the suffix array `sa` of `s` is a permutation of $0, \cdots, n-1$ such tha
 
 **@{keyword.constraints}**
 
-- $0 \leq n < 10^8$
+- $0 \leq n \leq 10^8$
 - (2) `T` is `int`, `uint`, `ll`, or `ull`.
-- (3) $0 \leq \mathrm{upper} < 10^8$
+- (3) $0 \leq \mathrm{upper} \leq 10^8$
 - (3) $0 \leq x \leq \mathrm{upper}$ for all elements $x$ of $s$.
 
 Complexity

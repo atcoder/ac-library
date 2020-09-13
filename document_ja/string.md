@@ -18,9 +18,9 @@ Suffix Array `sa` は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,
 
 **@{keyword.constraints}**
 
-- $0 \leq n < 10^8$
+- $0 \leq n \leq 10^8$
 - (2) `T` は `int, uint, ll, ull`
-- (3) $0 \leq \mathrm{upper} < 10^8$
+- (3) $0 \leq \mathrm{upper} \leq 10^8$
 - (3) $s$ のすべての要素 $x$ について $0 \leq x \leq \mathrm{upper}$
 
 計算量

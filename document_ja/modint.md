@@ -177,6 +177,10 @@ $xy \equiv 1$ なる $y$ を返します。
 
 - `gcd(x.val(), mod) = 1`
 
+**@{keyword.complexity}**
+
+- $O(\log \mathrm{mod})$
+
 ## raw
 
 ```cpp

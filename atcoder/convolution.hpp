@@ -34,7 +34,7 @@ void butterfly(std::vector<mint>& a) {
             ie *= ie;
         }
         mint now = 1;
-        for (int i = 0; i < cnt2 - 2; i++) {
+        for (int i = 0; i <= cnt2 - 2; i++) {
             sum_e[i] = es[i] * now;
             now *= ies[i];
         }
@@ -76,7 +76,7 @@ void butterfly_inv(std::vector<mint>& a) {
             ie *= ie;
         }
         mint now = 1;
-        for (int i = 0; i < cnt2 - 2; i++) {
+        for (int i = 0; i <= cnt2 - 2; i++) {
             sum_ie[i] = ies[i] * now;
             now *= es[i];
         }

@@ -3,6 +3,7 @@
 #include <atcoder/convolution>
 #include <atcoder/modint>
 #include <random>
+#include "../utils/random.hpp"
 
 using namespace atcoder;
 using uint = unsigned int;
@@ -352,4 +353,34 @@ TEST(ConvolutionTest, ConvLLBound) {
 
         ASSERT_EQ(a, convolution_ll(a, b));
     }
+}
+
+// https://github.com/atcoder/ac-library/issues/30
+TEST(ConvolutionTest, Conv641) {
+    // 641 = 128 * 5 + 1
+    const int MOD = 641;
+    std::vector<ll> a(64), b(65);
+    for (int i = 0; i < 64; i++) {
+        a[i] = randint(0, MOD - 1);
+    }
+    for (int i = 0; i < 65; i++) {
+        b[i] = randint(0, MOD - 1);
+    }
+
+    ASSERT_EQ(conv_naive<MOD>(a, b), convolution<MOD>(a, b));
+}
+
+// https://github.com/atcoder/ac-library/issues/30
+TEST(ConvolutionTest, Conv18433) {
+    // 18433 = 2048 * 9 + 1
+    const int MOD = 18433;
+    std::vector<ll> a(1024), b(1025);
+    for (int i = 0; i < 1024; i++) {
+        a[i] = randint(0, MOD - 1);
+    }
+    for (int i = 0; i < 1025; i++) {
+        b[i] = randint(0, MOD - 1);
+    }
+
+    ASSERT_EQ(conv_naive<MOD>(a, b), convolution<MOD>(a, b));
 }

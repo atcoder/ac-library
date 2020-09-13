@@ -72,7 +72,7 @@ TEST(MincostflowTest, OutOfRange) {
 }
 
 // https://github.com/atcoder/ac-library/issues/1
-TEST(MaxflowTest, SelfLoop) {
+TEST(MincostflowTest, SelfLoop) {
     mcf_graph<int, int> g(3);
     ASSERT_EQ(0, g.add_edge(0, 0, 100, 123));
 

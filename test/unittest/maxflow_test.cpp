@@ -4,6 +4,7 @@
 #include <numeric>
 #include <tuple>
 #include <vector>
+#include "../utils/random.hpp"
 
 using namespace atcoder;
 using ll = long long;
@@ -184,4 +185,38 @@ TEST(MaxflowTest, Invalid) {
     // https://github.com/atcoder/ac-library/issues/5
     EXPECT_DEATH(g.flow(0, 0), ".*");
     EXPECT_DEATH(g.flow(0, 0, 0), ".*");
+}
+
+TEST(MaxflowTest, Stress) {
+    for (int phase = 0; phase < 10000; phase++) {
+        int n = randint(2, 20);
+        int m = randint(1, 100);
+        int s, t;
+        std::tie(s, t) = randpair(0, n - 1);
+        if (randbool()) std::swap(s, t);
+
+        mf_graph<int> g(n);
+        for (int i = 0; i < m; i++) {
+            int u = randint(0, n - 1);
+            int v = randint(0, n - 1);
+            int c = randint(0, 10000);
+            g.add_edge(u, v, c);
+        }
+        int flow = g.flow(s, t);
+        int dual = 0;
+        auto cut = g.min_cut(s);
+        std::vector<int> v_flow(n);
+        for (auto e: g.edges()) {
+            v_flow[e.from] -= e.flow;
+            v_flow[e.to] += e.flow;
+            if (cut[e.from] && !cut[e.to]) dual += e.cap;
+        }
+        ASSERT_EQ(flow, dual);
+        ASSERT_EQ(-flow, v_flow[s]);
+        ASSERT_EQ(flow, v_flow[t]);
+        for (int i = 0; i < n; i++) {
+            if (i == s || i == t) continue;
+            ASSERT_EQ(0, v_flow[i]);
+        }
+    }
 }

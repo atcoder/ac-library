@@ -79,3 +79,12 @@ TEST(MaxflowTest, SelfLoop) {
     mcf_graph<int, int>::edge e = {0, 0, 100, 0, 123};
     edge_eq(e, g.get_edge(0));
 }
+
+TEST(MincostflowTest, SameCostPaths) {
+    mcf_graph<int, int> g(3);
+    ASSERT_EQ(0, g.add_edge(0, 1, 1, 1));
+    ASSERT_EQ(1, g.add_edge(1, 2, 1, 0));
+    ASSERT_EQ(2, g.add_edge(0, 2, 2, 1));
+    auto expected = std::vector<std::pair<int, int>>{{0, 0}, {3, 3}};
+    ASSERT_EQ(expected, g.slope(0, 2));
+}

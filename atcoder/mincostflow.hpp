@@ -143,7 +143,7 @@ template <class Cap, class Cost> struct mcf_graph {
                 result.pop_back();
             }
             result.push_back({flow, cost});
-            prev_cost = cost;
+            prev_cost = d;
         }
         return result;
     }

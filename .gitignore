@@ -2,3 +2,4 @@ build
 
 *.html
 !tools/*.html
+tools/ac-library.zip

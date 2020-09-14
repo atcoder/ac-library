@@ -140,13 +140,13 @@
 <li>$O(1)$</li>
 </ul>
 <h2>apply</h2>
-<pre><code class="cpp">(1) void seg.apply(int p, T x)
-(2) void seg.apply(int l, int r, T x)
+<pre><code class="cpp">(1) void seg.apply(int p, F f)
+(2) void seg.apply(int l, int r, F f)
 </code></pre>
 
 <ul>
-<li>(1) It applies <code>a[p] = op_st(a[p], x)</code>.</li>
-<li>(2) It applies <code>a[i] = op_st(a[i], x)</code> for all <code>i = l..r-1</code>.</li>
+<li>(1) It applies <code>a[p] = f(a[p])</code>.</li>
+<li>(2) It applies <code>a[i] = f(a[i])</code> for all <code>i = l..r-1</code>.</li>
 </ul>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -171,11 +171,11 @@
 <li><code>r = l</code> or <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
 <li><code>r = n</code> or <code>g(op(a[l], a[l + 1], ..., a[r])) = false</code></li>
 </ul>
-<p>If <code>f</code> is monotone, this is the maximum <code>r</code> that satisfies <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
+<p>If <code>g</code> is monotone, this is the maximum <code>r</code> that satisfies <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
-<li>if <code>f</code> is called with the same argument, it returns the same value, i.e., <code>f</code> has no side effect.</li>
-<li><code>f(e_s()) = true</code></li>
+<li>if <code>g</code> is called with the same argument, it returns the same value, i.e., <code>g</code> has no side effect.</li>
+<li><code>g(e()) = true</code></li>
 <li>$0 \leq l \leq n$</li>
 </ul>
 <p><strong>Complexity</strong></p>
@@ -194,13 +194,13 @@
 <p>It returns an index <code>l</code> that satisfies both of the following.</p>
 <ul>
 <li><code>l = r</code> or <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
-<li><code>l = 0</code> or <code>g(op(a[l - 1], a[l + 1], ..., a[r - 1])) = false</code></li>
+<li><code>l = 0</code> or <code>g(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
 </ul>
-<p>If <code>f</code> is monotone, this is the minimum <code>l</code> that satisfies <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
+<p>If <code>g</code> is monotone, this is the minimum <code>l</code> that satisfies <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
-<li>if <code>f</code> is called with the same argument, it returns the same value, i.e., <code>f</code> has no side effect.</li>
-<li><code>f(e_s()) = true</code></li>
+<li>if <code>g</code> is called with the same argument, it returns the same value, i.e., <code>g</code> has no side effect.</li>
+<li><code>g(e()) = true</code></li>
 <li>$0 \leq r \leq n$</li>
 </ul>
 <p><strong>Complexity</strong></p>

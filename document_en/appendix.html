@@ -67,8 +67,8 @@
 <p>The easiest way is to put <code>atcoder</code> folder in the same place as <code>main.cpp</code> and execute <code>g++ main.cpp -std=c++14 -I .</code>, as noted in the index. Here, <code>.</code> is the symbol that represents the current directory (you should type a space and a period after <code>I</code>).</p>
 <p>If you don't want to copy <code>atcoder</code> folder manually, do as follows.</p>
 <ul>
-<li>Specify the command like <code>g++ main.cpp -std=c++14 -I /path/to/ac-library/atcoder</code>.</li>
-<li>Specify the place of <code>atcoder</code> folder by the environment variable <code>CPLUS_INCLUDE_PATH</code> as <code>CPLUS_INCLUDE_PATH="/path/to/ac-library/atcoder"</code>. (On Windows, type like <code>C:\path\to\ac-library\atcoder</code> in the field of the variable <code>CPLUS_INCLUDE_PATH</code> on the <a href="https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png">Window of Environment Variables</a>. Note that, you should use backthrashes, not thrashes.) Then, you can compile just by <code>g++ main.cpp -std=c++14</code>.</li>
+<li>Specify the command like <code>g++ main.cpp -std=c++14 -I /path/to/ac-library</code> (<code>/path/to/ac-library</code> stands for the directory where the downloaded ac-library is located).</li>
+<li>Specify the place of <code>atcoder</code> folder by the environment variable <code>CPLUS_INCLUDE_PATH</code> as <code>CPLUS_INCLUDE_PATH="/path/to/ac-library"</code>. (On Windows, type like <code>C:\path\to\ac-library</code> in the field of the variable <code>CPLUS_INCLUDE_PATH</code> on the <a href="https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png">Window of Environment Variables</a>. Note that, you should use backthrashes, not thrashes.) Then, you can compile just by <code>g++ main.cpp -std=c++14</code>.</li>
 </ul>
 <h3>Visual Studio</h3>
 <p>Visual Studio 2017 / 2019 is supported. Update it if you are using old Visual Studio.</p>
@@ -197,7 +197,7 @@ Precisely, it changes the flow amount as follows.</p>
 <ul>
 <li>$0 \leq f'_e \leq c_e$</li>
 <li>$g(v, f) = g(v, f')$ holds for all vertices $v$ other than $s$ and $t$.</li>
-<li>If flow_limit is specified, $g(t, f') - g(t, f) \leq \mathrm{flow_limit}$.</li>
+<li>If flow_limit is specified, $g(t, f') - g(t, f) \leq \mathrm{flow\_limit}$.</li>
 <li>$g(t, f') - g(t, f)$ is maximized under these conditions. It returns this $g(t, f') - g(t, f)$.</li>
 </ul>
 <h3><code>min_cut(s)</code></h3>

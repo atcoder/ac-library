@@ -183,7 +183,7 @@ segtree&lt;int, op, e&gt; seg(10);
 <p>It returns an index <code>l</code> that satisfies both of the following.</p>
 <ul>
 <li><code>l = r</code> or <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
-<li><code>l = 0</code> or <code>f(op(a[l - 1], a[l + 1], ..., a[r - 1])) = false</code></li>
+<li><code>l = 0</code> or <code>f(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
 </ul>
 <p>If <code>f</code> is monotone, this is the minimum <code>l</code> that satisfies <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
 <p><strong>Constraints</strong></p>

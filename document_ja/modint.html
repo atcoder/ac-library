@@ -57,6 +57,7 @@
 #include &lt;iostream&gt;
 
 using namespace std;
+using namespace atcoder;
 
 using mint = modint998244353;
 // or: typedef modint998244353 mint;
@@ -197,6 +198,10 @@ y * z;
 <p><strong>制約</strong></p>
 <ul>
 <li><code>gcd(x.val(), mod) = 1</code></li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log \mathrm{mod})$</li>
 </ul>
 <h2>raw</h2>
 <pre><code class="cpp">modint modint::raw(int x)

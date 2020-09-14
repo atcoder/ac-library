@@ -67,8 +67,8 @@
 <p>一番わかりやすい方法は、トップページに書いたように、<code>main.cpp</code>と同じ場所に<code>atcoder</code>フォルダを置いて、<code>g++ main.cpp -std=c++14 -I .</code>と実行することです。ここで、<code>.</code>はフォルダを表す記号です(本当に I の後にスペース、点、と入力します。)</p>
 <p><code>atcoder</code>フォルダをいちいちコピーしたくない場合は以下のような方法があります。</p>
 <ul>
-<li><code>g++ main.cpp -std=c++14 -I /path/to/ac-library/atcoder</code>のように指定する。</li>
-<li>環境変数 <code>CPLUS_INCLUDE_PATH</code> で、<code>CPLUS_INCLUDE_PATH="/path/to/ac-library/atcoder"</code>のように<code>atcoder</code>フォルダの場所を指定する。(Windowsの場合は、<a href="https://www.k-cube.co.jp/wakaba/server/images/environ.jpg">ユーザー環境変数の設定画面</a> で、変数の欄に <code>CPLUS_INCLUDE_PATH</code> 値の欄に <code>C:\path\to\ac-library\atcoder</code>　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に<code>g++ main.cpp -std=c++14</code>とコンパイルできる。</li>
+<li><code>g++ main.cpp -std=c++14 -I /path/to/ac-library</code>のように指定する (<code>/path/to/ac-library</code> は自分のPCの <code>ac-library</code> を置いてある場所へ書き換えてください)。</li>
+<li>環境変数 <code>CPLUS_INCLUDE_PATH</code> で、<code>CPLUS_INCLUDE_PATH="/path/to/ac-library"</code>のように<code>atcoder</code>フォルダの場所を指定する。(Windowsの場合は、<a href="https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png">ユーザー環境変数の設定画面</a> で、変数の欄に <code>CPLUS_INCLUDE_PATH</code> 値の欄に <code>C:\path\to\ac-library</code>　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に<code>g++ main.cpp -std=c++14</code>とコンパイルできる。</li>
 </ul>
 <h3>Visual Studioへのインストール方法</h3>
 <p>古いVisual Studioを使っている場合、アップデートしてください。Visual Studio 2017 / 2019をサポートしています。</p>

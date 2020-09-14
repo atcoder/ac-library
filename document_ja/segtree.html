@@ -185,7 +185,7 @@ segtree&lt;int, op, e&gt; seg(10);
 <p>以下の条件を両方満たす <code>l</code> を(いずれか一つ)返します。</p>
 <ul>
 <li><code>l = r</code> もしくは <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
-<li><code>l = 0</code> もしくは <code>f(op(a[l - 1], a[l + 1], ..., a[r - 1])) = false</code></li>
+<li><code>l = 0</code> もしくは <code>f(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
 </ul>
 <p><code>f</code>が単調だとすれば、<code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最小の <code>l</code>、と解釈することが可能です。</p>
 <p><strong>制約</strong></p>

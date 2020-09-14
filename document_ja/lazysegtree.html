@@ -141,13 +141,13 @@
 <li>$O(1)$</li>
 </ul>
 <h2>apply</h2>
-<pre><code class="cpp">(1) void seg.apply(int p, T x)
-(2) void seg.apply(int l, int r, T x)
+<pre><code class="cpp">(1) void seg.apply(int p, F f)
+(2) void seg.apply(int l, int r, F f)
 </code></pre>
 
 <ul>
-<li>(1) <code>a[p] = op_st(a[p], x)</code></li>
-<li>(2) <code>i = l..r-1</code>について<code>a[i] = op_st(a[i], x)</code></li>
+<li>(1) <code>a[p] = f(a[p])</code></li>
+<li>(2) <code>i = l..r-1</code>について<code>a[i] = f(a[i])</code></li>
 </ul>
 <p><strong>制約</strong></p>
 <ul>
@@ -172,11 +172,11 @@
 <li><code>r = l</code> もしくは <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
 <li><code>r = n</code> もしくは <code>g(op(a[l], a[l + 1], ..., a[r])) = false</code></li>
 </ul>
-<p><code>f</code>が単調だとすれば、<code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最大の <code>r</code>、と解釈することが可能です。</p>
+<p><code>g</code>が単調だとすれば、<code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最大の <code>r</code>、と解釈することが可能です。</p>
 <p><strong>制約</strong></p>
 <ul>
-<li><code>f</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
-<li><code>f(e_s()) = true</code></li>
+<li><code>g</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
+<li><code>g(e()) = true</code></li>
 <li>$0 \leq l \leq n$</li>
 </ul>
 <p><strong>計算量</strong></p>
@@ -195,13 +195,13 @@
 <p>以下の条件を両方満たす <code>l</code> を(いずれか一つ)返します。</p>
 <ul>
 <li><code>l = r</code> もしくは <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
-<li><code>l = 0</code> もしくは <code>g(op(a[l - 1], a[l + 1], ..., a[r - 1])) = false</code></li>
+<li><code>l = 0</code> もしくは <code>g(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
 </ul>
-<p><code>f</code>が単調だとすれば、<code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最小の <code>l</code>、と解釈することが可能です。</p>
+<p><code>g</code>が単調だとすれば、<code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最小の <code>l</code>、と解釈することが可能です。</p>
 <p><strong>制約</strong></p>
 <ul>
-<li><code>f</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
-<li><code>f(e_s()) = true</code></li>
+<li><code>g</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
+<li><code>g(e()) = true</code></li>
 <li>$0 \leq r \leq n$</li>
 </ul>
 <p><strong>計算量</strong></p>

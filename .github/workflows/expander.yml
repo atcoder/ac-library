@@ -15,5 +15,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: expander_test.py
+      - name: Set up pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install --user pytest
+      - name: Run test_expander.py
         run: pytest

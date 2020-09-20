@@ -46,7 +46,7 @@ void fw.add(int p, T x)
 T fw.sum(int l, int r)
 ```
 
-`a[l] + a[l - 1] + ... + a[r - 1]` を返す。
+`a[l] + a[l + 1] + ... + a[r - 1]` を返す。
 `T` が整数型(`int / uint / ll / ull`)の場合、答えがオーバーフローしたならば $\bmod 2^{\mathrm{bit}}$ で等しい値が返る。
 
 **@{keyword.constraints}**

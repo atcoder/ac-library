@@ -4,7 +4,7 @@ import re
 import sys
 import argparse
 from logging import Logger, basicConfig, getLogger
-from os import getenv, environ
+from os import getenv, environ, pathsep
 from pathlib import Path
 from typing import List, Set, Optional
 
@@ -18,11 +18,8 @@ class Expander:
 
     include_guard = re.compile('#.*ATCODER_[A-Z_]*_HPP')
 
-    def __init__(self, lib_paths: List[Path] = None):
-        if lib_paths:
-            self.lib_paths = lib_paths
-        else:
-            self.lib_paths = [Path.cwd()]
+    def __init__(self, lib_paths: List[Path]):
+        self.lib_paths = lib_paths
 
     included = set()  # type: Set[str]
 
@@ -84,13 +81,14 @@ if __name__ == "__main__":
     parser.add_argument('--lib', help='Path to Atcoder Library')
     opts = parser.parse_args()
 
-    lib_path = Path.cwd()
+    lib_paths = []
     if opts.lib:
-        lib_path = Path(opts.lib)
-    elif 'CPLUS_INCLUDE_PATH' in environ:
-        lib_path = Path(environ['CPLUS_INCLUDE_PATH'])
-
-    expander = Expander([lib_path])
+        lib_paths.append(Path(opts.lib))
+    if 'CPLUS_INCLUDE_PATH' in environ:
+        lib_paths.extend(
+            map(Path, filter(None, environ['CPLUS_INCLUDE_PATH'].split(pathsep))))
+    lib_paths.append(Path.cwd())
+    expander = Expander(lib_paths)
     source = open(opts.source).read()
     output = expander.expand(source)
 

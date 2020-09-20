@@ -18,11 +18,8 @@ class Expander:
 
     include_guard = re.compile('#.*ATCODER_[A-Z_]*_HPP')
 
-    def __init__(self, lib_paths: List[Path] = None):
-        if lib_paths:
-            self.lib_paths = lib_paths
-        else:
-            self.lib_paths = [Path.cwd()]
+    def __init__(self, lib_paths: List[Path]):
+        self.lib_paths = lib_paths
 
     included = set()  # type: Set[str]
 

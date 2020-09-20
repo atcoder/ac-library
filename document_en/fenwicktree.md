@@ -44,7 +44,7 @@ It processes `a[p] += x`.
 T fw.sum(int l, int r)
 ```
 
-It returns `a[l] + a[l - 1] + ... + a[r - 1]`.
+It returns `a[l] + a[l + 1] + ... + a[r - 1]`.
 If `T` is integer type(`int`, `uint`, `ll`, or `ull`), it returns the answer in $\bmod 2^{\mathrm{bit}}$, if overflowed.
 
 **@{keyword.constraints}**

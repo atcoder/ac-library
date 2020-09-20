@@ -2,7 +2,7 @@ name: Document
 
 on:
   push:
-    branches: 
+    branches:
       - production
 
 jobs:
@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -31,3 +32,4 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./tools/generated
+          destination_dir: ${GITHUB_REF##*/}

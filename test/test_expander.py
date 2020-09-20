@@ -20,7 +20,7 @@ class Test(unittest.TestCase):
         expander_path = Path('expander.py').resolve()
         with TemporaryDirectory() as new_dir:
             tmp = Path(new_dir)
-            proc = run(['python3', str(expander_path), str(
+            proc = run(['python', str(expander_path), str(
                 source.resolve()), '--lib', str(lib_dir)], cwd=str(tmp), env=env)
             self.assertEqual(proc.returncode, 0)
             proc = run(['g++', 'combined.cpp', '-std=c++14'], cwd=str(tmp))

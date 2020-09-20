@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>2-SAT</h1>
+<p>2-SATを解きます。
+変数 $x_0, x_1, \cdots, x_{N - 1}$ に関して、</p>
+<ul>
+<li>$(x_i = f) \lor (x_j = g)$</li>
+</ul>
+<p>というクローズを足し、これをすべて満たす変数の割当があるかを解きます。</p>
+<h2>コンストラクタ</h2>
+<pre><code class="cpp">two_sat ts(int n)
+</code></pre>
+
+<p>$n$ 変数の2-SATを作ります。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>add_clause</h2>
+<pre><code class="cpp">void ts.add_clause(int i, bool f, int j, bool g)
+</code></pre>
+
+<p>$(x_i = f) \lor (x_j = g)$ というクローズを足します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq i \lt n$</li>
+<li>$0 \leq j \lt n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし $O(1)$</li>
+</ul>
+<h2>satisfiable</h2>
+<pre><code class="cpp">bool ts.satisfiable()
+</code></pre>
+
+<p>条件を足す割当が存在するかどうかを判定する。割当が存在するならば<code>true</code>、そうでないなら<code>false</code>を返す。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>複数回呼ぶことも可能。</li>
+</ul>
+<p><strong>計算量</strong></p>
+<p>足した制約の個数を $m$ として</p>
+<ul>
+<li>$O(n + m)$</li>
+</ul>
+<h2>answer</h2>
+<pre><code class="cpp">vector&lt;bool&gt; ts.answer()
+</code></pre>
+
+<p>最後に呼んだ <code>satisfiable</code> の、クローズを満たす割当を返す。<code>satisfiable</code> を呼ぶ前や、<code>satisfiable</code> で割当が存在しなかったときにこの関数を呼ぶと、中身が未定義の長さ $n$ の vectorを返す。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>使用例</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_h">https://atcoder.jp/contests/practice2/tasks/practice2_h</a></h3>
+<div class="sample-code">#include &lt;atcoder/twosat&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int main() {
+    int n, d;
+    cin &gt;&gt; n &gt;&gt; d;
+    vector&lt;int&gt; x(n), y(n);
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; x[i] &gt;&gt; y[i];
+    }
+
+    // ts[i] = (i-th flag is located on x[i])
+    two_sat ts(n);
+
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = i + 1; j &lt; n; j++) {
+            if (abs(x[i] - x[j]) &lt; d) {
+                // cannot use both of x[i] and x[j]
+                ts.add_clause(i, false, j, false);
+            }
+            if (abs(x[i] - y[j]) &lt; d) {
+                ts.add_clause(i, false, j, true);
+            }
+            if (abs(y[i] - x[j]) &lt; d) {
+                ts.add_clause(i, true, j, false);
+            }
+            if (abs(y[i] - y[j]) &lt; d) {
+                ts.add_clause(i, true, j, true);
+            }
+        }
+    }
+
+    if (!ts.satisfiable()) {
+        cout &lt;&lt; &#34;No&#34; &lt;&lt; endl;
+        return 0;
+    }
+
+    cout &lt;&lt; &#34;Yes&#34; &lt;&lt; endl;
+    auto answer = ts.answer();
+    for (int i = 0; i &lt; n; i++) {
+        if (answer[i])
+            cout &lt;&lt; x[i] &lt;&lt; endl;
+        else
+            cout &lt;&lt; y[i] &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

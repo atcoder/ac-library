@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Math</h1>
+<p>数論的アルゴリズム詰め合わせです。</p>
+<h2>pow_mod</h2>
+<pre><code class="cpp">ll pow_mod(ll x, ll n, int m)
+</code></pre>
+
+<p>$x^n \bmod m$ を返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \le n$</li>
+<li>$1 \le m$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>inv_mod</h2>
+<pre><code class="cpp">ll inv_mod(ll x, ll m)
+</code></pre>
+
+<p>$xy \equiv 1 \pmod m$ なる $y$ のうち、$0 \le y &lt; m$ を満たすものを返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$\gcd(x, m) = 1$</li>
+<li>$1 \leq m$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log m)$</li>
+</ul>
+<h2>crt</h2>
+<pre><code class="cpp">pair&lt;ll, ll&gt; crt(vector&lt;ll&gt; r, vector&lt;ll&gt; m)
+</code></pre>
+
+<p>同じ長さの配列 $r, m$ を渡します。この配列の長さを $n$ とした時、</p>
+<p>$$x \equiv r[i] \pmod{m[i]}, \forall i \in \lbrace 0,1,\cdots, n - 1 \rbrace$$</p>
+<p>を解きます。答えは(存在するならば) $y, z (0 \leq y &lt; z = \mathrm{lcm}(m[i]))$ を用いて $x \equiv y \pmod z$ の形で書けることが知られており、この $(y, z)$ をpairとして返します。答えがない場合は $(0, 0)$ を返します。$n=0$ の時は $(0, 1)$ を返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$|r| = |m|$</li>
+<li>$1 \le m[i]$</li>
+<li>$\mathrm{lcm}(m[i])$ が <code>ll</code> に収まる。</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(n \log{\mathrm{lcm}(m[i])})$</li>
+</ul>
+<h2>floor_sum</h2>
+<pre><code class="cpp">ll floor_sum(ll n, ll m, ll a, ll b)
+</code></pre>
+
+<p>$\sum_{i = 0}^{n - 1} \mathrm{floor}(\frac{a \times i + b}{m})$</p>
+<p>を返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^9$</li>
+<li>$1 \leq m \leq 10^9$</li>
+<li>$0 \leq a, b \lt m$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log{(n+m+a+b)})$</li>
+</ul>
+<h2>使用例</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_c">https://atcoder.jp/contests/practice2/tasks/practice2_c</a></h3>
+<div class="sample-code">#include &lt;atcoder/math&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int main() {
+    int t;
+    scanf(&#34;%d&#34;, &amp;t);
+    for (int i = 0; i &lt; t; i++) {
+        long long n, m, a, b;
+        scanf(&#34;%lld %lld %lld %lld&#34;, &amp;n, &amp;m, &amp;a, &amp;b);
+        printf(&#34;%lld\n&#34;, floor_sum(n, m, a, b));
+    }
+    return 0;
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

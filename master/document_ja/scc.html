@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>SCC</h1>
+<p>有向グラフを強連結成分分解します。</p>
+<h2>コンストラクタ</h2>
+<pre><code class="cpp">scc_graph graph(int n)
+</code></pre>
+
+<p>$n$ 頂点 $0$ 辺の有向グラフを作る。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>add_edge</h2>
+<pre><code class="cpp">void graph.add_edge(int from, int to)
+</code></pre>
+
+<p>頂点 <code>from</code> から頂点 <code>to</code> へ有向辺を足す。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq \mathrm{from} \lt n$</li>
+<li>$0 \leq \mathrm{to} \lt n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし $O(1)$</li>
+</ul>
+<h2>scc</h2>
+<pre><code class="cpp">vector&lt;vector&lt;int&gt;&gt; graph.scc()
+</code></pre>
+
+<p>以下の条件を満たすような、「頂点のリスト」のリストを返します。</p>
+<ul>
+<li>全ての頂点がちょうど1つずつ、どれかのリストに含まれます。</li>
+<li>内側のリストと強連結成分が一対一に対応します。リスト内での頂点の順序は未定義です。</li>
+<li>リストはトポロジカルソートされています。異なる強連結成分の頂点 $u, v$ について、$u$ から $v$ に到達できる時、$u$ の属するリストは $v$ の属するリストよりも前です。</li>
+</ul>
+<p><strong>計算量</strong></p>
+<p>追加した辺の本数を $m$ として</p>
+<ul>
+<li>$O(n + m)$</li>
+</ul>
+<h2>使用例</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_g">https://atcoder.jp/contests/practice2/tasks/practice2_g</a></h3>
+<div class="sample-code">#include &lt;atcoder/scc&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int main() {
+    int n, m;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
+
+    scc_graph g(n);
+
+    for (int i = 0; i &lt; m; i++) {
+        int u, v;
+        scanf(&#34;%d %d&#34;, &amp;u, &amp;v);
+        g.add_edge(u, v);
+    }
+
+    auto scc = g.scc();
+
+    printf(&#34;%d\n&#34;, int(scc.size()));
+    for (auto v : scc) {
+        printf(&#34;%d&#34;, int(v.size()));
+        for (int x : v) {
+            printf(&#34; %d&#34;, x);
+        }
+        printf(&#34;\n&#34;);
+    }
+
+    return 0;
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

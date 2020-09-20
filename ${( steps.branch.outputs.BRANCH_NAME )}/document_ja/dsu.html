@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>DSU</h1>
+<p>無向グラフに対して、</p>
+<ul>
+<li>辺の追加</li>
+<li>$2$ 頂点が連結かの判定</li>
+</ul>
+<p>をならし $O(\alpha(n))$ 時間で処理することが出来ます。</p>
+<p>また、内部的に各連結成分ごとに代表となる頂点を $1$ つ持っています。辺の追加により連結成分がマージされる時、新たな代表元は元の連結成分の代表元のうちどちらかになります。</p>
+<h2>コンストラクタ</h2>
+<pre><code class="cpp">dsu d(int n)
+</code></pre>
+
+<ul>
+<li>$n$ 頂点 $0$ 辺の無向グラフを作ります。</li>
+</ul>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>merge</h2>
+<pre><code class="cpp">int d.merge(int a, int b)
+</code></pre>
+
+<p>辺 $(a, b)$ を足します。</p>
+<p>$a, b$ が連結だった場合はその代表元、非連結だった場合は新たな代表元を返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq a &lt; n$</li>
+<li>$0 \leq b &lt; n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2>same</h2>
+<pre><code class="cpp">bool d.same(int a, int b)
+</code></pre>
+
+<p>頂点 $a, b$ が連結かどうかを返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq a &lt; n$</li>
+<li>$0 \leq b &lt; n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2>leader</h2>
+<pre><code class="cpp">int d.leader(int a)
+</code></pre>
+
+<p>頂点 $a$ の属する連結成分の代表元を返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq a &lt; n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2>size</h2>
+<pre><code class="cpp">int d.size(int a)
+</code></pre>
+
+<p>頂点 $a$ の属する連結成分のサイズを返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq a &lt; n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>ならし $O(\alpha(n))$</li>
+</ul>
+<h2>groups</h2>
+<pre><code class="cpp">vector&lt;vector&lt;int&gt;&gt; d.groups()
+</code></pre>
+
+<p>グラフを連結成分に分け、その情報を返します。</p>
+<p>返り値は「「一つの連結成分の頂点番号のリスト」のリスト」です。
+(内側外側限らず)vector内でどの順番で頂点が格納されているかは未定義です。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>使用例</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_a">https://atcoder.jp/contests/practice2/tasks/practice2_a</a></h3>
+<div class="sample-code">#include &lt;atcoder/dsu&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int main() {
+    int n, q;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
+    dsu d(n);
+    for (int i = 0; i &lt; q; i++) {
+        int t, u, v;
+        scanf(&#34;%d %d %d&#34;, &amp;t, &amp;u, &amp;v);
+        if (t == 0) {
+            d.merge(u, v);
+        } else {
+            if (d.same(u, v)) {
+                printf(&#34;1\n&#34;);
+            } else {
+                printf(&#34;0\n&#34;);
+            }
+        }
+    }
+    return 0;
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

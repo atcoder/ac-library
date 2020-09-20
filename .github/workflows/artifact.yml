@@ -3,7 +3,7 @@ name: Upload artifact
 on: [push, pull_request]
 
 jobs:
-  doc:
+  upload-zip:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

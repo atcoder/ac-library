@@ -2,6 +2,11 @@ name: Document
 
 on:
   push:
+    branches:
+      - master
+      - production
+    tags:
+      - 'v*'
 
 jobs:
   doc:

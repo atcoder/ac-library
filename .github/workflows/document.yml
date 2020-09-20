@@ -2,8 +2,6 @@ name: Document
 
 on:
   push:
-    branches:
-      - production
 
 jobs:
   doc:

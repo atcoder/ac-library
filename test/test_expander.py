@@ -13,7 +13,7 @@ logger = getLogger(__name__)  # type: Logger
 
 
 class Test(unittest.TestCase):
-    def compile_test(self, source: Path, env=None):
+    def compile_test(self, source: Path, expander_args=[], env=None):
         if not env:
             env = environ.copy()
         lib_dir = Path.cwd().resolve()
@@ -21,22 +21,26 @@ class Test(unittest.TestCase):
         with TemporaryDirectory() as new_dir:
             tmp = Path(new_dir)
             proc = run(['python', str(expander_path), str(
-                source.resolve()), '--lib', str(lib_dir)], cwd=str(tmp), env=env)
+                source.resolve())] + expander_args, cwd=str(tmp), env=env)
             self.assertEqual(proc.returncode, 0)
             proc = run(['g++', 'combined.cpp', '-std=c++14'], cwd=str(tmp))
             self.assertEqual(proc.returncode, 0)
 
-    def test_unionfind(self):
-        self.compile_test(Path('test/expander/include_unionfind.cpp'))
+    def test_dsu(self):
+        self.compile_test(Path('test/expander/include_dsu.cpp'),
+                          expander_args=['--lib', str(Path.cwd().resolve())])
 
     def test_unusual_format(self):
-        self.compile_test(Path('test/expander/include_unusual_format.cpp'))
+        self.compile_test(Path('test/expander/include_unusual_format.cpp'),
+                          expander_args=['--lib', str(Path.cwd().resolve())])
 
     def test_all(self):
-        self.compile_test(Path('test/expander/include_all.cpp'))
+        self.compile_test(Path('test/expander/include_all.cpp'),
+                          expander_args=['--lib', str(Path.cwd().resolve())])
 
     def test_comment_out(self):
-        self.compile_test(Path('test/expander/comment_out.cpp'))
+        self.compile_test(Path('test/expander/comment_out.cpp'),
+                          expander_args=['--lib', str(Path.cwd().resolve())])
 
     def test_env_value(self):
         env = environ.copy()

@@ -14,9 +14,9 @@ logger = getLogger(__name__)  # type: Logger
 
 class Expander:
     atcoder_include = re.compile(
-        '#include\s*["<](atcoder/[a-z_]*(|.hpp))[">]\s*')
+        '#include\s*["<]((atcoder|amylase)/[a-z_]*(|.hpp))[">]\s*')
 
-    include_guard = re.compile('#.*ATCODER_[A-Z_]*_HPP')
+    include_guard = re.compile('#.*(ATCODER|AMYLASE)_[A-Z_]*_HPP')
 
     def __init__(self, lib_paths: List[Path]):
         self.lib_paths = lib_paths
@@ -76,6 +76,7 @@ if __name__ == "__main__":
     )
     parser = argparse.ArgumentParser(description='Expander')
     parser.add_argument('source', help='Source File')
+    parser.add_argument('target', nargs='?', default='combined.cpp')
     parser.add_argument('-c', '--console',
                         action='store_true', help='Print to Console')
     parser.add_argument('--lib', help='Path to Atcoder Library')
@@ -95,5 +96,5 @@ if __name__ == "__main__":
     if opts.console:
         print(output)
     else:
-        with open('combined.cpp', 'w') as f:
+        with open(opts.target, 'w') as f:
             f.write(output)

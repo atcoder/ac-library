@@ -17,6 +17,8 @@ template <class Cap, class Cost> struct mcf_graph {
     int add_edge(int from, int to, Cap cap, Cost cost) {
         assert(0 <= from && from < _n);
         assert(0 <= to && to < _n);
+        assert(0 <= cap);
+        assert(0 <= cost);
         int m = int(pos.size());
         pos.push_back({from, int(g[from].size())});
         int from_id = int(g[from].size());

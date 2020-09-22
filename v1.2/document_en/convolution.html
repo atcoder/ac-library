@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Convolution</h1>
+<p>It calculates $(+,\times)$ convolution. Given two arrays $a_0, a_1, \cdots, a_{N - 1}$ and $b_0, b_1, \cdots, b_{M - 1}$, it calculates the array $c$ of length $N + M - 1$, defined by</p>
+<p>$$c_i = \sum_{j = 0}^i a_j b_{i - j}$$</p>
+<h2>convolution</h2>
+<pre><code class="cpp">(1) vector&lt;T&gt; convolution&lt;int m = 998244353&gt;(vector&lt;T&gt; a, vector&lt;T&gt; b)
+💻(2) vector&lt;static_modint&lt;m&gt;&gt; convolution&lt;int m&gt;(vector&lt;static_modint&lt;m&gt;&gt; a, vector&lt;static_modint&lt;m&gt;&gt; b)
+</code></pre>
+
+<p>It calculates the convolution in $\bmod m$. It returns an empty array if at least one of $a$ and $b$ are empty.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$2 \leq m \leq 2 \times 10^9$</li>
+<li>$m$ is prime.</li>
+<li>There is an integer $c$ with $2^c | (m - 1)$ and $|a| + |b| - 1 \leq 2^c$.</li>
+<li>(1) <code>T</code> is <code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code>.</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(n\log{n} + \log{\mathrm{mod}})$, where $n = |a| + |b|$.</li>
+</ul>
+<h2>convolution_ll</h2>
+<pre><code class="cpp">vector&lt;ll&gt; convolution_ll(vector&lt;ll&gt; a, vector&lt;ll&gt; b)
+</code></pre>
+
+<p>It calculates the convolution. It returns an empty array if at least one of $a$ and $b$ are empty.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$|a| + |b| - 1 \leq 2^{24}$</li>
+<li>All the elements of the array are in <code>ll</code> after convolution</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(n\log{n})$, where $n = |a| + |b|$.</li>
+</ul>
+<h2>Examples</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></h3>
+<div class="sample-code">#include &lt;atcoder/convolution&gt;
+#include &lt;atcoder/modint&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int main() {
+    int n, m;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
+    vector&lt;long long&gt; a(n), b(m);
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&#34;%lld&#34;, &amp;(a[i]));
+    }
+    for (int i = 0; i &lt; m; i++) {
+        scanf(&#34;%lld&#34;, &amp;(b[i]));
+    }
+
+    vector&lt;long long&gt; c = convolution(a, b);
+    // or: vector&lt;long long&gt; c = convolution&lt;998244353&gt;(a, b);
+
+    for (int i = 0; i &lt; n + m - 1; i++) {
+        printf(&#34;%lld &#34;, c[i]);
+    }
+    printf(&#34;\n&#34;);
+
+    return 0;
+}
+</div>
+
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_f">https://atcoder.jp/contests/practice2/tasks/practice2_f</a></h3>
+<div class="sample-code">#include &lt;atcoder/convolution&gt;
+#include &lt;atcoder/modint&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+using mint = modint998244353;
+
+int main() {
+    int n, m;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;m);
+    vector&lt;mint&gt; a(n), b(m);
+    for (int i = 0; i &lt; n; i++) {
+        int x;
+        scanf(&#34;%d&#34;, &amp;x);
+        a[i] = x;
+    }
+    for (int i = 0; i &lt; m; i++) {
+        int x;
+        scanf(&#34;%d&#34;, &amp;x);
+        b[i] = x;
+    }
+
+    auto c = convolution(a, b);
+
+    for (int i = 0; i &lt; n + m - 1; i++) {
+        printf(&#34;%d &#34;, c[i].val());
+    }
+    printf(&#34;\n&#34;);
+
+    return 0;
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

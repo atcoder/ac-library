@@ -88,3 +88,10 @@ TEST(MincostflowTest, SameCostPaths) {
     auto expected = std::vector<std::pair<int, int>>{{0, 0}, {3, 3}};
     ASSERT_EQ(expected, g.slope(0, 2));
 }
+
+TEST(MincostflowTest, Invalid) {
+    mcf_graph<int, int> g(2);
+    // https://github.com/atcoder/ac-library/issues/51
+    EXPECT_DEATH(g.add_edge(0, 0, -1, 0), ".*");
+    EXPECT_DEATH(g.add_edge(0, 0, 0, -1), ".*");
+}

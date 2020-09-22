@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Segtree</h1>
+<p><a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%8E%E3%82%A4%E3%83%89">モノイド</a> $(S, \cdot: S \times S \to S, e \in S)$、つまり</p>
+<ul>
+<li>結合律: $(a \cdot b) \cdot c$ = $a \cdot (b \cdot c)$ for all $a, b, c \in S$</li>
+<li>単位元の存在: $a \cdot e$ = $e \cdot a$ = $a$ for all $a \in S$</li>
+</ul>
+<p>を満たす代数構造に対し使用できるデータ構造です。</p>
+<p>長さ $N$ の $S$ の配列に対し、</p>
+<ul>
+<li>要素の $1$ 点変更</li>
+<li>区間の要素の総積の取得</li>
+</ul>
+<p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
+<p>また、このライブラリはオラクルとして<code>op, e</code>の2種類を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
+<h2>コンストラクタ</h2>
+<pre><code class="cpp">(1) segtree&lt;S, op, e&gt; seg(int n)
+(2) segtree&lt;S, op, e&gt; seg(vector&lt;S&gt; v)
+</code></pre>
+
+<ul>
+<li>型 <code>S</code></li>
+<li>二項演算 <code>S op(S a, S b)</code></li>
+<li>単位元 <code>S e()</code></li>
+</ul>
+<p>を定義する必要があります。例として、Range Min Queryならば</p>
+<pre><code class="cpp">int op(int a, int b) {
+    return min(a, b);
+}
+
+int e() {
+    return (int)(1e9);
+}
+
+segtree&lt;int, op, e&gt; seg(10);
+</code></pre>
+
+<p>のようになります。</p>
+<ul>
+<li>(1): 長さ <code>n</code> の数列 <code>a</code> を作ります。初期値は全部<code>e()</code>です。</li>
+<li>(2): 長さ <code>n = v.size()</code> の数列 <code>a</code> を作ります。<code>v</code> の内容が初期値となります。</li>
+</ul>
+<p>詳しくは、使用例や <a href="https://atcoder.jp/contests/practice2/editorial">こちら</a> も参照してください。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>set</h2>
+<pre><code class="cpp">void seg.set(int p, S x)
+</code></pre>
+
+<p><code>a[p]</code> に <code>x</code> を代入します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>get</h2>
+<pre><code class="cpp">S seg.get(int p)
+</code></pre>
+
+<p><code>a[p]</code> を返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2>prod</h2>
+<pre><code class="cpp">S seg.prod(int l, int r)
+</code></pre>
+
+<p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li>$0 \leq l \leq r \leq n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>all_prod</h2>
+<pre><code class="cpp">S seg.all_prod()
+</code></pre>
+
+<p><code>op(a[0], ..., a[n - 1])</code> を計算します。$n = 0$ のときは <code>e()</code> を返します。</p>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2>max_right</h2>
+<pre><code class="cpp">(1) int seg.max_right&lt;f&gt;(int l)
+(2💻) int seg.max_right&lt;F&gt;(int l, F f)
+</code></pre>
+
+<ul>
+<li>(1): 関数 <code>bool f(S x)</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
+<li>(2): <code>S</code>を引数にとり<code>bool</code>を返す関数オブジェクトを渡して使用します。  </li>
+</ul>
+<p>以下の条件を両方満たす <code>r</code> を(いずれか一つ)返します。</p>
+<ul>
+<li><code>r = l</code> もしくは <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
+<li><code>r = n</code> もしくは <code>f(op(a[l], a[l + 1], ..., a[r])) = false</code></li>
+</ul>
+<p><code>f</code>が単調だとすれば、<code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最大の <code>r</code>、と解釈することが可能です。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li><code>f</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
+<li><code>f(e()) = true</code></li>
+<li>$0 \leq l \leq n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>min_left</h2>
+<pre><code class="cpp">(1) int seg.min_left&lt;f&gt;(int r)
+(2💻) int seg.min_left&lt;F&gt;(int r, F f)
+</code></pre>
+
+<ul>
+<li>(1): 関数 <code>bool f(S x)</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
+<li>(2): <code>S</code>を引数にとり<code>bool</code>を返す関数オブジェクトを渡して使用します。  </li>
+</ul>
+<p>以下の条件を両方満たす <code>l</code> を(いずれか一つ)返します。</p>
+<ul>
+<li><code>l = r</code> もしくは <code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
+<li><code>l = 0</code> もしくは <code>f(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
+</ul>
+<p><code>f</code>が単調だとすれば、<code>f(op(a[l], a[l + 1], ..., a[r - 1])) = true</code> となる最小の <code>l</code>、と解釈することが可能です。</p>
+<p><strong>制約</strong></p>
+<ul>
+<li><code>f</code>を同じ引数で呼んだ時、返り値は等しい(=副作用はない)</li>
+<li><code>f(e()) = true</code></li>
+<li>$0 \leq r \leq n$</li>
+</ul>
+<p><strong>計算量</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>使用例</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_j">https://atcoder.jp/contests/practice2/tasks/practice2_j</a></h3>
+<div class="sample-code">#include &lt;atcoder/segtree&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+using namespace atcoder;
+
+int op(int a, int b) { return max(a, b); }
+
+int e() { return -1; }
+
+int target;
+
+bool f(int v) { return v &lt; target; }
+
+int main() {
+    int n, q;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
+    vector&lt;int&gt; a(n);
+    for (int i = 0; i &lt; n; i++) {
+        scanf(&#34;%d&#34;, &amp;(a[i]));
+    }
+
+    segtree&lt;int, op, e&gt; seg(a);
+
+    for (int i = 0; i &lt; q; i++) {
+        int t;
+        scanf(&#34;%d&#34;, &amp;t);
+        if (t == 1) {
+            int x, v;
+            scanf(&#34;%d %d&#34;, &amp;x, &amp;v);
+            x--;
+            seg.set(x, v);
+        } else if (t == 2) {
+            int l, r;
+            scanf(&#34;%d %d&#34;, &amp;l, &amp;r);
+            l--;
+            printf(&#34;%d\n&#34;, seg.prod(l, r));
+        } else if (t == 3) {
+            int p;
+            scanf(&#34;%d %d&#34;, &amp;p, &amp;target);
+            p--;
+            printf(&#34;%d\n&#34;, seg.max_right&lt;f&gt;(p) + 1);
+        }
+    }
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

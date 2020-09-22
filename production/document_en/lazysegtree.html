@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Uikit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
+    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
+    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
+        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
+        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Ace editor-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <style>
+        h2 {
+            border-bottom:1px solid #CCC;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(
+                document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }],
+                ignoredTags: [],
+            })
+            for (e of document.getElementsByClassName("sample-code")) {
+                var editor = ace.edit(e);
+                editor.setOption("maxLines", "Infinity");
+                editor.setReadOnly(true);
+                editor.getSession().setMode("ace/mode/c_cpp");                
+            }
+        });
+    </script>
+</head><body>
+    <div class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="./index.html" class="uk-navbar-item uk-logo">AC Library</a>
+        </div>
+    </div>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Lazy Segtree</h1>
+<p>It is the data structure for the pair of a <a href="https://en.wikipedia.org/wiki/Monoid">monoid</a> $(S, \cdot: S \times S \to S, e \in S)$ and a set $F$ of $S \to S$ mappings that satisfies the following properties.</p>
+<ul>
+<li>$F$ contains the identity map $\mathrm{id}$, where the identity map is the map that satisfies $\mathrm{id}(x) = x$ for all $x \in S$.</li>
+<li>$F$ is closed under composition, i.e., $f \circ g \in F$ holds for all $f, g \in F$.</li>
+<li>$f(x \cdot y) = f(x) \cdot f(y)$ holds for all $f \in F$ and $x, y \in S$.</li>
+</ul>
+<p>Given an array $S$ of length $N$, it processes the following queries in $O(\log N)$ time (see <a href="./appendix.html">Appendix</a> for further details).</p>
+<ul>
+<li>Acting the map $f\in F$ (cf. $x = f(x)$) on all the elements of an interval</li>
+<li>Calculating the product of the elements of an interval</li>
+</ul>
+<p>For simplicity, in this document, we assume that the oracles <code>op</code>, <code>e</code>, <code>mapping</code>, <code>composition</code>, and <code>id</code> work in constant time. If these oracles work in $O(T)$ time, each time complexity appear in this document is multipled by $O(T)$.</p>
+<h2>Constructor</h2>
+<pre><code class="cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
+(2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;T&gt; v);
+</code></pre>
+
+<p>The following should be defined.</p>
+<ul>
+<li>The type <code>S</code> of the monoid</li>
+<li>The binary operation <code>S op(S a, S b)</code></li>
+<li>The function <code>S e()</code> that returns $e$</li>
+<li>The type <code>F</code> of the map</li>
+<li>The function <code>S mapping(F f, S x)</code> that returns $f(x)$</li>
+<li>The function <code>F composition(F f, F g)</code> that returns $f \circ g$</li>
+<li>The function <code>F id()</code> that returns $\mathrm{id}$</li>
+</ul>
+<p>See examples and <a href="https://atcoder.jp/contests/practice2/editorial">here</a> for further details.</p>
+<ul>
+<li>(1): It creates an array <code>a</code> of length <code>n</code>. All the elements are initialized to <code>e()</code>.</li>
+<li>(2): It creates an array <code>a</code> of length <code>n = v.size()</code>, initialized to <code>v</code>.</li>
+</ul>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq n \leq 10^8$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(n)$</li>
+</ul>
+<h2>set</h2>
+<pre><code class="cpp">void seg.set(int p, S x)
+</code></pre>
+
+<p><code>a[p] = x</code></p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>get</h2>
+<pre><code class="cpp">S seg.get(int p)
+</code></pre>
+
+<p>It returns <code>a[p]</code>.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq p &lt; n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>prod</h2>
+<pre><code class="cpp">S seg.prod(int l, int r)
+</code></pre>
+
+<p>It returns <code>op(a[l], ..., a[r - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $l = r$.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>$0 \leq l \leq r \leq n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>all_prod</h2>
+<pre><code class="cpp">S seg.all_prod()
+</code></pre>
+
+<p>It returns <code>op(a[0], ..., a[n - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $n = 0$.</p>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(1)$</li>
+</ul>
+<h2>apply</h2>
+<pre><code class="cpp">(1) void seg.apply(int p, F f)
+(2) void seg.apply(int l, int r, F f)
+</code></pre>
+
+<ul>
+<li>(1) It applies <code>a[p] = f(a[p])</code>.</li>
+<li>(2) It applies <code>a[i] = f(a[i])</code> for all <code>i = l..r-1</code>.</li>
+</ul>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>(1) $0 \leq p &lt; n$</li>
+<li>(2) $0 \leq l \leq r \leq n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>max_right</h2>
+<pre><code class="cpp">(1) int seg.max_right&lt;g&gt;(int l)
+(2 ) int seg.max_right&lt;G&gt;(int l, G g)
+</code></pre>
+
+<ul>
+<li>(1): It applies a binary search on the segment tree. The function <code>bool g(S x)</code> should be defined.  </li>
+<li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>
+</ul>
+<p>It returns an index <code>r</code> that satisfies both of the followings.</p>
+<ul>
+<li><code>r = l</code> or <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
+<li><code>r = n</code> or <code>g(op(a[l], a[l + 1], ..., a[r])) = false</code></li>
+</ul>
+<p>If <code>g</code> is monotone, this is the maximum <code>r</code> that satisfies <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>if <code>g</code> is called with the same argument, it returns the same value, i.e., <code>g</code> has no side effect.</li>
+<li><code>g(e()) = true</code></li>
+<li>$0 \leq l \leq n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>min_left</h2>
+<pre><code class="cpp">(1) int seg.min_left&lt;g&gt;(int r)
+(2 ) int seg.min_left&lt;G&gt;(int r, G g)
+</code></pre>
+
+<ul>
+<li>(1): It applies a binary search on the segment tree. The function <code>bool g(S x)</code> should be defined.  </li>
+<li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>
+</ul>
+<p>It returns an index <code>l</code> that satisfies both of the following.</p>
+<ul>
+<li><code>l = r</code> or <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code></li>
+<li><code>l = 0</code> or <code>g(op(a[l - 1], a[l], ..., a[r - 1])) = false</code></li>
+</ul>
+<p>If <code>g</code> is monotone, this is the minimum <code>l</code> that satisfies <code>g(op(a[l], a[l + 1], ..., a[r - 1])) = true</code>.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>if <code>g</code> is called with the same argument, it returns the same value, i.e., <code>g</code> has no side effect.</li>
+<li><code>g(e()) = true</code></li>
+<li>$0 \leq r \leq n$</li>
+</ul>
+<p><strong>Complexity</strong></p>
+<ul>
+<li>$O(\log n)$</li>
+</ul>
+<h2>Examples</h2>
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_k">https://atcoder.jp/contests/practice2/tasks/practice2_k</a></h3>
+<div class="sample-code">#include &lt;atcoder/lazysegtree&gt;
+#include &lt;atcoder/modint&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+using mint = modint998244353;
+
+struct S {
+    mint a;
+    int size;
+};
+
+struct F {
+    mint a, b;
+};
+
+S op(S l, S r) { return S{l.a + r.a, l.size + r.size}; }
+
+S e() { return S{0, 0}; }
+
+S mapping(F l, S r) { return S{r.a * l.a + r.size * l.b, r.size}; }
+
+F composition(F l, F r) { return F{r.a * l.a, r.b * l.a + l.b}; }
+
+F id() { return F{1, 0}; }
+
+int main() {
+    int n, q;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
+
+    vector&lt;S&gt; a(n);
+    for (int i = 0; i &lt; n; i++) {
+        int x;
+        scanf(&#34;%d&#34;, &amp;x);
+        a[i] = S{x, 1};
+    }
+
+    lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(a);
+
+    for (int i = 0; i &lt; q; i++) {
+        int t;
+        scanf(&#34;%d&#34;, &amp;t);
+        if (t == 0) {
+            int l, r;
+            int c, d;
+            scanf(&#34;%d %d %d %d&#34;, &amp;l, &amp;r, &amp;c, &amp;d);
+            seg.apply(l, r, F{c, d});
+        } else {
+            int l, r;
+            scanf(&#34;%d %d&#34;, &amp;l, &amp;r);
+            printf(&#34;%d\n&#34;, seg.prod(l, r).a.val());
+        }
+    }
+}
+</div>
+
+<h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_l">https://atcoder.jp/contests/practice2/tasks/practice2_l</a></h3>
+<div class="sample-code">#include &lt;atcoder/lazysegtree&gt;
+#include &lt;atcoder/modint&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+using namespace atcoder;
+
+using mint = modint998244353;
+
+struct S {
+    // # of 0 / # of 1 / inversion number
+    long long zero, one, inversion;
+};
+
+// swapping flag
+using F = bool;
+
+S op(S l, S r) {
+    return S{
+        l.zero + r.zero,
+        l.one + r.one,
+        l.inversion + r.inversion + l.one * r.zero,
+    };
+}
+
+S e() { return S{0, 0, 0}; }
+
+S mapping(F l, S r) {
+    if (!l) return r;
+    // swap
+    return S{r.one, r.zero, r.one * r.zero - r.inversion};
+}
+
+F composition(F l, F r) { return (l &amp;&amp; !r) || (!l &amp;&amp; r); }
+
+F id() { return false; }
+
+int main() {
+    int n, q;
+    scanf(&#34;%d %d&#34;, &amp;n, &amp;q);
+
+    vector&lt;S&gt; a(n);
+    for (int i = 0; i &lt; n; i++) {
+        int x;
+        scanf(&#34;%d&#34;, &amp;x);
+        if (x == 0)
+            a[i] = S{1, 0, 0};
+        else
+            a[i] = S{0, 1, 0};
+    }
+
+    lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(a);
+    for (int i = 0; i &lt; q; i++) {
+        int t, l, r;
+        scanf(&#34;%d %d %d&#34;, &amp;t, &amp;l, &amp;r);
+        l--;
+        if (t == 1) {
+            seg.apply(l, r, true);
+        } else {
+            printf(&#34;%lld\n&#34;, seg.prod(l, r).inversion);
+        }
+    }
+}
+</div>
+        </div>
+    </section>
+</body>
+
+</html>

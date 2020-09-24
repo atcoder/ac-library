@@ -1,7 +1,7 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/all>
 #include <type_traits>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using uint = unsigned int;

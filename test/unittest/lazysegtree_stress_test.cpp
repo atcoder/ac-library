@@ -1,10 +1,10 @@
-#include <gtest/gtest.h>
-
 #include <algorithm>
 #include <atcoder/lazysegtree>
 #include "../utils/random.hpp"
 #include <string>
 #include <vector>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 

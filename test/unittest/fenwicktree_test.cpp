@@ -1,8 +1,8 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/fenwicktree>
 #include <atcoder/modint>
 #include <numeric>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using ll = long long;

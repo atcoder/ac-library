@@ -10,11 +10,10 @@ You may refer to the following links for more details:
 - [AC Library Document(en)](https://atcoder.github.io/ac-library/production/document_en/)
 - [AC Library Document(ja)](https://atcoder.github.io/ac-library/production/document_ja/)
 
-The documents of master branch is as follows:
+The documents of master branch are as follows:
 
 - [AC Library Document(en, master)](https://atcoder.github.io/ac-library/master/document_en/)
 - [AC Library Document(ja, master)](https://atcoder.github.io/ac-library/master/document_ja/)
-
 
 ## Policy
 

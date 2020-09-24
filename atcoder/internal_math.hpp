@@ -3,6 +3,10 @@
 
 #include <utility>
 
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
+
 namespace atcoder {
 
 namespace internal {

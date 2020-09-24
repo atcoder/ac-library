@@ -1,8 +1,8 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/segtree>
 #include <string>
 #include <vector>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 

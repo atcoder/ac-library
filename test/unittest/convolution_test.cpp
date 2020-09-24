@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/convolution>
 #include <atcoder/modint>
 #include <random>
 #include "../utils/random.hpp"
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using uint = unsigned int;

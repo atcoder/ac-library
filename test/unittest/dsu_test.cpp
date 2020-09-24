@@ -1,7 +1,7 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/dsu>
 #include <numeric>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using ll = long long;

@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/mincostflow>
 #include <numeric>
 #include <tuple>
 #include <vector>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using ll = long long;

@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-
-#include <atcoder/internal_math>
 #include <numeric>
 #include "../utils/math.hpp"
+
+#include <atcoder/internal_math>
 
 using namespace atcoder;
 using uint = unsigned int;

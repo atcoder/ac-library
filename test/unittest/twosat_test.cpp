@@ -1,9 +1,8 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/twosat>
 #include <numeric>
-
 #include "../utils/random.hpp"
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using ll = long long;

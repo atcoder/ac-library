@@ -1,7 +1,7 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/modint>
 #include <type_traits>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using ll = long long;

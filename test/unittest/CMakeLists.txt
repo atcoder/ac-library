@@ -54,10 +54,6 @@ add_executable(ModintTest modint_test.cpp)
 target_link_libraries(ModintTest gtest gtest_main)
 gtest_discover_tests(ModintTest)
 
-add_executable(MatrixTest matrix_test.cpp)
-target_link_libraries(MatrixTest gtest gtest_main)
-gtest_discover_tests(MatrixTest)
-
 add_executable(DSUTest dsu_test.cpp)
 target_link_libraries(DSUTest gtest gtest_main)
 gtest_discover_tests(DSUTest)

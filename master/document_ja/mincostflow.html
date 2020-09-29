@@ -87,8 +87,8 @@
 
 <p>$s$ から $t$ へ流せるだけ流し、その流量とコストを返す。</p>
 <ul>
-<li>(1) sからtへ流せるだけ流す</li>
-<li>(2) sからtへ流量<code>flow_limit</code>まで流せるだけ流す</li>
+<li>(1) $s$ から $t$ へ流せるだけ流す</li>
+<li>(2) $s$ から $t$ へ流量<code>flow_limit</code>まで流せるだけ流す</li>
 </ul>
 <p><strong>制約</strong></p>
 <ul>
@@ -122,9 +122,9 @@ vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 <li>(Cost : <code>ll</code>): $0 \leq nx \leq 8 \times 10^{18} + 1000$</li>
 </ul>
 <p><strong>計算量</strong></p>
-<p>$F$を流量、$m$を追加した辺の本数として</p>
+<p>$F$ を流量、$m$ を追加した辺の本数として</p>
 <ul>
-<li>$O(F (n + m) \log n)$</li>
+<li>$O(F (n + m) \log (n + m))$</li>
 </ul>
 <h2>edges</h2>
 <pre><code class="cpp">struct edge&lt;Cap, Cost&gt; {

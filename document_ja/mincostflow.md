@@ -45,8 +45,8 @@ int graph.add_edge(int from, int to, Cap cap, Cost cost);
 
 $s$ から $t$ へ流せるだけ流し、その流量とコストを返す。
 
-- (1) sからtへ流せるだけ流す
-- (2) sからtへ流量`flow_limit`まで流せるだけ流す
+- (1) $s$ から $t$ へ流せるだけ流す
+- (2) $s$ から $t$ へ流量`flow_limit`まで流せるだけ流す
 
 **@{keyword.constraints}**
 
@@ -84,9 +84,9 @@ vector<pair<Cap, Cost>> graph.slope(int s, int t, Cap flow_limit);
 
 **@{keyword.complexity}**
 
-$F$を流量、$m$を追加した辺の本数として
+$F$ を流量、$m$ を追加した辺の本数として
 
-- $O(F (n + m) \log n)$
+- $O(F (n + m) \log (n + m))$
 
 ## edges
 

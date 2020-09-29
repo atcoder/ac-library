@@ -84,7 +84,7 @@ vector<pair<Cap, Cost>> graph.slope(int s, int t, Cap flow_limit);
 
 **@{keyword.complexity}**
 
-$F$を流量、$m$を追加した辺の本数として
+$F$ を流量、$m$ を追加した辺の本数として
 
 - $O(F (n + m) \log (n + m))$
 

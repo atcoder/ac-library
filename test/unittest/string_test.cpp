@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
-
 #include <algorithm>
 #include <atcoder/string>
 #include <numeric>
 #include <vector>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using ll = long long;

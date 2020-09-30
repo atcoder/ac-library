@@ -1,9 +1,9 @@
-#include <gtest/gtest.h>
-
 #include <algorithm>
 #include <atcoder/lazysegtree>
 #include <string>
 #include <vector>
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 struct starry {

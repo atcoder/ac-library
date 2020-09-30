@@ -1,10 +1,10 @@
-#include <gtest/gtest.h>
-
 #include <atcoder/maxflow>
 #include <numeric>
 #include <tuple>
 #include <vector>
 #include "../utils/random.hpp"
+
+#include <gtest/gtest.h>
 
 using namespace atcoder;
 using ll = long long;

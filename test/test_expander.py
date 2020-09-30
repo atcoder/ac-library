@@ -2,7 +2,7 @@
 
 import unittest
 from logging import Logger, basicConfig, getLogger
-from os import getenv, environ
+from os import getenv, environ, pathsep
 from pathlib import Path
 from shutil import copy
 from subprocess import run
@@ -45,6 +45,9 @@ class Test(unittest.TestCase):
     def test_env_value(self):
         env = environ.copy()
         env['CPLUS_INCLUDE_PATH'] = str(Path.cwd().resolve())
+        self.compile_test(Path('test/expander/include_all.cpp'), env=env)
+        env['CPLUS_INCLUDE_PATH'] = pathsep + \
+            pathsep + str(Path.cwd().resolve()) + pathsep
         self.compile_test(Path('test/expander/include_all.cpp'), env=env)
 
 

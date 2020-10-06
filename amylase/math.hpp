@@ -5,7 +5,7 @@
 
 namespace amylase {
 
-using li = __int128;
+using li = long long;
 li _powmod(const li x, const li n, const li mod) {
     if (n == 0) {
         return 1;

@@ -84,7 +84,7 @@ Let $x$ be the maximum cost among all edges.
 
 **@{keyword.complexity}**
 
-- $O(F (n + m) \log n)$, where $F$ is the amount of the flow and $m$ is the number of added edges.
+- $O(F (n + m) \log (n + m))$, where $F$ is the amount of the flow and $m$ is the number of added edges.
 
 ## edges
 

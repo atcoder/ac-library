@@ -98,3 +98,9 @@ gtest_discover_tests(TypeTraitsTest)
 add_executable(UtilsMathTest utils/math_test.cpp)
 target_link_libraries(UtilsMathTest gtest gtest_main)
 gtest_discover_tests(UtilsMathTest)
+
+
+# my tests
+add_executable(MyMathTest my_math_test.cpp)
+target_link_libraries(MyMathTest gtest gtest_main)
+gtest_discover_tests(MyMathTest)

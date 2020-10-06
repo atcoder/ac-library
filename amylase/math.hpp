@@ -18,22 +18,27 @@ li _powmod(const li x, const li n, const li mod) {
     }
 }
 
-template<class T>
-bool _miller_rabin(const T x, const std::vector<T>& witnesses) {
+bool _miller_rabin(const long long x, const std::vector<long long>& witnesses) {
     if (x <= 1) {
         return false;
     }
-    T d = x - 1;
-    T s = 0;
+    if ((x & 1) == 0) {
+        return x == 2;
+    }
+    long long d = x - 1;
+    long long s = 0;
     while ((d & 1) == 0) {
         d >>= 1;
         s++;
     }
 
     for (const auto& a : witnesses) {
+        if (a % x <= 1) {
+            continue;
+        }
         bool is_composite = true;
-        is_composite &= _powmod(a, d, x) == 1;
-        T dd = d;
+        is_composite &= _powmod(a, d, x) != 1;
+        long long dd = d;
         for (int i = 0; i < s; ++i) {
             is_composite &= _powmod(a, dd, x) != x - 1;
             dd <<= 1;
@@ -46,7 +51,7 @@ bool _miller_rabin(const T x, const std::vector<T>& witnesses) {
 }
 
 bool is_prime(const long long x) {
-    return _miller_rabin<long long>(x, {2LL, 325LL, 9375LL, 28178LL, 450775LL, 9780504LL, 1795265022LL});
+    return _miller_rabin(x, {2LL, 325LL, 9375LL, 28178LL, 450775LL, 9780504LL, 1795265022LL});
 }
 
 std::vector<long long> factor(long long x) {

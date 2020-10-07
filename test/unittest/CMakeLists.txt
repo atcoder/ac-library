@@ -104,3 +104,7 @@ gtest_discover_tests(UtilsMathTest)
 add_executable(MyMathTest my_math_test.cpp)
 target_link_libraries(MyMathTest gtest gtest_main)
 gtest_discover_tests(MyMathTest)
+
+add_executable(PolynomialTest polynomial_test.cpp)
+target_link_libraries(PolynomialTest gtest gtest_main)
+gtest_discover_tests(PolynomialTest)

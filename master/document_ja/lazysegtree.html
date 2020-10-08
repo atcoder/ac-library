@@ -65,10 +65,9 @@
 <p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e, mapping, composition, id</code>を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
+<pre><code class="language-cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
 (2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;T&gt; v);
 </code></pre>
-
 <ul>
 <li>モノイドの型 <code>S</code></li>
 <li>$\cdot: S \times S \to S$ を計算する関数 <code>S op(S a, S b)</code></li>
@@ -93,9 +92,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>set</h2>
-<pre><code class="cpp">void seg.set(int p, S x)
+<pre><code class="language-cpp">void seg.set(int p, S x)
 </code></pre>
-
 <p><code>a[p] = x</code></p>
 <p><strong>制約</strong></p>
 <ul>
@@ -106,9 +104,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>get</h2>
-<pre><code class="cpp">S seg.get(int p)
+<pre><code class="language-cpp">S seg.get(int p)
 </code></pre>
-
 <p><code>a[p]</code> を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -119,9 +116,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>prod</h2>
-<pre><code class="cpp">S seg.prod(int l, int r)
+<pre><code class="language-cpp">S seg.prod(int l, int r)
 </code></pre>
-
 <p><code>op(a[l], ..., a[r - 1])</code> を、モノイドの性質を満たしていると仮定して計算します。$l = r$ のときは <code>e()</code> を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -132,19 +128,17 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>all_prod</h2>
-<pre><code class="cpp">S seg.all_prod()
+<pre><code class="language-cpp">S seg.all_prod()
 </code></pre>
-
 <p><code>op(a[0], ..., a[n-1])</code> を計算します。$n = 0$ のときは <code>e()</code> を返します。</p>
 <p><strong>計算量</strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
 <h2>apply</h2>
-<pre><code class="cpp">(1) void seg.apply(int p, F f)
+<pre><code class="language-cpp">(1) void seg.apply(int p, F f)
 (2) void seg.apply(int l, int r, F f)
 </code></pre>
-
 <ul>
 <li>(1) <code>a[p] = f(a[p])</code></li>
 <li>(2) <code>i = l..r-1</code>について<code>a[i] = f(a[i])</code></li>
@@ -159,10 +153,9 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>max_right</h2>
-<pre><code class="cpp">(1) int seg.max_right&lt;g&gt;(int l)
+<pre><code class="language-cpp">(1) int seg.max_right&lt;g&gt;(int l)
 (2💻) int seg.max_right&lt;G&gt;(int l, G g)
 </code></pre>
-
 <ul>
 <li>(1): 関数 <code>bool g(S x)</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
 <li>(2): <code>S</code>を引数にとり<code>bool</code>を返す関数オブジェクトを渡して使用します。  </li>
@@ -184,10 +177,9 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>min_left</h2>
-<pre><code class="cpp">(1) int seg.min_left&lt;g&gt;(int r)
+<pre><code class="language-cpp">(1) int seg.min_left&lt;g&gt;(int r)
 (2💻) int seg.min_left&lt;G&gt;(int r, G g)
 </code></pre>
-
 <ul>
 <li>(1): 関数 <code>bool g(S x)</code> を定義する必要があります。segtreeの上で二分探索をします。  </li>
 <li>(2): <code>S</code>を引数にとり<code>bool</code>を返す関数オブジェクトを渡して使用します。  </li>

@@ -57,9 +57,8 @@
 <li>Calculating the sum of the elements of an interval</li>
 </ul>
 <h2>Constructor</h2>
-<pre><code class="cpp">fenwick_tree&lt;T&gt; fw(int n)
+<pre><code class="language-cpp">fenwick_tree&lt;T&gt; fw(int n)
 </code></pre>
-
 <ul>
 <li>It creates an array $a_0, a_1, \cdots, a_{n-1}$ of length $n$. All the elements are initialized to $0$.</li>
 </ul>
@@ -73,9 +72,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add</h2>
-<pre><code class="cpp">void fw.add(int p, T x)
+<pre><code class="language-cpp">void fw.add(int p, T x)
 </code></pre>
-
 <p>It processes <code>a[p] += x</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -86,9 +84,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>sum</h2>
-<pre><code class="cpp">T fw.sum(int l, int r)
+<pre><code class="language-cpp">T fw.sum(int l, int r)
 </code></pre>
-
 <p>It returns <code>a[l] + a[l + 1] + ... + a[r - 1]</code>.
 If <code>T</code> is integer type(<code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code>), it returns the answer in $\bmod 2^{\mathrm{bit}}$, if overflowed.</p>
 <p><strong>Constraints</strong></p>

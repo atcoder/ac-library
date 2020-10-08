@@ -55,11 +55,10 @@
 <p>Let <code>s</code> be a string.
 We denote the substring of <code>s</code> between $a$-th and $b - 1$-th character by <code>s[a..b)</code>.</p>
 <h2>suffix_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; suffix_array(string s)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; suffix_array(string s)
 (2) vector&lt;int&gt; suffix_array&lt;T&gt;(vector&lt;T&gt; s)
 (3) vector&lt;int&gt; suffix_array(vector&lt;int&gt; s, int upper)
 </code></pre>
-
 <p>Given a string <code>s</code> of length $n$, it returns the suffix array of <code>s</code>.
 Here, the suffix array <code>sa</code> of <code>s</code> is a permutation of $0, \cdots, n-1$ such that <code>s[sa[i]..n) &lt; s[sa[i+1]..n)</code> holds for all $i = 0,1, \cdots ,n-2$.</p>
 <p><strong>Constraints</strong></p>
@@ -76,10 +75,9 @@ Here, the suffix array <code>sa</code> of <code>s</code> is a permutation of $0,
 <li>(3) $O(n + \mathrm{upper})$-time</li>
 </ul>
 <h2>lcp_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
 (2) vector&lt;int&gt; lcp_array&lt;T&gt;(vector&lt;T&gt; s, vector&lt;int&gt; sa)
 </code></pre>
-
 <p>Given a string <code>s</code> of length $n$, it returns the LCP array of <code>s</code>.
 Here, the LCP array of <code>s</code> is the array of length $n-1$, such that the $i$-th element is the length of the LCP (Longest Common Prefix) of <code>s[sa[i]..n)</code> and <code>s[sa[i+1]..n)</code>.</p>
 <p><strong>Constraints</strong></p>
@@ -93,10 +91,9 @@ Here, the LCP array of <code>s</code> is the array of length $n-1$, such that th
 <li>$O(n)$</li>
 </ul>
 <h2>z_algorithm</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; z_algorithm(string s)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; z_algorithm(string s)
 (2) vector&lt;int&gt; z_algorithm&lt;T&gt;(vector&lt;T&gt; s)
 </code></pre>
-
 <p>Given a string of length $n$, it returns the array of length $n$, such that the $i$-th element is the length of the LCP (Longest Common Prefix) of <code>s[0..n)</code> and <code>s[i..n)</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>

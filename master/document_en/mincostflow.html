@@ -53,9 +53,8 @@
             <h1>MinCostFlow</h1>
 <p>It solves <a href="https://en.wikipedia.org/wiki/Minimum-cost_flow_problem">Minimum-cost flow problem</a>.</p>
 <h2>Constructor</h2>
-<pre><code class="cpp">mcf_graph&lt;Cap, Cost&gt; graph(int n);
+<pre><code class="language-cpp">mcf_graph&lt;Cap, Cost&gt; graph(int n);
 </code></pre>
-
 <p>It creates a directed graph with $n$ vertices and $0$ edges. <code>Cap</code> and <code>Cost</code> are the type of the capacity and the cost, respectively.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -67,9 +66,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_edge</h2>
-<pre><code class="cpp">int graph.add_edge(int from, int to, Cap cap, Cost cost);
+<pre><code class="language-cpp">int graph.add_edge(int from, int to, Cap cap, Cost cost);
 </code></pre>
-
 <p>It adds an edge oriented from <code>from</code> to <code>to</code> with capacity <code>cap</code> and cost <code>cost</code>. It returns an integer $k$ such that this is the $k$-th edge that is added.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -81,10 +79,9 @@
 <li>$O(1)$ amortized</li>
 </ul>
 <h2>min_cost_max_flow</h2>
-<pre><code class="cpp">(1) pair&lt;Cap, Cost&gt; graph.flow(int s, int t);
+<pre><code class="language-cpp">(1) pair&lt;Cap, Cost&gt; graph.flow(int s, int t);
 (2) pair&lt;Cap, Cost&gt; graph.flow(int s, int t, Cap flow_limit);
 </code></pre>
-
 <ul>
 <li>It augments the flow from $s$ to $t$ as much as possible. It returns the amount of the flow and the cost.</li>
 <li>(1) It augments the $s-t$ flow as much as possible.</li>
@@ -99,10 +96,9 @@
 <li>same as <code>min_cost_slope</code>.</li>
 </ul>
 <h2>min_cost_slope</h2>
-<pre><code class="cpp">vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t);
+<pre><code class="language-cpp">vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t);
 vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 </code></pre>
-
 <p>Let $g$ be a function such that $g(x)$ is the cost of the minimum cost $s-t$ flow when the amount of the flow is exactly $x$. $g$ is known to be piecewise linear.
 It returns $g$ as the list of the changepoints, that satisfies the followings.</p>
 <ul>
@@ -127,7 +123,7 @@ It returns $g$ as the list of the changepoints, that satisfies the followings.</
 <li>$O(F (n + m) \log (n + m))$, where $F$ is the amount of the flow and $m$ is the number of added edges.</li>
 </ul>
 <h2>edges</h2>
-<pre><code class="cpp">struct edge&lt;Cap, Cost&gt; {
+<pre><code class="language-cpp">struct edge&lt;Cap, Cost&gt; {
     int from, to;
     Cap cap, flow;
     Cost cost;
@@ -136,7 +132,6 @@ It returns $g$ as the list of the changepoints, that satisfies the followings.</
 (1) mcf_graph&lt;Cap, Cost&gt;::edge graph.get_edge(int i);
 (2) vector&lt;mcf_graph&lt;Cap, Cost&gt;::edge&gt; graph.edges();
 </code></pre>
-
 <ul>
 <li>It returns the current internal state of the edges.</li>
 <li>The edges are ordered in the same order as added by <code>add_edge</code>.</li>

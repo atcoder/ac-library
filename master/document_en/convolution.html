@@ -54,10 +54,9 @@
 <p>It calculates $(+,\times)$ convolution. Given two arrays $a_0, a_1, \cdots, a_{N - 1}$ and $b_0, b_1, \cdots, b_{M - 1}$, it calculates the array $c$ of length $N + M - 1$, defined by</p>
 <p>$$c_i = \sum_{j = 0}^i a_j b_{i - j}$$</p>
 <h2>convolution</h2>
-<pre><code class="cpp">(1) vector&lt;T&gt; convolution&lt;int m = 998244353&gt;(vector&lt;T&gt; a, vector&lt;T&gt; b)
+<pre><code class="language-cpp">(1) vector&lt;T&gt; convolution&lt;int m = 998244353&gt;(vector&lt;T&gt; a, vector&lt;T&gt; b)
 💻(2) vector&lt;static_modint&lt;m&gt;&gt; convolution&lt;int m&gt;(vector&lt;static_modint&lt;m&gt;&gt; a, vector&lt;static_modint&lt;m&gt;&gt; b)
 </code></pre>
-
 <p>It calculates the convolution in $\bmod m$. It returns an empty array if at least one of $a$ and $b$ are empty.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -71,9 +70,8 @@
 <li>$O(n\log{n} + \log{\mathrm{mod}})$, where $n = |a| + |b|$.</li>
 </ul>
 <h2>convolution_ll</h2>
-<pre><code class="cpp">vector&lt;ll&gt; convolution_ll(vector&lt;ll&gt; a, vector&lt;ll&gt; b)
+<pre><code class="language-cpp">vector&lt;ll&gt; convolution_ll(vector&lt;ll&gt; a, vector&lt;ll&gt; b)
 </code></pre>
-
 <p>It calculates the convolution. It returns an empty array if at least one of $a$ and $b$ are empty.</p>
 <p><strong>Constraints</strong></p>
 <ul>

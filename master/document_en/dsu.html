@@ -59,9 +59,8 @@
 <p>Each connected component internally has a representative vertex.</p>
 <p>When two connected components are merged by edge addition, one of the two representatives of these connected components becomes the representative of the new connected component.</p>
 <h2>Constructor</h2>
-<pre><code class="cpp">dsu d(int n)
+<pre><code class="language-cpp">dsu d(int n)
 </code></pre>
-
 <ul>
 <li>It creates an undirected graph with $n$ vertices and $0$ edges.</li>
 </ul>
@@ -74,9 +73,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>merge</h2>
-<pre><code class="cpp">int d.merge(int a, int b)
+<pre><code class="language-cpp">int d.merge(int a, int b)
 </code></pre>
-
 <p>It adds an edge $(a, b)$.</p>
 <p>If the vertices $a$ and $b$ were in the same connected component, it returns the representative of this connected component. Otherwise, it returns the representative of the new connected component.</p>
 <p><strong>Constraints</strong></p>
@@ -89,9 +87,8 @@
 <li>$O(\alpha(n))$ amortized</li>
 </ul>
 <h2>same</h2>
-<pre><code class="cpp">bool d.same(int a, int b)
+<pre><code class="language-cpp">bool d.same(int a, int b)
 </code></pre>
-
 <p>It returns whether the vertices $a$ and $b$ are in the same connected component.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -103,9 +100,8 @@
 <li>$O(\alpha(n))$ amortized</li>
 </ul>
 <h2>leader</h2>
-<pre><code class="cpp">int d.leader(int a)
+<pre><code class="language-cpp">int d.leader(int a)
 </code></pre>
-
 <p>It returns the representative of the connected component that contains the vertex $a$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -116,9 +112,8 @@
 <li>$O(\alpha(n))$ amortized</li>
 </ul>
 <h2>size</h2>
-<pre><code class="cpp">int d.size(int a)
+<pre><code class="language-cpp">int d.size(int a)
 </code></pre>
-
 <p>It returns the size of the connected component that contains the vertex $a$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -129,9 +124,8 @@
 <li>$O(\alpha(n))$ amortized</li>
 </ul>
 <h2>groups</h2>
-<pre><code class="cpp">vector&lt;vector&lt;int&gt;&gt; d.groups()
+<pre><code class="language-cpp">vector&lt;vector&lt;int&gt;&gt; d.groups()
 </code></pre>
-
 <p>It divides the graph into connected components and returns the list of them.</p>
 <p>More precisely, it returns the list of the "list of the vertices in a connected component".
 Both of the orders of the connected components and the vertices are undefined.</p>

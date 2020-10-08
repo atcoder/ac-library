@@ -55,11 +55,10 @@
 文字列に関する様々なアルゴリズムが入っています。</p>
 <p>文字列 <code>s</code> の $a$ 番目から $b - 1$ 番目の要素のsubstringを、<code>s[a..b)</code>と表記します。</p>
 <h2>suffix_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; suffix_array(string s)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; suffix_array(string s)
 (2) vector&lt;int&gt; suffix_array&lt;T&gt;(vector&lt;T&gt; s)
 (3) vector&lt;int&gt; suffix_array(vector&lt;int&gt; s, int upper)
 </code></pre>
-
 <p>長さ $n$ の文字列 <code>s</code> のSuffix Arrayとして、長さ $n$ の vector を返す。
 Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、各 $i = 0,1, \cdots ,n-2$ について <code>s[sa[i]..n) &lt; s[sa[i+1]..n)</code> を満たすもの。</p>
 <p><strong>制約</strong></p>
@@ -76,10 +75,9 @@ Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、
 <li>(3) $O(n + \mathrm{upper})$</li>
 </ul>
 <h2>lcp_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
 (2) vector&lt;int&gt; lcp_array&lt;T&gt;(vector&lt;T&gt; s, vector&lt;int&gt; sa)
 </code></pre>
-
 <p>長さ $n$ の文字列 <code>s</code> のLCP Arrayとして、長さ $n-1$ の配列を返す。$i$ 番目の要素は <code>s[sa[i]..n), s[sa[i+1]..n)</code> の LCP(Longest Common Prefix) の長さ。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -92,10 +90,9 @@ Suffix Array <code>sa</code> は $(0, 1, \dots, n - 1)$ の順列であって、
 <li>$O(n)$</li>
 </ul>
 <h2>z_algorithm</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; z_algorithm(string s)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; z_algorithm(string s)
 (2) vector&lt;int&gt; z_algorithm&lt;T&gt;(vector&lt;T&gt; s)
 </code></pre>
-
 <p>入力の長さを $n$ として、長さ $n$ の配列を返す。
 $i$ 番目の要素は <code>s[0..n)</code>と<code>s[i..n)</code>のLCP(Longest Common Prefix)の長さ。</p>
 <p><strong>制約</strong></p>

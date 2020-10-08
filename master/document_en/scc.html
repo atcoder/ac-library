@@ -53,9 +53,8 @@
             <h1>SCC</h1>
 <p>It calculates the strongly connected components of directed graphs.</p>
 <h2>Constructor</h2>
-<pre><code class="cpp">scc_graph graph(int n)
+<pre><code class="language-cpp">scc_graph graph(int n)
 </code></pre>
-
 <p>It creates a directed graph with $n$ vertices and $0$ edges.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -66,9 +65,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_edge</h2>
-<pre><code class="cpp">void graph.add_edge(int from, int to)
+<pre><code class="language-cpp">void graph.add_edge(int from, int to)
 </code></pre>
-
 <p>It adds a directed edge from the vertex <code>from</code> to the vertex <code>to</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -80,9 +78,8 @@
 <li>$O(1)$ amortized</li>
 </ul>
 <h2>scc</h2>
-<pre><code class="cpp">vector&lt;vector&lt;int&gt;&gt; graph.scc()
+<pre><code class="language-cpp">vector&lt;vector&lt;int&gt;&gt; graph.scc()
 </code></pre>
-
 <p>It returns the list of the "list of the vertices" that satisfies the following.</p>
 <ul>
 <li>Each vertex is in exactly one "list of the vertices".</li>

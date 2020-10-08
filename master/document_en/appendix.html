@@ -92,13 +92,12 @@ AC Library is designed to be still usable if you ignore the parts with this mark
 <h3>Template Function</h3>
 <p>For example, <code>suffix_array(v)</code> can take <code>vector&lt;int&gt;</code>, <code>vector&lt;ll&gt;</code>, et cetera as an argument. In this document, we unify these notations to <code>suffix_array&lt;T&gt;(vector&lt;T&gt; v)</code>.</p>
 <p>For example, to calculate the suffix array of the integral array $v$ stored in <code>vector&lt;int&gt;</code>, we can code as follows.</p>
-<pre><code class="cpp">vector&lt;int&gt; sa = suffix_array(v);
+<pre><code class="language-cpp">vector&lt;int&gt; sa = suffix_array(v);
 // vector&lt;int&gt; sa = suffix_array&lt;int&gt;(v); : wrong usage
 </code></pre>
-
 <h3>Default Constructor</h3>
 <p>The structs like <code>scc_graph</code> can be declared not only like the former code, but also like the latter code without initialization.</p>
-<pre><code class="cpp">#include &lt;atcoder/scc&gt;;
+<pre><code class="language-cpp">#include &lt;atcoder/scc&gt;;
 using namespace atcoder;
 
 int main() {
@@ -108,8 +107,7 @@ int main() {
     return 0;
 }
 </code></pre>
-
-<pre><code class="cpp">#include &lt;atcoder/scc&gt;;
+<pre><code class="language-cpp">#include &lt;atcoder/scc&gt;;
 using namespace atcoder;
 
 scc_graph g;
@@ -118,14 +116,13 @@ int main() {
     return 0;
 }
 </code></pre>
-
 <p>If it is declared in the latter way, the behavior (of the default constructor) is as follows.</p>
 <ul>
 <li>It takes $O(1)$-time.</li>
 <li>The behavior is undefined if the member variables are accessed or the member functions are called.</li>
 </ul>
 <p>You can also assign a value to the struct later.</p>
-<pre><code class="cpp">#include &lt;atcoder/scc&gt;;
+<pre><code class="language-cpp">#include &lt;atcoder/scc&gt;;
 using namespace atcoder;
 
 scc_graph g;
@@ -135,25 +132,21 @@ int main() {
     return 0;
 }
 </code></pre>
-
 <h3>The Type of the Edges</h3>
 <p>In the graph libraries, the type <code>mf_graph&lt;Cap&gt;::edge</code> is used to store edges.</p>
 <p>For example, the type of the edges of <code>mf_graph&lt;int&gt;</code> is <code>mf_graph&lt;int&gt;::edge</code>.
 If you are not familiar to <code>::</code>, you can use the string <code>mf_graph&lt;int&gt;::edge</code> in the same manner as <code>int</code> or <code>string</code>, like the following example.</p>
-<pre><code class="cpp">vector&lt;mf_graph&lt;int&gt;::edge&gt; v;
+<pre><code class="language-cpp">vector&lt;mf_graph&lt;int&gt;::edge&gt; v;
 mf_graph&lt;int&gt;::edge e;
 </code></pre>
-
 <h3>Default Template Arguments</h3>
 <p>Sometimes the following notation is used, as in the document of convolution.</p>
-<pre><code class="cpp">vector&lt;T&gt; convolution&lt;int m = 998244353&gt;(vector&lt;T&gt; a, vector&lt;T&gt; b)
+<pre><code class="language-cpp">vector&lt;T&gt; convolution&lt;int m = 998244353&gt;(vector&lt;T&gt; a, vector&lt;T&gt; b)
 </code></pre>
-
 <p>It means the default template argument. As the following example, you can call the function without explicitly specifying <code>m</code>.</p>
-<pre><code class="cpp">vector&lt;long long&gt; c = convolution(a, b);
+<pre><code class="language-cpp">vector&lt;long long&gt; c = convolution(a, b);
 vector&lt;long long&gt; c = convolution&lt;924844033&gt;(a, b);
 </code></pre>
-
 <p>In the first case, $m$ is automatically set to be $998244353$.
 In the second case, $m$ becomes the value that is explicitly specified, which is $924844033$ here.</p>
 <h2>Precise requirements in Segtree / LazySegtree</h2>

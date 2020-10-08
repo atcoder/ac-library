@@ -63,10 +63,9 @@
 </ul>
 <p>For simplicity, in this document, we assume that the oracles <code>op</code> and <code>e</code> work in constant time. If these oracles work in $O(T)$ time, each time complexity appear in this document is multipled by $O(T)$.</p>
 <h2>Constructor</h2>
-<pre><code class="cpp">(1) segtree&lt;S, op, e&gt; seg(int n)
+<pre><code class="language-cpp">(1) segtree&lt;S, op, e&gt; seg(int n)
 (2) segtree&lt;S, op, e&gt; seg(vector&lt;S&gt; v)
 </code></pre>
-
 <p>The following should be defined.</p>
 <ul>
 <li>The type <code>S</code></li>
@@ -74,7 +73,7 @@
 <li>The identity element <code>S e()</code></li>
 </ul>
 <p>For example, for Range Minimum Query, the definitions are as follows.</p>
-<pre><code class="cpp">int op(int a, int b) {
+<pre><code class="language-cpp">int op(int a, int b) {
     return min(a, b);
 }
 
@@ -84,7 +83,6 @@ int e() {
 
 segtree&lt;int, op, e&gt; seg(10);
 </code></pre>
-
 <ul>
 <li>(1): It creates an array <code>a</code> of length <code>n</code>. All the elements are initialized to <code>e()</code>.</li>
 <li>(2): It creates an array <code>a</code> of length <code>n = v.size()</code>, initialized to <code>v</code>.</li>
@@ -99,9 +97,8 @@ segtree&lt;int, op, e&gt; seg(10);
 <li>$O(n)$</li>
 </ul>
 <h2>set</h2>
-<pre><code class="cpp">void seg.set(int p, S x)
+<pre><code class="language-cpp">void seg.set(int p, S x)
 </code></pre>
-
 <p>It assigns $x$ to <code>a[p]</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -112,9 +109,8 @@ segtree&lt;int, op, e&gt; seg(10);
 <li>$O(\log n)$</li>
 </ul>
 <h2>get</h2>
-<pre><code class="cpp">S seg.get(int p)
+<pre><code class="language-cpp">S seg.get(int p)
 </code></pre>
-
 <p>It returns <code>a[p]</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -125,9 +121,8 @@ segtree&lt;int, op, e&gt; seg(10);
 <li>$O(1)$</li>
 </ul>
 <h2>prod</h2>
-<pre><code class="cpp">S seg.prod(int l, int r)
+<pre><code class="language-cpp">S seg.prod(int l, int r)
 </code></pre>
-
 <p>It returns <code>op(a[l], ..., a[r - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $l = r$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -138,19 +133,17 @@ segtree&lt;int, op, e&gt; seg(10);
 <li>$O(\log n)$</li>
 </ul>
 <h2>all_prod</h2>
-<pre><code class="cpp">S seg.all_prod()
+<pre><code class="language-cpp">S seg.all_prod()
 </code></pre>
-
 <p>It returns <code>op(a[0], ..., a[n - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $n = 0$.</p>
 <p><strong>Complexity</strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
 <h2>max_right</h2>
-<pre><code class="cpp">(1) int seg.max_right&lt;f&gt;(int l)
+<pre><code class="language-cpp">(1) int seg.max_right&lt;f&gt;(int l)
 (2) int seg.max_right&lt;F&gt;(int l, F f)
 </code></pre>
-
 <ul>
 <li>(1): It applies binary search on the segment tree. The function <code>bool f(S x)</code> should be defined.  </li>
 <li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>
@@ -172,10 +165,9 @@ segtree&lt;int, op, e&gt; seg(10);
 <li>$O(\log n)$</li>
 </ul>
 <h2>min_left</h2>
-<pre><code class="cpp">(1) int seg.min_left&lt;f&gt;(int r)
+<pre><code class="language-cpp">(1) int seg.min_left&lt;f&gt;(int r)
 (2) int seg.min_left&lt;F&gt;(int r, F f)
 </code></pre>
-
 <ul>
 <li>(1): It applies binary search on the segment tree. The function <code>bool f(S x)</code> should be defined.  </li>
 <li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>

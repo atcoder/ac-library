@@ -53,9 +53,8 @@
             <h1>MinCostFlow</h1>
 <p><a href="https://en.wikipedia.org/wiki/Minimum-cost_flow_problem">Minimum-cost flow problem</a>を扱うライブラリです。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">mcf_graph&lt;Cap, Cost&gt; graph(int n);
+<pre><code class="language-cpp">mcf_graph&lt;Cap, Cost&gt; graph(int n);
 </code></pre>
-
 <p>$n$ 頂点 $0$ 辺のグラフを作る。<code>Cap</code>は容量の型、<code>Cost</code>はコストの型</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -67,9 +66,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_edge</h2>
-<pre><code class="cpp">int graph.add_edge(int from, int to, Cap cap, Cost cost);
+<pre><code class="language-cpp">int graph.add_edge(int from, int to, Cap cap, Cost cost);
 </code></pre>
-
 <p><code>from</code>から<code>to</code>へ最大容量<code>cap</code>, コスト<code>cost</code>の辺を追加する。何番目に追加された辺かを返す。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -81,10 +79,9 @@
 <li>ならし $O(1)$</li>
 </ul>
 <h2>min_cost_max_flow</h2>
-<pre><code class="cpp">(1) pair&lt;Cap, Cost&gt; graph.flow(int s, int t);
+<pre><code class="language-cpp">(1) pair&lt;Cap, Cost&gt; graph.flow(int s, int t);
 (2) pair&lt;Cap, Cost&gt; graph.flow(int s, int t, Cap flow_limit);
 </code></pre>
-
 <p>$s$ から $t$ へ流せるだけ流し、その流量とコストを返す。</p>
 <ul>
 <li>(1) $s$ から $t$ へ流せるだけ流す</li>
@@ -99,10 +96,9 @@
 <li><code>min_cost_slope</code>と同じ</li>
 </ul>
 <h2>min_cost_slope</h2>
-<pre><code class="cpp">vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t);
+<pre><code class="language-cpp">vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t);
 vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 </code></pre>
-
 <p>帰り値に流量とコストの関係の折れ線が入る。全ての $x$ について、流量 $x$ の時の最小コストを $g(x)$ とすると、$(x, g(x))$ は帰り値を折れ線として見たものに含まれる。</p>
 <ul>
 <li>帰り値の最初の要素は $(0, 0)$</li>
@@ -127,7 +123,7 @@ vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 <li>$O(F (n + m) \log (n + m))$</li>
 </ul>
 <h2>edges</h2>
-<pre><code class="cpp">struct edge&lt;Cap, Cost&gt; {
+<pre><code class="language-cpp">struct edge&lt;Cap, Cost&gt; {
     int from, to;
     Cap cap, flow;
     Cost cost;
@@ -136,7 +132,6 @@ vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 (1) mcf_graph&lt;Cap, Cost&gt;::edge graph.get_edge(int i);
 (2) vector&lt;mcf_graph&lt;Cap, Cost&gt;::edge&gt; graph.edges();
 </code></pre>
-
 <ul>
 <li>今の内部の辺の状態を返す</li>
 <li>辺の順番はadd_edgeで追加された順番と同一</li>

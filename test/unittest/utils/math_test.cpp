@@ -17,7 +17,6 @@ TEST(UtilsMathTest, FactorsTest) {
 
 bool is_primitive_root_naive(int m, int g) {
     assert(1 <= g && g < m);
-    auto prs = factors(m - 1);
     int x = 1;
     for (int i = 1; i <= m - 2; i++) {
         x = (int)((long long)(x)*g % m);

@@ -50,7 +50,7 @@ int graph.add_edge(int from, int to, Cap cap);
 **@{keyword.constraints}**
 
 - $s \neq t$
-- 帰り値が `Cap` に収まる
+- 返り値が `Cap` に収まる
 
 **@{keyword.complexity}**
 

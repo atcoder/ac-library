@@ -18,6 +18,15 @@ class Expander:
 
     include_guard = re.compile('#.*ATCODER_[A-Z_]*_HPP')
 
+    def is_ignored_line(self, line) -> bool:
+        if self.include_guard.match(line):
+            return True
+        if line.strip() == "#pragma once":
+            return True
+        if line.strip().startswith('//'):
+            return True
+        return False
+
     def __init__(self, lib_paths: List[Path]):
         self.lib_paths = lib_paths
 
@@ -45,14 +54,16 @@ class Expander:
 
         result = []  # type: List[str]
         for line in acl_source.splitlines():
-            if self.include_guard.match(line):
+            if self.is_ignored_line(line):
                 continue
 
             m = self.atcoder_include.match(line)
             if m:
                 result.extend(self.expand_acl(m.group(1)))
                 continue
+
             result.append(line)
+
         return result
 
     def expand(self, source: str) -> str:

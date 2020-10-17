@@ -17,6 +17,7 @@ class Expander:
         '#include\s*["<](atcoder/[a-z_]*(|.hpp))[">]\s*')
 
     include_guard = re.compile('#.*ATCODER_[A-Z_]*_HPP')
+
     def is_ignored_line(self, line) -> bool:
         if self.include_guard.match(line):
             return True
@@ -55,7 +56,7 @@ class Expander:
         for line in acl_source.splitlines():
             if self.is_ignored_line(line):
                 continue
-            
+
             m = self.atcoder_include.match(line)
             if m:
                 result.extend(self.expand_acl(m.group(1)))

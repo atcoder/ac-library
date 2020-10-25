@@ -6,7 +6,7 @@ It is the data structure for the pair of a [monoid](https://en.wikipedia.org/wik
 - $F$ is closed under composition, i.e., $f \circ g \in F$ holds for all $f, g \in F$.
 - $f(x \cdot y) = f(x) \cdot f(y)$ holds for all $f \in F$ and $x, y \in S$.
 
-Given an array $S$ of length $N$, it processes the following queries in $O(\log N)$ time (see [Appendix](./appendix.html) for further details).
+Given an array $S$ of length $N$, it processes the following queries in $O(\log N)$ time (see [Appendix](./appendix.md) for further details).
 
 - Acting the map $f\in F$ (cf. $x = f(x)$) on all the elements of an interval
 - Calculating the product of the elements of an interval

@@ -2,11 +2,12 @@
 #define ATCODER_MAXFLOW_HPP 1
 
 #include <algorithm>
-#include <atcoder/internal_queue>
 #include <cassert>
 #include <limits>
 #include <queue>
 #include <vector>
+
+#include "atcoder/internal_queue"
 
 namespace atcoder {
 

@@ -1,4 +1,5 @@
-#include <atcoder/dsu>
+#include "atcoder/dsu"
+
 #include <numeric>
 
 #include <gtest/gtest.h>

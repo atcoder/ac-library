@@ -2,9 +2,10 @@
 #define ATCODER_SEGTREE_HPP 1
 
 #include <algorithm>
-#include <atcoder/internal_bit>
 #include <cassert>
 #include <vector>
+
+#include "atcoder/internal_bit"
 
 namespace atcoder {
 

@@ -1,9 +1,10 @@
 #ifndef ATCODER_FENWICKTREE_HPP
 #define ATCODER_FENWICKTREE_HPP 1
 
-#include <atcoder/internal_type_traits>
 #include <cassert>
 #include <vector>
+
+#include "atcoder/internal_type_traits"
 
 namespace atcoder {
 

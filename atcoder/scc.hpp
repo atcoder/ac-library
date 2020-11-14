@@ -2,9 +2,10 @@
 #define ATCODER_SCC_HPP 1
 
 #include <algorithm>
-#include <atcoder/internal_scc>
 #include <cassert>
 #include <vector>
+
+#include "atcoder/internal_scc"
 
 namespace atcoder {
 

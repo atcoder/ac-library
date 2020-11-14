@@ -1,4 +1,5 @@
-#include <atcoder/internal_bit>
+#include "atcoder/internal_bit"
+
 #include <numeric>
 
 #include <gtest/gtest.h>

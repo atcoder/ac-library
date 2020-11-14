@@ -1,5 +1,6 @@
+#include "atcoder/lazysegtree"
+
 #include <algorithm>
-#include <atcoder/lazysegtree>
 #include <string>
 #include <vector>
 

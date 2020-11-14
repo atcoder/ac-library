@@ -1,4 +1,5 @@
-#include <atcoder/all>
+#include "atcoder/all"
+
 #include <type_traits>
 
 #include <gtest/gtest.h>

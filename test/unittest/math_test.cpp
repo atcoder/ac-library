@@ -1,4 +1,5 @@
-#include <atcoder/math>
+#include "atcoder/math"
+
 #include <numeric>
 
 #include <gtest/gtest.h>

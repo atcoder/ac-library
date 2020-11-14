@@ -2,10 +2,12 @@
 #define ATCODER_LAZYSEGTREE_HPP 1
 
 #include <algorithm>
-#include <atcoder/internal_bit>
 #include <cassert>
 #include <iostream>
 #include <vector>
+
+#include "atcoder/internal_bit"
+
 namespace atcoder {
 
 template <class S,

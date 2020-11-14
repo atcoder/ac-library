@@ -1,1 +1,1 @@
-#include <atcoder/internal_scc.hpp>
+#include "atcoder/internal_scc.hpp"

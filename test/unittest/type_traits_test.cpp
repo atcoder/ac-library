@@ -1,4 +1,5 @@
-#include <atcoder/internal_type_traits>
+#include "atcoder/internal_type_traits"
+
 #include <type_traits>
 
 #include <gtest/gtest.h>

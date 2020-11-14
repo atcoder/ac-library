@@ -1,8 +1,9 @@
-#include <atcoder/maxflow>
+#include "atcoder/maxflow"
+#include "../utils/random.hpp"
+
 #include <numeric>
 #include <tuple>
 #include <vector>
-#include "../utils/random.hpp"
 
 #include <gtest/gtest.h>
 

@@ -1,6 +1,8 @@
-#include <algorithm>
-#include <atcoder/lazysegtree>
+#include "atcoder/lazysegtree"
+
 #include "../utils/random.hpp"
+
+#include <algorithm>
 #include <string>
 #include <vector>
 

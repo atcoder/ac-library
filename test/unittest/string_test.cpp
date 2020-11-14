@@ -1,5 +1,6 @@
+#include "atcoder/string"
+
 #include <algorithm>
-#include <atcoder/string>
 #include <numeric>
 #include <vector>
 

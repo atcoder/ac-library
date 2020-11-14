@@ -1,5 +1,5 @@
-#include <atcoder/scc>
-#include <atcoder/modint>
+#include "atcoder/scc"
+#include "atcoder/modint"
 #include <numeric>
 
 #include <gtest/gtest.h>

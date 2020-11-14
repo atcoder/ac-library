@@ -1,1 +1,1 @@
-#include "math.hpp"
+#include "atcoder/math.hpp"

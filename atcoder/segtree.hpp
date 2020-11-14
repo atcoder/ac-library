@@ -5,7 +5,7 @@
 #include <cassert>
 #include <vector>
 
-#include "internal_bit"
+#include "atcoder/internal_bit"
 
 namespace atcoder {
 

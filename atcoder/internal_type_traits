@@ -1,1 +1,1 @@
-#include "internal_type_traits.hpp"
+#include "atcoder/internal_type_traits.hpp"

@@ -9,8 +9,8 @@
 #include <intrin.h>
 #endif
 
-#include "internal_math"
-#include "internal_type_traits"
+#include "atcoder/internal_math"
+#include "atcoder/internal_type_traits"
 
 namespace atcoder {
 

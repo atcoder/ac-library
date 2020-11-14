@@ -1,1 +1,1 @@
-#include <atcoder/lazysegtree.hpp>
+#include "lazysegtree.hpp"

@@ -1,1 +1,1 @@
-#include <atcoder/internal_queue.hpp>
+#include "internal_queue.hpp"

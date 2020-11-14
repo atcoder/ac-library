@@ -1,1 +1,1 @@
-#include <atcoder/internal_math.hpp>
+#include "internal_math.hpp"

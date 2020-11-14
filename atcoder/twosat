@@ -1,1 +1,1 @@
-#include <atcoder/twosat.hpp>
+#include "twosat.hpp"

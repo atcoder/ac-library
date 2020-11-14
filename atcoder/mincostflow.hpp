@@ -72,23 +72,25 @@ template <class Cap, class Cost> struct mcf_graph {
         std::vector<Cost> dual(_n, 0), dist(_n);
         std::vector<int> pv(_n), pe(_n);
         std::vector<bool> vis(_n);
+        struct Q {
+            Cost key;
+            int to;
+            bool operator<(Q r) const { return key > r.key; }
+        };
+        std::vector<Q> que;
         auto dual_ref = [&]() {
             std::fill(dist.begin(), dist.end(),
                       std::numeric_limits<Cost>::max());
-            std::fill(pv.begin(), pv.end(), -1);
-            std::fill(pe.begin(), pe.end(), -1);
             std::fill(vis.begin(), vis.end(), false);
-            struct Q {
-                Cost key;
-                int to;
-                bool operator<(Q r) const { return key > r.key; }
-            };
-            std::priority_queue<Q> que;
+            que.clear();
+
             dist[s] = 0;
-            que.push(Q{0, s});
+            que.push_back(Q{0, s});
+            std::push_heap(que.begin(), que.end());
             while (!que.empty()) {
-                int v = que.top().to;
-                que.pop();
+                int v = que.front().to;
+                std::pop_heap(que.begin(), que.end());
+                que.pop_back();
                 if (vis[v]) continue;
                 vis[v] = true;
                 if (v == t) break;
@@ -105,7 +107,8 @@ template <class Cap, class Cost> struct mcf_graph {
                         dist[e.to] = dist[v] + cost;
                         pv[e.to] = v;
                         pe[e.to] = i;
-                        que.push(Q{dist[e.to], e.to});
+                        que.push_back(Q{dist[e.to], e.to});
+                        std::push_heap(que.begin(), que.end());
                     }
                 }
             }

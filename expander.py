@@ -13,10 +13,12 @@ logger = getLogger(__name__)  # type: Logger
 
 
 class Expander:
+    local_include = re.compile(
+        r'#include\s*"([a-z_]*(|.hpp))"\s*')
     atcoder_include = re.compile(
-        '#include\s*["<](atcoder/[a-z_]*(|.hpp))[">]\s*')
+        r'#include\s*["<](atcoder/[a-z_]*(|.hpp))[">]\s*')
 
-    include_guard = re.compile('#.*ATCODER_[A-Z_]*_HPP')
+    include_guard = re.compile(r'#.*ATCODER_[A-Z_]*_HPP')
 
     def is_ignored_line(self, line) -> bool:
         if self.include_guard.match(line):
@@ -30,27 +32,24 @@ class Expander:
     def __init__(self, lib_paths: List[Path]):
         self.lib_paths = lib_paths
 
-    included = set()  # type: Set[str]
+    included = set()  # type: Set[Path]
 
-    def find_acl(self, acl_name: str) -> Optional[Path]:
+    def find_acl(self, acl_name: str) -> Path:
         for lib_path in self.lib_paths:
             path = lib_path / acl_name
             if path.exists():
                 return path
-        return None
+        logger.error('cannot find: {}'.format(acl_name))
+        raise FileNotFoundError()
 
-    def expand_acl(self, acl_name: str) -> List[str]:
-        if acl_name in self.included:
-            logger.info('already included: {}'.format(acl_name))
+    def expand_acl(self, acl_file_path: Path) -> List[str]:
+        if acl_file_path in self.included:
+            logger.info('already included: {}'.format(acl_file_path.name))
             return []
-        self.included.add(acl_name)
-        logger.info('include: {}'.format(acl_name))
-        acl_path = self.find_acl(acl_name)
-        if not acl_path:
-            logger.warning('cannot find: {}'.format(acl_name))
-            raise FileNotFoundError()
+        self.included.add(acl_file_path)
+        logger.info('include: {}'.format(acl_file_path.name))
 
-        acl_source = open(str(acl_path)).read()
+        acl_source = open(str(acl_file_path)).read()
 
         result = []  # type: List[str]
         for line in acl_source.splitlines():
@@ -59,7 +58,14 @@ class Expander:
 
             m = self.atcoder_include.match(line)
             if m:
-                result.extend(self.expand_acl(m.group(1)))
+                name = m.group(1)
+                result.extend(self.expand_acl(self.find_acl(name)))
+                continue
+            
+            m = self.local_include.match(line)
+            if m:
+                name = m.group(1)
+                result.extend(self.expand_acl(acl_file_path.parent / name))
                 continue
 
             result.append(line)
@@ -71,10 +77,11 @@ class Expander:
         result = []  # type: List[str]
         for line in source.splitlines():
             m = self.atcoder_include.match(line)
-
             if m:
-                result.extend(self.expand_acl(m.group(1)))
+                acl_path = self.find_acl(m.group(1))
+                result.extend(self.expand_acl(acl_path))
                 continue
+
             result.append(line)
         return '\n'.join(result)
 

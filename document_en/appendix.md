@@ -18,7 +18,7 @@ The easiest way is to put `atcoder` folder in the same place as `main.cpp` and e
 If you don't want to copy `atcoder` folder manually, do as follows.
 
 - Specify the command like `g++ main.cpp -std=c++14 -I /path/to/ac-library` (`/path/to/ac-library` stands for the directory where the downloaded ac-library is located).
-- Specify the place of `atcoder` folder by the environment variable `CPLUS_INCLUDE_PATH` as `CPLUS_INCLUDE_PATH="/path/to/ac-library"`. (On Windows, type like `C:\path\to\ac-library` in the field of the variable `CPLUS_INCLUDE_PATH` on the [Window of Environment Variables](https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png). Note that, you should use backthrashes, not thrashes.) Then, you can compile just by `g++ main.cpp -std=c++14`.
+- Specify the place of `atcoder` folder by the environment variable `CPLUS_INCLUDE_PATH` as `CPLUS_INCLUDE_PATH="/path/to/ac-library"`. (On Windows, type like `C:\path\to\ac-library` in the field of the variable `CPLUS_INCLUDE_PATH` on the [Window of Environment Variables](https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png). Note that, you should use backslashes, not slashes.) Then, you can compile just by `g++ main.cpp -std=c++14`.
 
 ### Visual Studio
 

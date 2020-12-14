@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="lib/uikit.min.css" />
+    <script src="lib/uikit.min.js"></script>
+    <script src="lib/uikit-icons.min.js"></script>
     <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="lib/katex.min.css" />
+    <script defer src="lib/katex.min.js"></script>
+    <script defer src="lib/auto-render.min.js"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="lib/ace.js"></script>
 
     <style>
         h2 {
@@ -55,11 +51,10 @@
 <p>Let <code>s</code> be a string.
 We denote the substring of <code>s</code> between $a$-th and $b - 1$-th character by <code>s[a..b)</code>.</p>
 <h2>suffix_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; suffix_array(string s)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; suffix_array(string s)
 (2) vector&lt;int&gt; suffix_array&lt;T&gt;(vector&lt;T&gt; s)
 (3) vector&lt;int&gt; suffix_array(vector&lt;int&gt; s, int upper)
 </code></pre>
-
 <p>Given a string <code>s</code> of length $n$, it returns the suffix array of <code>s</code>.
 Here, the suffix array <code>sa</code> of <code>s</code> is a permutation of $0, \cdots, n-1$ such that <code>s[sa[i]..n) &lt; s[sa[i+1]..n)</code> holds for all $i = 0,1, \cdots ,n-2$.</p>
 <p><strong>Constraints</strong></p>
@@ -76,10 +71,9 @@ Here, the suffix array <code>sa</code> of <code>s</code> is a permutation of $0,
 <li>(3) $O(n + \mathrm{upper})$-time</li>
 </ul>
 <h2>lcp_array</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; lcp_array(string s, vector&lt;int&gt; sa)
 (2) vector&lt;int&gt; lcp_array&lt;T&gt;(vector&lt;T&gt; s, vector&lt;int&gt; sa)
 </code></pre>
-
 <p>Given a string <code>s</code> of length $n$, it returns the LCP array of <code>s</code>.
 Here, the LCP array of <code>s</code> is the array of length $n-1$, such that the $i$-th element is the length of the LCP (Longest Common Prefix) of <code>s[sa[i]..n)</code> and <code>s[sa[i+1]..n)</code>.</p>
 <p><strong>Constraints</strong></p>
@@ -93,10 +87,9 @@ Here, the LCP array of <code>s</code> is the array of length $n-1$, such that th
 <li>$O(n)$</li>
 </ul>
 <h2>z_algorithm</h2>
-<pre><code class="cpp">(1) vector&lt;int&gt; z_algorithm(string s)
+<pre><code class="language-cpp">(1) vector&lt;int&gt; z_algorithm(string s)
 (2) vector&lt;int&gt; z_algorithm&lt;T&gt;(vector&lt;T&gt; s)
 </code></pre>
-
 <p>Given a string of length $n$, it returns the array of length $n$, such that the $i$-th element is the length of the LCP (Longest Common Prefix) of <code>s[0..n)</code> and <code>s[i..n)</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>

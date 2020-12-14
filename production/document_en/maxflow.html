@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="lib/uikit.min.css" />
+    <script src="lib/uikit.min.js"></script>
+    <script src="lib/uikit-icons.min.js"></script>
     <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="lib/katex.min.css" />
+    <script defer src="lib/katex.min.js"></script>
+    <script defer src="lib/auto-render.min.js"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="lib/ace.js"></script>
 
     <style>
         h2 {
@@ -53,9 +49,8 @@
             <h1>MaxFlow</h1>
 <p>It solves <a href="https://en.wikipedia.org/wiki/Maximum_flow_problem">maximum flow problem</a>.</p>
 <h2>Constructor</h2>
-<pre><code class="cpp">mf_graph&lt;Cap&gt; graph(int n)
+<pre><code class="language-cpp">mf_graph&lt;Cap&gt; graph(int n)
 </code></pre>
-
 <p>It creates a graph of <code>n</code> vertices and $0$ edges. <code>Cap</code> is the type of the capacity.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -67,9 +62,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_edge</h2>
-<pre><code class="cpp">int graph.add_edge(int from, int to, Cap cap);
+<pre><code class="language-cpp">int graph.add_edge(int from, int to, Cap cap);
 </code></pre>
-
 <p>It adds an edge oriented from the vertex <code>from</code> to the vertex <code>to</code> with the capacity <code>cap</code> and the flow amount $0$. It returns an integer $k$ such that this is the $k$-th edge that is added.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -81,10 +75,9 @@
 <li>$O(1)$ amortized</li>
 </ul>
 <h2>flow</h2>
-<pre><code class="cpp">(1) Cap graph.flow(int s, int t);
+<pre><code class="language-cpp">(1) Cap graph.flow(int s, int t);
 (2) Cap graph.flow(int s, int t, Cap flow_limit);
 </code></pre>
-
 <ul>
 <li>It augments the flow from $s$ to $t$ as much as possible. It returns the amount of the flow augmented.</li>
 <li>You may call it multiple times. See <a href="./appendix.html">Appendix</a> for further details.</li>
@@ -101,9 +94,8 @@
 </ul>
 <p>where $m$ is the number of added edges.</p>
 <h2>min_cut</h2>
-<pre><code class="cpp">vector&lt;bool&gt; graph.min_cut(int s)
+<pre><code class="language-cpp">vector&lt;bool&gt; graph.min_cut(int s)
 </code></pre>
-
 <p>It returns a vector of length $n$, such that the $i$-th element is <code>true</code> if and only if there is a directed path from $s$ to $i$ in the residual network.
 The returned vector corresponds to a $s-t$ minimum cut after calling <code>flow(s, t)</code> exactly once without <code>flow_limit</code>. See <a href="./appendix.html">Appendix</a> for further details.</p>
 <p><strong>Complexity</strong></p>
@@ -111,7 +103,7 @@ The returned vector corresponds to a $s-t$ minimum cut after calling <code>flow(
 <li>$O(n + m)$, where $m$ is the number of added edges.</li>
 </ul>
 <h2>get_edge / edges</h2>
-<pre><code class="cpp">struct mf_graph&lt;Cap&gt;::edge {
+<pre><code class="language-cpp">struct mf_graph&lt;Cap&gt;::edge {
     int from, to;
     Cap cap, flow;
 };
@@ -119,7 +111,6 @@ The returned vector corresponds to a $s-t$ minimum cut after calling <code>flow(
 (1) mf_graph&lt;Cap&gt;::edge graph.get_edge(int i);
 (2) vector&lt;mf_graph&lt;Cap&gt;::edge&gt; graph.edges();
 </code></pre>
-
 <ul>
 <li>It returns the current internal state of the edges.</li>
 <li>The edges are ordered in the same order as added by <code>add_edge</code>.</li>
@@ -131,9 +122,8 @@ The returned vector corresponds to a $s-t$ minimum cut after calling <code>flow(
 <li>(2): $O(m)$, where $m$ is the number of added edges.</li>
 </ul>
 <h2>change_edge</h2>
-<pre><code class="cpp">void graph.change_edge(int i, Cap new_cap, Cap new_flow);
+<pre><code class="language-cpp">void graph.change_edge(int i, Cap new_cap, Cap new_flow);
 </code></pre>
-
 <p>It changes the capacity and the flow amount of the $i$-th edge to <code>new_cap</code> and <code>new_flow</code>, respectively. It doesn't change the capacity or the flow amount of other edges. See <a href="./appendix.html">Appendix</a> for further details.</p>
 <p><strong>Constraints</strong></p>
 <ul>

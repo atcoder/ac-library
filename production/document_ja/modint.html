@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="lib/uikit.min.css" />
+    <script src="lib/uikit.min.js"></script>
+    <script src="lib/uikit-icons.min.js"></script>
     <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="lib/katex.min.css" />
+    <script defer src="lib/katex.min.js"></script>
+    <script defer src="lib/auto-render.min.js"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="lib/ace.js"></script>
 
     <style>
         h2 {
@@ -53,7 +49,7 @@
             <h1>Modint</h1>
 <p>自動でmodを取る構造体です。AC Libraryはmodintを使わなくとも全アルゴリズムが使えるように整備しているので、必ずしもこのファイルの内容を把握する必要はありません。</p>
 <p>多くの問題では <code>modint998244353</code>, <code>modint1000000007</code>, <code>modint</code> のどれかを使えば十分で、以下のように使えます。</p>
-<pre><code class="cpp">#include &lt;atcoder/modint&gt;
+<pre><code class="language-cpp">#include &lt;atcoder/modint&gt;
 #include &lt;iostream&gt;
 
 using namespace std;
@@ -75,9 +71,8 @@ int main() {
     cout &lt;&lt; sum.val() &lt;&lt; endl;
 }
 </code></pre>
-
 <p>modがfixedでない場合は、<code>modint</code> を使用し以下のように書けます。</p>
-<pre><code class="cpp">#include &lt;atcoder/modint&gt;
+<pre><code class="language-cpp">#include &lt;atcoder/modint&gt;
 #include &lt;iostream&gt;
 
 using namespace std;
@@ -99,21 +94,18 @@ int main() {
     cout &lt;&lt; sum.val() &lt;&lt; endl;
 }
 </code></pre>
-
 <p>以下の関数らは、<code>set_mod</code> を除き $3$ つともに対して動きます。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">(1) modint x()
+<pre><code class="language-cpp">(1) modint x()
 (2) modint x&lt;T&gt;(T y)
 </code></pre>
-
 <ul>
 <li>(1) modintのデフォルトコンストラクタです。$0$ が格納されます。</li>
 <li>(2) 整数型 <code>T</code>(<code>int, char, ull, bool, ...</code>) に対するコンストラクタです。<code>y</code> のmodを取ってmodintに格納します。</li>
 </ul>
 <h2>set_mod</h2>
-<pre><code class="cpp">void modint::set_mod(int m)
+<pre><code class="language-cpp">void modint::set_mod(int m)
 </code></pre>
-
 <p>modを設定します。最初に呼んでください。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -124,17 +116,15 @@ int main() {
 <li>$O(1)$</li>
 </ul>
 <h2>mod</h2>
-<pre><code class="cpp">int modint::mod()
+<pre><code class="language-cpp">int modint::mod()
 </code></pre>
-
 <p>modを返します。</p>
 <h2>val</h2>
-<pre><code class="cpp">int x.val();
+<pre><code class="language-cpp">int x.val();
 </code></pre>
-
 <p><code>x</code>に格納されている値を返します。</p>
 <h2>各種演算</h2>
-<pre><code class="cpp">-modint;
+<pre><code class="language-cpp">-modint;
 
 modint++;
 modint--;
@@ -154,19 +144,16 @@ modint /= modint;
 modint == modint;
 modint != modint;
 </code></pre>
-
 <p>が動きます。</p>
-<pre><code class="cpp">modint x = 10;
+<pre><code class="language-cpp">modint x = 10;
 1 + x;
 </code></pre>
-
 <p>も(<code>modint(1) + x</code>と自動で解釈されるので)動きます。</p>
-<pre><code class="cpp">modint::set_mod(11);
+<pre><code class="language-cpp">modint::set_mod(11);
 modint y = 10;
 int z = 1234;
 y * z;
 </code></pre>
-
 <p>も<code>y * modint(z)</code>と解釈され、動きます。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -178,9 +165,8 @@ y * z;
 <li>$O(\log \mathrm{mod})$ (割り算)</li>
 </ul>
 <h2>pow</h2>
-<pre><code class="cpp">modint x.pow(ll n)
+<pre><code class="language-cpp">modint x.pow(ll n)
 </code></pre>
-
 <p>$x^n$ を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -191,9 +177,8 @@ y * z;
 <li>$O(\log n)$</li>
 </ul>
 <h2>inv</h2>
-<pre><code class="cpp">modint x.inv()
+<pre><code class="language-cpp">modint x.inv()
 </code></pre>
-
 <p>$xy \equiv 1$ なる $y$ を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -204,20 +189,18 @@ y * z;
 <li>$O(\log \mathrm{mod})$</li>
 </ul>
 <h2>raw</h2>
-<pre><code class="cpp">modint modint::raw(int x)
+<pre><code class="language-cpp">modint modint::raw(int x)
 </code></pre>
-
 <p><code>x</code>に対してmodを取らずに、<code>modint(x)</code>を返す。</p>
 <p>定数倍高速化のための関数です。</p>
 <p>上で述べたように</p>
-<pre><code class="cpp">modint a;
+<pre><code class="language-cpp">modint a;
 int i;
 a += i;
 </code></pre>
-
 <p>は、<code>i</code>がmod以上でも動きます。勝手に<code>i</code>に対してmodを取るためです。</p>
 <p>ですが、たとえば以下のようなコードでは、<code>i</code>がmodを超えないことを保証できます。</p>
-<pre><code class="cpp">int main() {
+<pre><code class="language-cpp">int main() {
     modint::set_mod(1000000007);
     modint a = 1;
     for (int i = 1; i &lt; 100000; i++) {
@@ -225,9 +208,8 @@ a += i;
     }
 }
 </code></pre>
-
 <p>このような時に、</p>
-<pre><code class="cpp">int main() {
+<pre><code class="language-cpp">int main() {
     modint::set_mod(1000000007);
     modint a = 1;
     for (int i = 1; i &lt; 100000; i++) {
@@ -235,7 +217,6 @@ a += i;
     }
 }
 </code></pre>
-
 <p>と書くと、modの回数を減らすことが出来ます。</p>
 <p>当然ながら<code>modint::raw(x)</code>にmod以上の値を入れたときの挙動は未定義です。</p>
 <p><strong>制約</strong></p>
@@ -244,24 +225,20 @@ a += i;
 </ul>
 <h2>Tips(other mod)</h2>
 <p>問題文で他のmod (例: <code>1000000009</code>) が与えられる場合、以下のように書けます</p>
-<pre><code class="cpp">using mint = static_modint&lt;1000000009&gt;;
+<pre><code class="language-cpp">using mint = static_modint&lt;1000000009&gt;;
 </code></pre>
-
 <p><code>modint998244353</code>, <code>modint1000000007</code> は、<code>static_modint&lt;998244353&gt;</code>, <code>static_modint&lt;1000000007&gt;</code>のエイリアスになっています。</p>
-<pre><code class="cpp">using modint998244353 = static_modint&lt;998244353&gt;;
+<pre><code class="language-cpp">using modint998244353 = static_modint&lt;998244353&gt;;
 using modint1000000007 = static_modint&lt;1000000007&gt;;
 </code></pre>
-
 <h2>Tips(複数mod)</h2>
 <p>複数種類modを使用したい場合以下のようにできます</p>
-<pre><code class="cpp">using mint0 = dynamic_modint&lt;0&gt;;
+<pre><code class="language-cpp">using mint0 = dynamic_modint&lt;0&gt;;
 using mint1 = dynamic_modint&lt;1&gt;;
 </code></pre>
-
 <p><code>modint</code>は、<code>dynamic_modint&lt;-1&gt;</code>のエイリアスになっています。</p>
-<pre><code class="cpp">using modint = dynamic_modint&lt;-1&gt;;
+<pre><code class="language-cpp">using modint = dynamic_modint&lt;-1&gt;;
 </code></pre>
-
 <h2>使用例</h2>
 <h3>How to Use</h3>
 <div class="sample-code">#include &lt;atcoder/modint&gt;

@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="lib/uikit.min.css" />
+    <script src="lib/uikit.min.js"></script>
+    <script src="lib/uikit-icons.min.js"></script>
     <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="lib/katex.min.css" />
+    <script defer src="lib/katex.min.js"></script>
+    <script defer src="lib/auto-render.min.js"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="lib/ace.js"></script>
 
     <style>
         h2 {
@@ -53,9 +49,8 @@
             <h1>MaxFlow</h1>
 <p><a href="https://ja.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E3%83%95%E3%83%AD%E3%83%BC%E5%95%8F%E9%A1%8C">最大フロー問題</a> を解くライブラリです。</p>
 <h2>コンストラクタ</h2>
-<pre><code class="cpp">mf_graph&lt;Cap&gt; graph(int n)
+<pre><code class="language-cpp">mf_graph&lt;Cap&gt; graph(int n)
 </code></pre>
-
 <p><code>n</code> 頂点 $0$ 辺のグラフを作る。<code>Cap</code>は容量の型。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -67,9 +62,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add_edge</h2>
-<pre><code class="cpp">int graph.add_edge(int from, int to, Cap cap);
+<pre><code class="language-cpp">int graph.add_edge(int from, int to, Cap cap);
 </code></pre>
-
 <p><code>from</code>から<code>to</code>へ最大容量<code>cap</code>、流量 $0$ の辺を追加し、何番目に追加された辺かを返す。</p>
 <p><strong>制約</strong></p>
 <ul>
@@ -81,10 +75,9 @@
 <li>ならし $O(1)$</li>
 </ul>
 <h2>flow</h2>
-<pre><code class="cpp">(1) Cap graph.flow(int s, int t);
+<pre><code class="language-cpp">(1) Cap graph.flow(int s, int t);
 (2) Cap graph.flow(int s, int t, Cap flow_limit);
 </code></pre>
-
 <ul>
 <li>(1) 頂点 $s$ から $t$ へ流せる限り流し、流せた量を返す。</li>
 <li>(2) 頂点 $s$ から $t$ へ流量 $flow_limit$ に達するまで流せる限り流し、流せた量を返す。</li>
@@ -93,7 +86,7 @@
 <p><strong>制約</strong></p>
 <ul>
 <li>$s \neq t$</li>
-<li>帰り値が <code>Cap</code> に収まる</li>
+<li>返り値が <code>Cap</code> に収まる</li>
 </ul>
 <p><strong>計算量</strong></p>
 <p>$m$ を追加された辺数として</p>
@@ -102,9 +95,8 @@
 <li>$O(n^2 m)$</li>
 </ul>
 <h2>min_cut</h2>
-<pre><code class="cpp">vector&lt;bool&gt; graph.min_cut(int s)
+<pre><code class="language-cpp">vector&lt;bool&gt; graph.min_cut(int s)
 </code></pre>
-
 <p>長さ $n$ のvectorを返す。$i$ 番目の要素には、頂点 $s$ から $i$ へ残余グラフで到達可能なとき、またその時のみ <code>true</code> を返す。<code>flow(s, t)</code>をflow_limitなしでちょうど一回呼んだ後に呼ぶと、返り値は $s$, $t$ 間のmincutに対応します。詳細な挙動は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p><strong>計算量</strong></p>
 <p>$m$ を追加された辺数として</p>
@@ -112,7 +104,7 @@
 <li>$O(n + m)$</li>
 </ul>
 <h2>get_edge / edges</h2>
-<pre><code class="cpp">struct mf_graph&lt;Cap&gt;::edge {
+<pre><code class="language-cpp">struct mf_graph&lt;Cap&gt;::edge {
     int from, to;
     Cap cap, flow;
 };
@@ -120,7 +112,6 @@
 (1) mf_graph&lt;Cap&gt;::edge graph.get_edge(int i);
 (2) vector&lt;mf_graph&lt;Cap&gt;::edge&gt; graph.edges();
 </code></pre>
-
 <ul>
 <li>今の内部の辺の状態を返す</li>
 <li>辺の順番はadd_edgeで追加された順番と同一</li>
@@ -133,10 +124,9 @@
 <li>(2): $O(m)$</li>
 </ul>
 <h2>change_edge</h2>
-<pre><code class="cpp">void graph.change_edge(int i, Cap new_cap, Cap new_flow);
+<pre><code class="language-cpp">void graph.change_edge(int i, Cap new_cap, Cap new_flow);
 </code></pre>
-
-<p>$i$ 番目に変更された辺の容量、流量を<code>new_cap</code>, <code>new_flow</code>に変更する。他の辺の容量、流量は変更しない。詳細は <a href="./appendix.html">Appendix</a> を参照してください</p>
+<p>$i$ 番目に追加された辺の容量、流量を<code>new_cap</code>, <code>new_flow</code>に変更する。他の辺の容量、流量は変更しない。詳細は <a href="./appendix.html">Appendix</a> を参照してください</p>
 <p><strong>制約</strong></p>
 <ul>
 <li>$0 \leq \mathrm{newflow} \leq \mathrm{newcap}$</li>

@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="lib/uikit.min.css" />
+    <script src="lib/uikit.min.js"></script>
+    <script src="lib/uikit-icons.min.js"></script>
     <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="lib/katex.min.css" />
+    <script defer src="lib/katex.min.js"></script>
+    <script defer src="lib/auto-render.min.js"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="lib/ace.js"></script>
 
     <style>
         h2 {
@@ -64,10 +60,9 @@
 </ul>
 <p>For simplicity, in this document, we assume that the oracles <code>op</code>, <code>e</code>, <code>mapping</code>, <code>composition</code>, and <code>id</code> work in constant time. If these oracles work in $O(T)$ time, each time complexity appear in this document is multipled by $O(T)$.</p>
 <h2>Constructor</h2>
-<pre><code class="cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
+<pre><code class="language-cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
 (2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;T&gt; v);
 </code></pre>
-
 <p>The following should be defined.</p>
 <ul>
 <li>The type <code>S</code> of the monoid</li>
@@ -92,9 +87,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>set</h2>
-<pre><code class="cpp">void seg.set(int p, S x)
+<pre><code class="language-cpp">void seg.set(int p, S x)
 </code></pre>
-
 <p><code>a[p] = x</code></p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -105,9 +99,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>get</h2>
-<pre><code class="cpp">S seg.get(int p)
+<pre><code class="language-cpp">S seg.get(int p)
 </code></pre>
-
 <p>It returns <code>a[p]</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -118,9 +111,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>prod</h2>
-<pre><code class="cpp">S seg.prod(int l, int r)
+<pre><code class="language-cpp">S seg.prod(int l, int r)
 </code></pre>
-
 <p>It returns <code>op(a[l], ..., a[r - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $l = r$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -131,19 +123,17 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>all_prod</h2>
-<pre><code class="cpp">S seg.all_prod()
+<pre><code class="language-cpp">S seg.all_prod()
 </code></pre>
-
 <p>It returns <code>op(a[0], ..., a[n - 1])</code>, assuming the properties of the monoid. It returns <code>e()</code> if $n = 0$.</p>
 <p><strong>Complexity</strong></p>
 <ul>
 <li>$O(1)$</li>
 </ul>
 <h2>apply</h2>
-<pre><code class="cpp">(1) void seg.apply(int p, F f)
+<pre><code class="language-cpp">(1) void seg.apply(int p, F f)
 (2) void seg.apply(int l, int r, F f)
 </code></pre>
-
 <ul>
 <li>(1) It applies <code>a[p] = f(a[p])</code>.</li>
 <li>(2) It applies <code>a[i] = f(a[i])</code> for all <code>i = l..r-1</code>.</li>
@@ -158,10 +148,9 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>max_right</h2>
-<pre><code class="cpp">(1) int seg.max_right&lt;g&gt;(int l)
+<pre><code class="language-cpp">(1) int seg.max_right&lt;g&gt;(int l)
 (2 ) int seg.max_right&lt;G&gt;(int l, G g)
 </code></pre>
-
 <ul>
 <li>(1): It applies a binary search on the segment tree. The function <code>bool g(S x)</code> should be defined.  </li>
 <li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>
@@ -183,10 +172,9 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>min_left</h2>
-<pre><code class="cpp">(1) int seg.min_left&lt;g&gt;(int r)
+<pre><code class="language-cpp">(1) int seg.min_left&lt;g&gt;(int r)
 (2 ) int seg.min_left&lt;G&gt;(int r, G g)
 </code></pre>
-
 <ul>
 <li>(1): It applies a binary search on the segment tree. The function <code>bool g(S x)</code> should be defined.  </li>
 <li>(2): The function object that takes <code>S</code> as the argument and returns <code>bool</code> should be defined.  </li>

@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="lib/uikit.min.css" />
+    <script src="lib/uikit.min.js"></script>
+    <script src="lib/uikit-icons.min.js"></script>
     <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="lib/katex.min.css" />
+    <script defer src="lib/katex.min.js"></script>
+    <script defer src="lib/auto-render.min.js"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="lib/ace.js"></script>
 
     <style>
         h2 {
@@ -53,7 +49,7 @@
             <h1>Modint</h1>
 <p>It is the struct that treats the modular arithmetic. All the remaining parts of AC Library works without modint, so you don't necessarily read this to use the remaining parts.</p>
 <p>For most of the problems, it is sufficient to use <code>modint998244353</code>, <code>modint1000000007</code>, or <code>modint</code>, which can be used as follows.</p>
-<pre><code class="cpp">#include &lt;atcoder/modint&gt;
+<pre><code class="language-cpp">#include &lt;atcoder/modint&gt;
 #include &lt;iostream&gt;
 
 using namespace std;
@@ -75,9 +71,8 @@ int main() {
     cout &lt;&lt; sum.val() &lt;&lt; endl;
 }
 </code></pre>
-
 <p>If the mod is not fixed, you can use <code>modint</code> as follows.</p>
-<pre><code class="cpp">#include &lt;atcoder/modint&gt;
+<pre><code class="language-cpp">#include &lt;atcoder/modint&gt;
 #include &lt;iostream&gt;
 
 using namespace std;
@@ -99,21 +94,18 @@ int main() {
     cout &lt;&lt; sum.val() &lt;&lt; endl;
 }
 </code></pre>
-
 <p>All the functions except <code>set_mod</code> work for all three of them.</p>
 <h2>Constructor</h2>
-<pre><code class="cpp">(1) modint x()
+<pre><code class="language-cpp">(1) modint x()
 (2) modint x&lt;T&gt;(T y)
 </code></pre>
-
 <ul>
 <li>(1) It is the default constructor of modint. $0$ will be stored.</li>
 <li>(2) It is the constructor for the integer type <code>T</code>(<code>int, char, ull, bool, ...</code>). <code>y</code> is stored in modint after taking mod.</li>
 </ul>
 <h2>set_mod</h2>
-<pre><code class="cpp">void modint::set_mod(int m)
+<pre><code class="language-cpp">void modint::set_mod(int m)
 </code></pre>
-
 <p>It sets the mod. It must be called first.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -124,18 +116,16 @@ int main() {
 <li>$O(1)$</li>
 </ul>
 <h2>mod</h2>
-<pre><code class="cpp">int modint::mod()
+<pre><code class="language-cpp">int modint::mod()
 </code></pre>
-
 <p>It returns the mod.</p>
 <h2>val</h2>
-<pre><code class="cpp">int x.val();
+<pre><code class="language-cpp">int x.val();
 </code></pre>
-
 <p>It returns the value that is stored in <code>x</code>.</p>
 <h2>Operations</h2>
 <p>The following operations work.</p>
-<pre><code class="cpp">-modint;
+<pre><code class="language-cpp">-modint;
 
 modint++;
 modint--;
@@ -155,19 +145,16 @@ modint /= modint;
 modint == modint;
 modint != modint;
 </code></pre>
-
 <p>The following also works, because it is interpreted as <code>modint(1) + x</code>.</p>
-<pre><code class="cpp">modint x = 10;
+<pre><code class="language-cpp">modint x = 10;
 1 + x;
 </code></pre>
-
 <p>The following also works, because it is interpreted as <code>y * modint(z)</code>.</p>
-<pre><code class="cpp">modint::set_mod(11);
+<pre><code class="language-cpp">modint::set_mod(11);
 modint y = 10;
 int z = 1234;
 y * z;
 </code></pre>
-
 <p><strong>Constraints</strong></p>
 <ul>
 <li><code>gcd(b.val(), mod) == 1</code> should be satisfied when evaluating <code>a / b</code> (or <code>a /= b</code>).</li>
@@ -178,9 +165,8 @@ y * z;
 <li>$O(\log \mathrm{mod})$ (division)</li>
 </ul>
 <h2>pow</h2>
-<pre><code class="cpp">modint x.pow(ll n)
+<pre><code class="language-cpp">modint x.pow(ll n)
 </code></pre>
-
 <p>It returns $x^n$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -191,9 +177,8 @@ y * z;
 <li>$O(\log n)$</li>
 </ul>
 <h2>inv</h2>
-<pre><code class="cpp">modint x.inv()
+<pre><code class="language-cpp">modint x.inv()
 </code></pre>
-
 <p>It returns $y$ with $xy \equiv 1$.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -204,18 +189,16 @@ y * z;
 <li>$O(\log \mathrm{mod})$</li>
 </ul>
 <h2>raw</h2>
-<pre><code class="cpp">modint modint::raw(int x)
+<pre><code class="language-cpp">modint modint::raw(int x)
 </code></pre>
-
 <p>It returns <code>modint(x)</code> without taking mod. It is the function for constant-factor speedup.</p>
 <p>For example, the following code works even if <code>i</code> is greater than or equal to mod, because mod is automatically taken.</p>
-<pre><code class="cpp">modint a;
+<pre><code class="language-cpp">modint a;
 int i;
 a += i;
 </code></pre>
-
 <p>However, in the following code, it is ensured that <code>i</code> is less than mod.</p>
-<pre><code class="cpp">int main() {
+<pre><code class="language-cpp">int main() {
     modint::set_mod(1000000007);
     modint a = 1;
     for (int i = 1; i &lt; 100000; i++) {
@@ -223,9 +206,8 @@ a += i;
     }
 }
 </code></pre>
-
 <p>In such a situation, we can decrease the number of mod operations as follows.</p>
-<pre><code class="cpp">int main() {
+<pre><code class="language-cpp">int main() {
     modint::set_mod(1000000007);
     modint a = 1;
     for (int i = 1; i &lt; 100000; i++) {
@@ -233,7 +215,6 @@ a += i;
     }
 }
 </code></pre>
-
 <p>When the value more than or equal to mod is assigned to <code>modint::raw(x)</code>, the behavior is undefined.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -241,24 +222,20 @@ a += i;
 </ul>
 <h2>Tips (other mod)</h2>
 <p>You can use the other fixed mod like <code>1000000009</code> as follows.</p>
-<pre><code class="cpp">using mint = static_modint&lt;1000000009&gt;;
+<pre><code class="language-cpp">using mint = static_modint&lt;1000000009&gt;;
 </code></pre>
-
 <p><code>modint998244353</code> (resp. <code>modint1000000007</code>) is the alias of <code>static_modint&lt;998244353&gt;</code> (resp. <code>static_modint&lt;1000000007&gt;</code>).</p>
-<pre><code class="cpp">using modint998244353 = static_modint&lt;998244353&gt;;
+<pre><code class="language-cpp">using modint998244353 = static_modint&lt;998244353&gt;;
 using modint1000000007 = static_modint&lt;1000000007&gt;;
 </code></pre>
-
 <h2>Tips (multiple mods)</h2>
 <p>You can use multiple mods as follows.</p>
-<pre><code class="cpp">using mint0 = dynamic_modint&lt;0&gt;;
+<pre><code class="language-cpp">using mint0 = dynamic_modint&lt;0&gt;;
 using mint1 = dynamic_modint&lt;1&gt;;
 </code></pre>
-
 <p><code>modint</code> is the alias of <code>dynamic_modint&lt;-1&gt;</code>.</p>
-<pre><code class="cpp">using modint = dynamic_modint&lt;-1&gt;;
+<pre><code class="language-cpp">using modint = dynamic_modint&lt;-1&gt;;
 </code></pre>
-
 <h2>Examples</h2>
 <h3>How to Use</h3>
 <div class="sample-code">#include &lt;atcoder/modint&gt;

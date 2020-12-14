@@ -3,22 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+
     <!-- Uikit -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://judge.yosupo.jp/public/css/uikit.min.css" />
-    <script src="https://judge.yosupo.jp/public/js/uikit.min.js"></script>
-    <script src="https://judge.yosupo.jp/public/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="lib/uikit.min.css" />
+    <script src="lib/uikit.min.js"></script>
+    <script src="lib/uikit-icons.min.js"></script>
     <!-- Katex -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
-        integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-        integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js"
-        integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="lib/katex.min.css" />
+    <script defer src="lib/katex.min.js"></script>
+    <script defer src="lib/auto-render.min.js"></script>
     <!-- Ace editor-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="lib/ace.js"></script>
 
     <style>
         h2 {
@@ -57,9 +53,8 @@
 <li>Calculating the sum of the elements of an interval</li>
 </ul>
 <h2>Constructor</h2>
-<pre><code class="cpp">fenwick_tree&lt;T&gt; fw(int n)
+<pre><code class="language-cpp">fenwick_tree&lt;T&gt; fw(int n)
 </code></pre>
-
 <ul>
 <li>It creates an array $a_0, a_1, \cdots, a_{n-1}$ of length $n$. All the elements are initialized to $0$.</li>
 </ul>
@@ -73,9 +68,8 @@
 <li>$O(n)$</li>
 </ul>
 <h2>add</h2>
-<pre><code class="cpp">void fw.add(int p, T x)
+<pre><code class="language-cpp">void fw.add(int p, T x)
 </code></pre>
-
 <p>It processes <code>a[p] += x</code>.</p>
 <p><strong>Constraints</strong></p>
 <ul>
@@ -86,9 +80,8 @@
 <li>$O(\log n)$</li>
 </ul>
 <h2>sum</h2>
-<pre><code class="cpp">T fw.sum(int l, int r)
+<pre><code class="language-cpp">T fw.sum(int l, int r)
 </code></pre>
-
 <p>It returns <code>a[l] + a[l + 1] + ... + a[r - 1]</code>.
 If <code>T</code> is integer type(<code>int</code>, <code>uint</code>, <code>ll</code>, or <code>ull</code>), it returns the answer in $\bmod 2^{\mathrm{bit}}$, if overflowed.</p>
 <p><strong>Constraints</strong></p>

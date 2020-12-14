@@ -13,8 +13,6 @@ logger = getLogger(__name__)  # type: Logger
 
 
 class Expander:
-    local_include = re.compile(
-        r'#include\s*"([a-z_]*(|.hpp))"\s*')
     atcoder_include = re.compile(
         r'#include\s*["<](atcoder/[a-z_]*(|.hpp))[">]\s*')
 
@@ -61,15 +59,8 @@ class Expander:
                 name = m.group(1)
                 result.extend(self.expand_acl(self.find_acl(name)))
                 continue
-            
-            m = self.local_include.match(line)
-            if m:
-                name = m.group(1)
-                result.extend(self.expand_acl(acl_file_path.parent / name))
-                continue
 
             result.append(line)
-
         return result
 
     def expand(self, source: str) -> str:

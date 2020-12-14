@@ -20,6 +20,8 @@ if __name__ == "__main__":
                 zipf.write(f, 'document_{}/'.format(lang) + f.name)
             for f in (Path('..') / 'document_{}/lib'.format(lang)).glob('**/*'):
                 zipf.write(f, 'document_{}/lib/'.format(lang) + f.name)
+            for f in (Path('..') / 'document_{}/lib/fonts'.format(lang)).glob('**/*'):
+                zipf.write(f, 'document_{}/lib/fonts/'.format(lang) + f.name)
 
 
         for f in (Path('..') / 'atcoder').glob('*'):

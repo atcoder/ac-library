@@ -90,10 +90,11 @@ long long floor_sum(long long n, long long m, long long a, long long b) {
         b %= m;
     }
 
-    long long y_max = (a * n + b) / m, x_max = (y_max * m - b);
-    if (y_max == 0) return ans;
-    ans += (n - (x_max + a - 1) / a) * y_max;
-    ans += floor_sum(y_max, a, m, (a - x_max % a) % a);
+    long long y_max = a * (n - 1) + b;
+    if (y_max < m) return ans;
+    long long y_max_div = y_max / m;
+    long long y_max_mod = y_max % m;
+    ans += y_max_div + floor_sum(y_max_div, a, m, y_max_mod);
     return ans;
 }
 

@@ -82,7 +82,7 @@ std::pair<long long, long long> crt(const std::vector<long long>& r,
 long long floor_sum(long long n, long long m, long long a, long long b) {
     long long ans = 0;
     if (a >= m) {
-        ans += (n - 1) * n * (a / m) / 2;
+        ans += (n - 1) * n / 2 * (a / m);
         a %= m;
     }
     if (b >= m) {

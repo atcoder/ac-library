@@ -30,7 +30,7 @@ fenwick_tree<T> fw(int n)
 void fw.add(int p, T x)
 ```
 
-`a[p] += x` を行う
+`a[p] += x` を行います。
 
 **@{keyword.constraints}**
 
@@ -46,8 +46,8 @@ void fw.add(int p, T x)
 T fw.sum(int l, int r)
 ```
 
-`a[l] + a[l + 1] + ... + a[r - 1]` を返す。
-`T` が整数型(`int / uint / ll / ull`)の場合、答えがオーバーフローしたならば $\bmod 2^{\mathrm{bit}}$ で等しい値が返る。
+`a[l] + a[l + 1] + ... + a[r - 1]` を返します。
+`T` が整数型(`int / uint / ll / ull`)の場合、答えがオーバーフローしたならば $\bmod 2^{\mathrm{bit}}$ で等しい値を返します。
 
 **@{keyword.constraints}**
 

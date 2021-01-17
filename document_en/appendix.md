@@ -134,6 +134,10 @@ vector<long long> c = convolution<924844033>(a, b);
 In the first case, $m$ is automatically set to be $998244353$.
 In the second case, $m$ becomes the value that is explicitly specified, which is $924844033$ here.
 
+### 💻 explicit specifier
+
+Constructors of structs except `modint` are declared with the explicit specifier.
+
 ## Precise requirements in Segtree / LazySegtree
 
 In some situations, the cardinality of algebraic structures for Segtree / LazySegtree would be infinite. In precise meaning, it may break the constraints in the document.

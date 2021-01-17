@@ -247,7 +247,7 @@ template <int id> struct dynamic_modint : internal::modint_base {
     static internal::barrett bt;
     static unsigned int umod() { return bt.umod(); }
 };
-template <int id> internal::barrett dynamic_modint<id>::bt = 998244353;
+template <int id> internal::barrett dynamic_modint<id>::bt(998244353);
 
 using modint998244353 = static_modint<998244353>;
 using modint1000000007 = static_modint<1000000007>;

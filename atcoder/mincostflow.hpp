@@ -15,7 +15,7 @@ namespace atcoder {
 template <class Cap, class Cost> struct mcf_graph {
   public:
     mcf_graph() {}
-    mcf_graph(int n) : _n(n) {}
+    explicit mcf_graph(int n) : _n(n) {}
 
     int add_edge(int from, int to, Cap cap, Cost cost) {
         assert(0 <= from && from < _n);

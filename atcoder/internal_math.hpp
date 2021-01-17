@@ -44,8 +44,7 @@ struct barrett {
         // -> im * m = 2^64 + r (0 <= r < m)
         // let z = a*b = c*m + d (0 <= c, d < m)
         // a*b * im = (c*m + d) * im = c*(im*m) + d*im = c*2^64 + c*r + d*im
-        // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64 + m * (m + 1)
-        // < 2^64 * 2
+        // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64 + m * (m + 1) < 2^64 * 2
         // ((ab * im) >> 64) == c or c + 1
         unsigned long long z = a;
         z *= b;

@@ -73,8 +73,8 @@ It returns the answer in $\bmod 2^{\mathrm{64}}$, if overflowed.
 
 **@{keyword.constraints}**
 
-- $0 \leq n \leq 2^{32}$
-- $1 \leq m \leq 2^{32}$
+- $0 \leq n \lt 2^{32}$
+- $1 \leq m \lt 2^{32}$
 
 **@{keyword.complexity}**
 

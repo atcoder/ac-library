@@ -44,7 +44,8 @@ struct barrett {
         // -> im * m = 2^64 + r (0 <= r < m)
         // let z = a*b = c*m + d (0 <= c, d < m)
         // a*b * im = (c*m + d) * im = c*(im*m) + d*im = c*2^64 + c*r + d*im
-        // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64 + m * (m + 1) < 2^64 * 2
+        // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64 + m * (m + 1)
+        // < 2^64 * 2
         // ((ab * im) >> 64) == c or c + 1
         unsigned long long z = a;
         z *= b;
@@ -176,6 +177,35 @@ constexpr int primitive_root_constexpr(int m) {
     }
 }
 template <int m> constexpr int primitive_root = primitive_root_constexpr(m);
+
+// @param n `n < 2^32`
+// @param m `1 <= m < 2^32`
+// @return sum_{i=0}^{n-1} floor((ai + b) / m) (mod 2^64)
+unsigned long long floor_sum_unsigned(unsigned long long n,
+                                      unsigned long long m,
+                                      unsigned long long a,
+                                      unsigned long long b) {
+    unsigned long long ans = 0;
+    while (true) {
+        if (a >= m) {
+            ans += n * (n - 1) / 2 * (a / m);
+            a %= m;
+        }
+        if (b >= m) {
+            ans += n * (b / m);
+            b %= m;
+        }
+
+        unsigned long long y_max = a * n + b;
+        if (y_max < m) break;
+        // y_max < m * (n + 1)
+        // floor(y_max / m) <= n
+        n = (unsigned long long)(y_max / m);
+        b = (unsigned long long)(y_max % m);
+        std::swap(m, a);
+    }
+    return ans;
+}
 
 }  // namespace internal
 

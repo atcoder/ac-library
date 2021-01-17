@@ -65,17 +65,20 @@ $y, z$ $(0 \leq y < z = \mathrm{lcm}(m[i]))$. It returns this $(y, z)$ as a pair
 ll floor_sum(ll n, ll m, ll a, ll b)
 ```
 
-It returns $\sum_{i = 0}^{n - 1} \mathrm{floor}(\frac{a \times i + b}{m})$.
+It returns
+
+$$\sum_{i = 0}^{n - 1} \left\lfloor \frac{a \times i + b}{m} \right\rfloor$$
+
+It returns the answer in $\bmod 2^{\mathrm{64}}$, if overflowed.
 
 **@{keyword.constraints}**
 
-- $0 \leq n \leq 10^9$
-- $1 \leq m \leq 10^9$
-- $0 \leq a, b \lt m$
+- $0 \leq n \leq 2^{32}$
+- $1 \leq m \leq 2^{32}$
 
 **@{keyword.complexity}**
 
-- $O(\log{(n+m+a+b)})$
+- $O(\log{(m+a)})$
 
 ## @{keyword.examples}
 

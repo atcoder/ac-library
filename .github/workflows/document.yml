@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set branch name
-        id: branch
-        run: echo "::set-output name=BRANCH_NAME::${GITHUB_REF##*/}"
+      - name: Set version name
+        id: version
+        run: echo "::set-output name=VERSION_NAME::${GITHUB_REF##*/}"
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -27,7 +27,7 @@ jobs:
       - name: Generate documents (and remove markdown)
         run: |
           cd tools &&
-          ./generate_document.py &&
+          ./generate_document.py --tag ${{ steps.branch.outputs.VERSION_NAME }} &&
           rm ../document_ja/*.md ../document_en/*.md &&
           mkdir generated &&
           mv ../document_ja generated/ &&
@@ -37,4 +37,4 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./tools/generated
-          destination_dir: ${{ steps.branch.outputs.BRANCH_NAME }}
+          destination_dir: ${{ steps.branch.outputs.VERSION_NAME }}

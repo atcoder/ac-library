@@ -101,25 +101,29 @@ void butterfly_inv(std::vector<mint>& a) {
     }
 }
 
-}  // namespace internal
-
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
-std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
+std::vector<mint> convolution_naive(const std::vector<mint>& a, const std::vector<mint>& b) {
     int n = int(a.size()), m = int(b.size());
-    if (!n || !m) return {};
-    if (std::min(n, m) <= 60) {
-        if (n < m) {
-            std::swap(n, m);
-            std::swap(a, b);
+    std::vector<mint> ans(n + m - 1);
+    if (n < m) {
+        for (int j = 0; j < m; j++) {
+            for (int i = 0; i < n; i++) {
+                ans[i + j] += a[i] * b[j];
+            }
         }
-        std::vector<mint> ans(n + m - 1);
+    } else {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 ans[i + j] += a[i] * b[j];
             }
         }
-        return ans;
     }
+    return ans;
+}
+
+template <class mint, internal::is_static_modint_t<mint>* = nullptr>
+std::vector<mint> convolution_fft(std::vector<mint> a, std::vector<mint> b) {
+    int n = int(a.size()), m = int(b.size());
     int z = 1 << internal::ceil_pow2(n + m - 1);
     a.resize(z);
     internal::butterfly(a);
@@ -132,7 +136,25 @@ std::vector<mint> convolution(std::vector<mint> a, std::vector<mint> b) {
     a.resize(n + m - 1);
     mint iz = mint(z).inv();
     for (int i = 0; i < n + m - 1; i++) a[i] *= iz;
-    return a;
+    return std::move(a);
+}
+
+}  // namespace internal
+
+template <class mint, internal::is_static_modint_t<mint>* = nullptr>
+std::vector<mint> convolution(std::vector<mint>&& a, std::vector<mint>&& b) {
+    int n = int(a.size()), m = int(b.size());
+    if (!n || !m) return {};
+    if (std::min(n, m) <= 60) return convolution_naive(a, b);
+    return internal::convolution_fft(a, b);
+}
+
+template <class mint, internal::is_static_modint_t<mint>* = nullptr>
+std::vector<mint> convolution(const std::vector<mint>& a, const std::vector<mint>& b) {
+    int n = int(a.size()), m = int(b.size());
+    if (!n || !m) return {};
+    if (std::min(n, m) <= 60) return convolution_naive(a, b);
+    return internal::convolution_fft(a, b);
 }
 
 template <unsigned int mod = 998244353,

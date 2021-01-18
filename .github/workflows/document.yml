@@ -21,12 +21,14 @@ jobs:
       - name: Generate documents (and remove markdown)
         run: |
           cd tools &&
-          ./generate_document.py --tag ${{ steps.branch.outputs.VERSION_NAME }} &&
+          ./generate_document.py --tag $VERSION &&
           ./generate_zip.py &&
           rm ../document_ja/*.md ../document_en/*.md &&
           mkdir generated &&
           mv ../document_ja generated/ &&
           mv ../document_en generated/
+        env:
+          VERSION: ${{ steps.branch.outputs.VERSION_NAME }}
       - name: Publish to github pages
         if: ${{ github.repository == 'atcoder/ac-library' }}
         uses: peaceiris/actions-gh-pages@v3

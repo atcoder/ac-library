@@ -28,14 +28,14 @@ jobs:
           mv ../document_ja generated/ &&
           mv ../document_en generated/
         env:
-          VERSION: ${{ steps.branch.outputs.VERSION_NAME }}
+          VERSION: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Publish to github pages
         if: ${{ github.repository == 'atcoder/ac-library' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./tools/generated
-          destination_dir: ${{ steps.branch.outputs.VERSION_NAME }}
+          destination_dir: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Upload zip
         uses: actions/upload-artifact@v2
         with:

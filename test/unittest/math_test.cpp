@@ -27,7 +27,8 @@ ll pow_mod_naive(ll x, ull n, uint mod) {
 ll floor_sum_naive(ll n, ll m, ll a, ll b) {
     ll sum = 0;
     for (ll i = 0; i < n; i++) {
-        sum += (a * i + b) / m;
+        ll z = a * i + b;
+        sum += (z - internal::safe_mod(z, m)) / m;
     }
     return sum;
 }
@@ -93,8 +94,8 @@ TEST(MathTest, InvModZero) {
 TEST(MathTest, FloorSum) {
     for (int n = 0; n < 20; n++) {
         for (int m = 1; m < 20; m++) {
-            for (int a = 0; a < 20; a++) {
-                for (int b = 0; b < 20; b++) {
+            for (int a = -20; a < 20; a++) {
+                for (int b = -20; b < 20; b++) {
                     ASSERT_EQ(floor_sum_naive(n, m, a, b),
                               floor_sum(n, m, a, b));
                 }

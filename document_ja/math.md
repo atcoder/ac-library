@@ -64,19 +64,18 @@ $$x \equiv r[i] \pmod{m[i]}, \forall i \in \lbrace 0,1,\cdots, n - 1 \rbrace$$
 ll floor_sum(ll n, ll m, ll a, ll b)
 ```
 
-$\sum_{i = 0}^{n - 1} \mathrm{floor}(\frac{a \times i + b}{m})$
+$$\sum_{i = 0}^{n - 1} \left\lfloor \frac{a \times i + b}{m} \right\rfloor$$
 
-を返します。
+を返します。答えがオーバーフローしたならば $\bmod 2^{\mathrm{64}}$ で等しい値を返します。
 
 **@{keyword.constraints}**
 
-- $0 \leq n \leq 10^9$
-- $1 \leq m \leq 10^9$
-- $0 \leq a, b \lt m$
+- $0 \leq n \lt 2^{32}$
+- $1 \leq m \lt 2^{32}$
 
 **@{keyword.complexity}**
 
-- $O(\log{(n+m+a+b)})$
+- $O(\log{(m+a)})$
 
 ## @{keyword.examples}
 

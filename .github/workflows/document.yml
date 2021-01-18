@@ -1,12 +1,6 @@
 name: Document
 
-on:
-  push:
-    branches:
-      - master
-      - production
-    tags:
-      - 'v*'
+on: [push, pull_request]
 
 jobs:
   doc:
@@ -28,13 +22,20 @@ jobs:
         run: |
           cd tools &&
           ./generate_document.py --tag ${{ steps.branch.outputs.VERSION_NAME }} &&
+          ./generate_zip.py &&
           rm ../document_ja/*.md ../document_en/*.md &&
           mkdir generated &&
           mv ../document_ja generated/ &&
           mv ../document_en generated/
       - name: Publish to github pages
+        if: ${{ github.repository == atcoder/ac-library }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./tools/generated
           destination_dir: ${{ steps.branch.outputs.VERSION_NAME }}
+      - name: Upload zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: ac-library
+          path: tools/ac-library.zip

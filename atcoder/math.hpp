@@ -54,7 +54,7 @@ std::pair<long long, long long> crt(const std::vector<long long>& r,
         // r2 % m0 = r0
         // r2 % m1 = r1
         // -> (r0 + x*m0) % m1 = r1
-        // -> x*u0*g % (u1*g) = (r1 - r0) (u0*g = m0, u1*g = m1)
+        // -> x*u0*g = r1-r0 (mod u1*g) (u0*g = m0, u1*g = m1)
         // -> x = (r1 - r0) / g * inv(u0) (mod u1)
 
         // im = inv(u0) (mod u1) (0 <= im < u1)

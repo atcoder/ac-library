@@ -30,7 +30,7 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Publish to github pages
-        if: ${{ github.repository == 'atcoder/ac-library' }}
+        if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}

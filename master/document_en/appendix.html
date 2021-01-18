@@ -145,6 +145,8 @@ vector&lt;long long&gt; c = convolution&lt;924844033&gt;(a, b);
 </code></pre>
 <p>In the first case, $m$ is automatically set to be $998244353$.
 In the second case, $m$ becomes the value that is explicitly specified, which is $924844033$ here.</p>
+<h3>💻 explicit specifier</h3>
+<p>Constructors of structs except <code>modint</code> are declared with the explicit specifier.</p>
 <h2>Precise requirements in Segtree / LazySegtree</h2>
 <p>In some situations, the cardinality of algebraic structures for Segtree / LazySegtree would be infinite. In precise meaning, it may break the constraints in the document.</p>
 <p>For example, for the typical LazySegtree on $S = \mathrm{int}$ that processes the queries of range max and range addition, $S$ is not closed under addition due to the overflow.

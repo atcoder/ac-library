@@ -20,8 +20,8 @@ template <class S,
 struct lazy_segtree {
   public:
     lazy_segtree() : lazy_segtree(0) {}
-    lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}
-    lazy_segtree(const std::vector<S>& v) : _n(int(v.size())) {
+    explicit lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}
+    explicit lazy_segtree(const std::vector<S>& v) : _n(int(v.size())) {
         log = internal::ceil_pow2(_n);
         size = 1 << log;
         d = std::vector<S>(2 * size, e());

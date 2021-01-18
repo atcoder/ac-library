@@ -14,7 +14,7 @@ namespace atcoder {
 struct dsu {
   public:
     dsu() : _n(0) {}
-    dsu(int n) : _n(n), parent_or_size(n, -1) {}
+    explicit dsu(int n) : _n(n), parent_or_size(n, -1) {}
 
     int merge(int a, int b) {
         assert(0 <= a && a < _n);

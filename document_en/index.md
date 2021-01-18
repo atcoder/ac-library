@@ -1,4 +1,6 @@
-# AC(AtCoder) Library Document
+# AC(AtCoder) Library Document (@{keyword.tag})
+
+@{keyword.info}
 
 ## How to Install
 

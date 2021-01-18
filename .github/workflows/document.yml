@@ -1,25 +1,19 @@
 name: Document
 
-on:
-  push:
-    branches:
-      - master
-      - production
-    tags:
-      - 'v*'
+on: [push, pull_request]
 
 jobs:
   doc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set branch name
-        id: branch
-        run: echo "::set-output name=BRANCH_NAME::${GITHUB_REF##*/}"
-      - name: Set up Python 3.7
+      - name: Set version name
+        id: version
+        run: echo "::set-output name=VERSION_NAME::${GITHUB_REF##*/}"
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
+          python-version: 3.9
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -27,14 +21,23 @@ jobs:
       - name: Generate documents (and remove markdown)
         run: |
           cd tools &&
-          ./generate_document.py &&
+          ./generate_document.py --tag $VERSION &&
+          ./generate_zip.py &&
           rm ../document_ja/*.md ../document_en/*.md &&
           mkdir generated &&
           mv ../document_ja generated/ &&
           mv ../document_en generated/
+        env:
+          VERSION: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Publish to github pages
+        if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./tools/generated
-          destination_dir: ${{ steps.branch.outputs.BRANCH_NAME }}
+          destination_dir: ${{ steps.version.outputs.VERSION_NAME }}
+      - name: Upload zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: ac-library
+          path: tools/ac-library.zip

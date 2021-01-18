@@ -13,8 +13,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options(-Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion -Werror)
 
 add_subdirectory(benchmark)
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-include(GoogleTest)
 
 include_directories(.)
 include_directories(../../)

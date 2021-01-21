@@ -75,7 +75,7 @@ $$\sum_{i = 0}^{n - 1} \left\lfloor \frac{a \times i + b}{m} \right\rfloor$$
 
 **@{keyword.complexity}**
 
-- $O(\log{(m+a)})$
+- $O(\log m)$
 
 ## @{keyword.examples}
 

@@ -78,7 +78,7 @@ It returns the answer in $\bmod 2^{\mathrm{64}}$, if overflowed.
 
 **@{keyword.complexity}**
 
-- $O(\log{(m+a)})$
+- $O(\log m)$
 
 ## @{keyword.examples}
 

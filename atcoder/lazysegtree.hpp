@@ -56,7 +56,7 @@ struct lazy_segtree {
 
         for (int i = log; i >= 1; i--) {
             if (((l >> i) << i) != l) push(l >> i);
-            if (((r >> i) << i) != r) push(r >> i);
+            if (((r >> i) << i) != r) push((r - 1) >> i);
         }
 
         S sml = e(), smr = e();
@@ -88,7 +88,7 @@ struct lazy_segtree {
 
         for (int i = log; i >= 1; i--) {
             if (((l >> i) << i) != l) push(l >> i);
-            if (((r >> i) << i) != r) push(r >> i);
+            if (((r >> i) << i) != r) push((r - 1) >> i);
         }
 
         {
@@ -105,7 +105,7 @@ struct lazy_segtree {
 
         for (int i = 1; i <= log; i++) {
             if (((l >> i) << i) != l) update(l >> i);
-            if (((r >> i) << i) != r) update(r >> i);
+            if (((r >> i) << i) != r) update((r - 1) >> i);
         }
     }
 

@@ -30,12 +30,12 @@ template <class S, S (*op)(S, S), S (*e)()> struct segtree {
         for (int i = 1; i <= log; i++) update(p >> i);
     }
 
-    S get(int p) {
+    S get(int p) const {
         assert(0 <= p && p < _n);
         return d[p + size];
     }
 
-    S prod(int l, int r) {
+    S prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= _n);
         S sml = e(), smr = e();
         l += size;
@@ -50,12 +50,12 @@ template <class S, S (*op)(S, S), S (*e)()> struct segtree {
         return op(sml, smr);
     }
 
-    S all_prod() { return d[1]; }
+    S all_prod() const { return d[1]; }
 
-    template <bool (*f)(S)> int max_right(int l) {
+    template <bool (*f)(S)> int max_right(int l) const {
         return max_right(l, [](S x) { return f(x); });
     }
-    template <class F> int max_right(int l, F f) {
+    template <class F> int max_right(int l, F f) const {
         assert(0 <= l && l <= _n);
         assert(f(e()));
         if (l == _n) return _n;
@@ -79,10 +79,10 @@ template <class S, S (*op)(S, S), S (*e)()> struct segtree {
         return _n;
     }
 
-    template <bool (*f)(S)> int min_left(int r) {
+    template <bool (*f)(S)> int min_left(int r) const {
         return min_left(r, [](S x) { return f(x); });
     }
-    template <class F> int min_left(int r, F f) {
+    template <class F> int min_left(int r, F f) const {
         assert(0 <= r && r <= _n);
         assert(f(e()));
         if (r == 0) return 0;

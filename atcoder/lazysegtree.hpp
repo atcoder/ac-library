@@ -40,14 +40,14 @@ struct lazy_segtree {
         for (int i = 1; i <= log; i++) update(p >> i);
     }
 
-    S get(int p) const {
+    S get(int p) {
         assert(0 <= p && p < _n);
         p += size;
         for (int i = log; i >= 1; i--) push(p >> i);
         return d[p];
     }
 
-    S prod(int l, int r) const {
+    S prod(int l, int r) {
         assert(0 <= l && l <= r && r <= _n);
         if (l == r) return e();
 
@@ -70,7 +70,7 @@ struct lazy_segtree {
         return op(sml, smr);
     }
 
-    S all_prod() const { return d[1]; }
+    S all_prod() { return d[1]; }
 
     void apply(int p, F f) {
         assert(0 <= p && p < _n);
@@ -109,10 +109,10 @@ struct lazy_segtree {
         }
     }
 
-    template <bool (*g)(S)> int max_right(int l) const {
+    template <bool (*g)(S)> int max_right(int l) {
         return max_right(l, [](S x) { return g(x); });
     }
-    template <class G> int max_right(int l, G g) const {
+    template <class G> int max_right(int l, G g) {
         assert(0 <= l && l <= _n);
         assert(g(e()));
         if (l == _n) return _n;
@@ -138,10 +138,10 @@ struct lazy_segtree {
         return _n;
     }
 
-    template <bool (*g)(S)> int min_left(int r) const {
+    template <bool (*g)(S)> int min_left(int r) {
         return min_left(r, [](S x) { return g(x); });
     }
-    template <class G> int min_left(int r, G g) const {
+    template <class G> int min_left(int r, G g) {
         assert(0 <= r && r <= _n);
         assert(g(e()));
         if (r == 0) return 0;
@@ -169,15 +169,15 @@ struct lazy_segtree {
 
   private:
     int _n, size, log;
-    mutable std::vector<S> d;
-    mutable std::vector<F> lz;
+    std::vector<S> d;
+    std::vector<F> lz;
 
     void update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }
-    void all_apply(int k, F f) const {
+    void all_apply(int k, F f) {
         d[k] = mapping(f, d[k]);
         if (k < size) lz[k] = composition(f, lz[k]);
     }
-    void push(int k) const {
+    void push(int k) {
         all_apply(2 * k, lz[k]);
         all_apply(2 * k + 1, lz[k]);
         lz[k] = id();

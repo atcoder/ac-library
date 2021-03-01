@@ -1,0 +1,4 @@
+constraints = 'Constraints'
+complexity = 'Complexity'
+examples = 'Examples'
+info = '*The version of this document may differ from the one which is installed in AtCoder, AtCoder-installed version is [here](https://atcoder.github.io/ac-library/production/document_en/).*'

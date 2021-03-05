@@ -76,7 +76,7 @@ if __name__ == "__main__":
         level=getenv('LOG_LEVEL', 'INFO'),
     )
     parser = argparse.ArgumentParser(description='Document generator')
-    parser.add_argument('--tag', help='Library version')
+    parser.add_argument('--tag', help='Library version', required=True)
     opts = parser.parse_args()
 
     langs = ['en', 'ja']

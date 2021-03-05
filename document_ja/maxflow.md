@@ -90,6 +90,8 @@ struct mf_graph<Cap>::edge {
 
 **@{keyword.constraints}**
 
+- (1): $0 \leq i \lt m$
+
 **@{keyword.complexity}**
 
 $m$ を追加された辺数として

@@ -88,6 +88,8 @@ struct mf_graph<Cap>::edge {
 
 **@{keyword.constraints}**
 
+- (1): $0 \leq i \lt m$
+
 **@{keyword.complexity}**
 
 - (1): $O(1)$

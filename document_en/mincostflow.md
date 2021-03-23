@@ -69,7 +69,7 @@ It returns $g$ as the list of the changepoints, that satisfies the followings.
 - Both of `.first` and `.second` are strictly increasing.
 - No three changepoints are on the same line.
 - (1) The last element of the list is $(x, g(x))$, where $x$ is the maximum amount of the $s-t$ flow.
-- (2) The last element of the list is $(y, g(y))$, where $y = \min(x, \mathrm{flow\_limit})$.
+- (2) The last element of the list is $(y, g(y))$, where $y = \min(x, \mathrm{flow\\_limit})$.
 
 **@{keyword.constraints}**
 

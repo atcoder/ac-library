@@ -136,7 +136,7 @@ std::vector<mint> convolution_fft(std::vector<mint> a, std::vector<mint> b) {
     a.resize(n + m - 1);
     mint iz = mint(z).inv();
     for (int i = 0; i < n + m - 1; i++) a[i] *= iz;
-    return std::move(a);
+    return a;
 }
 
 }  // namespace internal

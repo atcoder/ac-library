@@ -385,3 +385,34 @@ TEST(ConvolutionTest, Conv18433) {
 
     ASSERT_EQ(conv_naive<MOD>(a, b), convolution<MOD>(a, b));
 }
+
+TEST(ConvolutionTest, Conv2) {
+    std::vector<ll> empty = {};
+    ASSERT_EQ(empty, convolution<2>(empty, empty));
+}
+
+TEST(ConvolutionTest, Conv2147483647) {
+    const int MOD = 2147483647;
+    using mint = static_modint<MOD>;
+    std::vector<mint> a(1), b(2);
+    for (int i = 0; i < 1; i++) {
+        a[i] = randint(0, MOD - 1);
+    }
+    for (int i = 0; i < 2; i++) {
+        b[i] = randint(0, MOD - 1);
+    }
+    ASSERT_EQ(conv_naive(a, b), convolution(a, b));
+}
+
+TEST(ConvolutionTest, Conv2130706433) {
+    const int MOD = 2130706433;
+    using mint = static_modint<MOD>;
+    std::vector<mint> a(1024), b(1024);
+    for (int i = 0; i < 1024; i++) {
+        a[i] = randint(0, MOD - 1);
+    }
+    for (int i = 0; i < 1024; i++) {
+        b[i] = randint(0, MOD - 1);
+    }
+    ASSERT_EQ(conv_naive(a, b), convolution(a, b));
+}

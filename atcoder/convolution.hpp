@@ -22,11 +22,11 @@ struct fft_info {
     std::array<mint, rank2 + 1> root;   // root[i]^(2^i) == 1
     std::array<mint, rank2 + 1> iroot;  // root[i] * iroot[i] == 1
 
-    std::array<mint, std::max(0, rank2 - 2 + 1)> rate2;
-    std::array<mint, std::max(0, rank2 - 2 + 1)> irate2;
+    std::array<mint, std::max(0, rank2 - 1 + 1)> rate2;
+    std::array<mint, std::max(0, rank2 - 1 + 1)> irate2;
 
-    std::array<mint, std::max(0, rank2 - 3 + 1)> rate3;
-    std::array<mint, std::max(0, rank2 - 3 + 1)> irate3;
+    std::array<mint, std::max(0, rank2 - 2 + 1)> rate3;
+    std::array<mint, std::max(0, rank2 - 2 + 1)> irate3;
 
     fft_info() {
         root[rank2] = mint(g).pow((mint::mod() - 1) >> rank2);

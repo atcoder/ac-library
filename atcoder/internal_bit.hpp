@@ -19,6 +19,14 @@ int ceil_pow2(int n) {
 
 // @param n `1 <= n`
 // @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
+constexpr int bsf_constexpr(unsigned int n) {
+    int x = 0;
+    while (!(n & (1 << x))) x++;
+    return x;
+}
+
+// @param n `1 <= n`
+// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
 int bsf(unsigned int n) {
 #ifdef _MSC_VER
     unsigned long index;

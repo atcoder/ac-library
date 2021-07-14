@@ -28,7 +28,6 @@ int main()
     }
 
     HeavyLightDecomposition hld(G);
-    hld.build();
 
     lazy_segtree<S, op, e, ll, mapping, composition, id> segt(vector<S>(n, S{0, 1}));
 

@@ -11,4 +11,5 @@
 #include "atcoder/string"
 #include "atcoder/twosat"
 
+#include "atcoder/combination"
 #include "atcoder/fps"

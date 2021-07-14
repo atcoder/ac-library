@@ -23,9 +23,7 @@ enable_testing()
 include_directories(.)
 include_directories(../../)
 
-add_executable(FormalPowerSeriesTest
-        fps_exp.test.cpp
-        fps_inv.test.cpp
-        fps_log.test.cpp
-        fps_pow.test.cpp
-        )
+add_executable(FormalPowerSeriesExpTest fps_exp.test.cpp)
+add_executable(FormalPowerSeriesInvTest fps_inv.test.cpp)
+add_executable(FormalPowerSeriesLogTest fps_log.test.cpp)
+add_executable(FormalPowerSeriesPowTest fps_pow.test.cpp)

@@ -1,3 +1,6 @@
+#ifndef ATCODER_FPS_HPP
+#define ATCODER_FPS_HPP 1
+
 #include <atcoder/convolution>
 #include <atcoder/modint>
 
@@ -37,14 +40,14 @@ struct FormalPowerSeries : vector<T> {
         return *this;
     }
     F &operator<<=(const int d) {
-        int n = this->size();
+        int n = (int)this->size();
         if (d >= n) *this = F(n);
         this->insert(this->begin(), d, 0);
         this->resize(n);
         return *this;
     }
     F &operator>>=(const int d) {
-        int n = this->size();
+        int n = (int)this->size();
         this->erase(this->begin(), this->begin() + min(n, d));
         this->resize(n);
         return *this;
@@ -52,7 +55,7 @@ struct FormalPowerSeries : vector<T> {
 
     // O(n log n)
     F inv(int d = -1) const {
-        int n = this->size();
+        int n = (int)this->size();
         assert(n != 0 && (*this)[0] != 0);
         if (d == -1) d = n;
         assert(d >= 0);
@@ -79,7 +82,7 @@ struct FormalPowerSeries : vector<T> {
     // fast: FMT-friendly modulus only
     // O(n log n)
     F &multiply_inplace(const F &g, int d = -1) {
-        int n = this->size();
+        int n = (int)this->size();
         if (d == -1) d = n;
         assert(d >= 0);
         *this = convolution(move(*this), g);
@@ -89,7 +92,7 @@ struct FormalPowerSeries : vector<T> {
     F multiply(const F &g, const int d = -1) const { return F(*this).multiply_inplace(g, d); }
     // O(n log n)
     F &divide_inplace(const F &g, int d = -1) {
-        int n = this->size();
+        int n = (int)this->size();
         if (d == -1) d = n;
         assert(d >= 0);
         *this = convolution(move(*this), g.inv(d));
@@ -127,7 +130,7 @@ struct FormalPowerSeries : vector<T> {
 
     // O(n log n)
     F &log_inplace(int d = -1) {
-        int n = this->size();
+        int n = (int)this->size();
         assert(n > 0 && (*this)[0] == 1);
         if (d == -1) d = n;
         assert(d >= 0);
@@ -232,7 +235,7 @@ struct FormalPowerSeries : vector<T> {
 
     // O(n log n)
     F &pow_inplace(long long k, int d = -1) {
-        int n = this->size();
+        int n = (int)this->size();
         if (d == -1) d = n;
         assert(d >= 0);
         int l = 0;
@@ -263,3 +266,5 @@ struct FormalPowerSeries : vector<T> {
 using fps = FormalPowerSeries<modint998244353>;
 
 }  // namespace atcoder
+
+#endif  // ATCODER_FPS_HPP

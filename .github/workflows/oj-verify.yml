@@ -1,0 +1,26 @@
+
+name: CI
+
+on: push
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+
+      - name: Install dependencies
+        run: |
+          pip3 install -U online-judge-verify-helper
+
+      - name: Run tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: oj-verify all

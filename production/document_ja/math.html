@@ -93,17 +93,16 @@
 <h2>floor_sum</h2>
 <pre><code class="language-cpp">ll floor_sum(ll n, ll m, ll a, ll b)
 </code></pre>
-<p>$\sum_{i = 0}^{n - 1} \mathrm{floor}(\frac{a \times i + b}{m})$</p>
-<p>を返します。</p>
+<p>$$\sum_{i = 0}^{n - 1} \left\lfloor \frac{a \times i + b}{m} \right\rfloor$$</p>
+<p>を返します。答えがオーバーフローしたならば $\bmod 2^{\mathrm{64}}$ で等しい値を返します。</p>
 <p><strong>制約</strong></p>
 <ul>
-<li>$0 \leq n \leq 10^9$</li>
-<li>$1 \leq m \leq 10^9$</li>
-<li>$0 \leq a, b \lt m$</li>
+<li>$0 \leq n \lt 2^{32}$</li>
+<li>$1 \leq m \lt 2^{32}$</li>
 </ul>
 <p><strong>計算量</strong></p>
 <ul>
-<li>$O(\log{(n+m+a+b)})$</li>
+<li>$O(\log m)$</li>
 </ul>
 <h2>使用例</h2>
 <h3>AC code of <a href="https://atcoder.jp/contests/practice2/tasks/practice2_c">https://atcoder.jp/contests/practice2/tasks/practice2_c</a></h3>

@@ -77,7 +77,8 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset] = l + r;
                     a[i + offset + p] = l - r;
                 }
-                if (s + 1 != (1 << len)) rot *= info.rate2[bsf(~(unsigned int)(s))];
+                if (s + 1 != (1 << len))
+                    rot *= info.rate2[bsf(~(unsigned int)(s))];
             }
             len++;
         } else {
@@ -102,7 +103,8 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset + 2 * p] = a0 + na2 + a1na3imag;
                     a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);
                 }
-                if (s + 1 != (1 << len)) rot *= info.rate3[bsf(~(unsigned int)(s))];
+                if (s + 1 != (1 << len))
+                    rot *= info.rate3[bsf(~(unsigned int)(s))];
             }
             len += 2;
         }
@@ -132,7 +134,8 @@ void butterfly_inv(std::vector<mint>& a) {
                         irot.val();
                     ;
                 }
-                if (s + 1 != (1 << len)) irot *= info.irate2[bsf(~(unsigned int)(s))];
+                if (s + 1 != (1 << (len - 1)))
+                    irot *= info.irate2[bsf(~(unsigned int)(s))];
             }
             len--;
         } else {
@@ -163,7 +166,8 @@ void butterfly_inv(std::vector<mint>& a) {
                         (a0 + (mint::mod() - a1) + (mint::mod() - a2na3iimag)) *
                         irot3.val();
                 }
-                if (s + 1 != (1 << len)) irot *= info.irate3[bsf(~(unsigned int)(s))];
+                if (s + 1 != (1 << (len - 2)))
+                    irot *= info.irate3[bsf(~(unsigned int)(s))];
             }
             len -= 2;
         }

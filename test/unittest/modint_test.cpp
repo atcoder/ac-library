@@ -100,6 +100,29 @@ TEST(ModintTest, Mod1) {
     ASSERT_EQ(0, mint(true).val());
 }
 
+TEST(ModintTest, ModIntMax) {
+    modint::set_mod(INT32_MAX);
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 100; j++) {
+            ASSERT_EQ((modint(i) * modint(j)).val(), i * j);
+        }
+    }
+    ASSERT_EQ((modint(1234) + modint(5678)).val(), 1234 + 5678);
+    ASSERT_EQ((modint(1234) - modint(5678)).val(), INT32_MAX - 5678 + 1234);
+    ASSERT_EQ((modint(1234) * modint(5678)).val(), 1234 * 5678);
+
+    using mint = static_modint<INT32_MAX>;
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 100; j++) {
+            ASSERT_EQ((mint(i) * mint(j)).val(), i * j);
+        }
+    }
+    ASSERT_EQ((mint(1234) + mint(5678)).val(), 1234 + 5678);
+    ASSERT_EQ((mint(1234) - mint(5678)).val(), INT32_MAX - 5678 + 1234);
+    ASSERT_EQ((mint(1234) * mint(5678)).val(), 1234 * 5678);
+    ASSERT_EQ((mint(INT32_MAX) + mint(INT32_MAX)).val(), 0);
+}
+
 #ifndef _MSC_VER
 
 TEST(ModintTest, Int128) {
@@ -157,6 +180,13 @@ TEST(ModintTest, Inv) {
         if (gcd(i, 1'000'000'008) != 1) continue;
         int x = modint(i).inv().val();
         ASSERT_EQ(1, (ll(x) * i) % 1'000'000'008);
+    }
+
+    modint::set_mod(INT32_MAX);
+    for (int i = 1; i < 100000; i++) {
+        if (gcd(i, INT32_MAX) != 1) continue;
+        int x = modint(i).inv().val();
+        ASSERT_EQ(1, (ll(x) * i) % INT32_MAX);
     }
 }
 

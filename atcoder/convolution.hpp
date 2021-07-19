@@ -22,11 +22,11 @@ struct fft_info {
     std::array<mint, rank2 + 1> root;   // root[i]^(2^i) == 1
     std::array<mint, rank2 + 1> iroot;  // root[i] * iroot[i] == 1
 
-    std::array<mint, std::max(0, rank2 - 1 + 1)> rate2;
-    std::array<mint, std::max(0, rank2 - 1 + 1)> irate2;
+    std::array<mint, std::max(0, rank2 - 2 + 1)> rate2;
+    std::array<mint, std::max(0, rank2 - 2 + 1)> irate2;
 
-    std::array<mint, std::max(0, rank2 - 2 + 1)> rate3;
-    std::array<mint, std::max(0, rank2 - 2 + 1)> irate3;
+    std::array<mint, std::max(0, rank2 - 3 + 1)> rate3;
+    std::array<mint, std::max(0, rank2 - 3 + 1)> irate3;
 
     fft_info() {
         root[rank2] = mint(g).pow((mint::mod() - 1) >> rank2);
@@ -77,7 +77,7 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset] = l + r;
                     a[i + offset + p] = l - r;
                 }
-                rot *= info.rate2[bsf(~(unsigned int)(s))];
+                if (s + 1 != (1 << len)) rot *= info.rate2[bsf(~(unsigned int)(s))];
             }
             len++;
         } else {
@@ -102,7 +102,7 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset + 2 * p] = a0 + na2 + a1na3imag;
                     a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);
                 }
-                rot *= info.rate3[bsf(~(unsigned int)(s))];
+                if (s + 1 != (1 << len)) rot *= info.rate3[bsf(~(unsigned int)(s))];
             }
             len += 2;
         }

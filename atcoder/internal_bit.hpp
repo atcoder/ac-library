@@ -1,6 +1,8 @@
 #ifndef ATCODER_INTERNAL_BITOP_HPP
 #define ATCODER_INTERNAL_BITOP_HPP 1
 
+#include <cassert>
+
 #ifdef _MSC_VER
 #include <intrin.h>
 #endif
@@ -12,6 +14,7 @@ namespace internal {
 // @param n `0 <= n`
 // @return minimum non-negative `x` s.t. `n <= 2**x`
 int ceil_pow2(int n) {
+    assert(n >= 0);
     int x = 0;
     while ((1U << x) < (unsigned int)(n)) x++;
     return x;

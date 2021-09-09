@@ -8,7 +8,7 @@ $$c_i = \sum_{j = 0}^i a_j b_{i - j}$$
 
 ```cpp
 (1) vector<T> convolution<int m = 998244353>(vector<T> a, vector<T> b)
-💻(2) vector<static_modint<m>> convolution<int m>(vector<static_modint<m>> a, vector<static_modint<m>> b)
+💻(2) vector<static_modint<m>> convolution<static_modint<m>>(vector<static_modint<m>> a, vector<static_modint<m>> b)
 ```
 
 It calculates the convolution in $\bmod m$. It returns an empty array if at least one of $a$ and $b$ are empty.

@@ -79,7 +79,8 @@
 (2) Cap graph.flow(int s, int t, Cap flow_limit);
 </code></pre>
 <ul>
-<li>It augments the flow from $s$ to $t$ as much as possible. It returns the amount of the flow augmented.</li>
+<li>(1) It augments the flow from $s$ to $t$ as much as possible. It returns the amount of the flow augmented.</li>
+<li>(2) It augments the flow from $s$ to $t$ as much as possible, until reaching the amount of <code>flow_limit</code>. It returns the amount of the flow augmented.</li>
 <li>You may call it multiple times. See <a href="./appendix.html">Appendix</a> for further details.</li>
 </ul>
 <p><strong>Constraints</strong></p>

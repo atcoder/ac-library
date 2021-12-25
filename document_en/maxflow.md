@@ -43,7 +43,8 @@ It adds an edge oriented from the vertex `from` to the vertex `to` with the capa
 (2) Cap graph.flow(int s, int t, Cap flow_limit);
 ```
 
-- It augments the flow from $s$ to $t$ as much as possible. It returns the amount of the flow augmented.
+- (1) It augments the flow from $s$ to $t$ as much as possible. It returns the amount of the flow augmented.
+- (2) It augments the flow from $s$ to $t$ as much as possible, until reaching the amount of `flow_limit`. It returns the amount of the flow augmented.
 - You may call it multiple times. See [Appendix](./appendix.html) for further details.
 
 **@{keyword.constraints}**

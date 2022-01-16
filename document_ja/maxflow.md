@@ -44,7 +44,7 @@ int graph.add_edge(int from, int to, Cap cap);
 ```
 
 - (1) 頂点 $s$ から $t$ へ流せる限り流し、流せた量を返す。
-- (2) 頂点 $s$ から $t$ へ流量 $flow_limit$ に達するまで流せる限り流し、流せた量を返す。
+- (2) 頂点 $s$ から $t$ へ流量 `flow_limit` に達するまで流せる限り流し、流せた量を返す。
 - 複数回呼ぶことも可能で、その時の挙動は [Appendix](./appendix.html) を参照してください。
 
 **@{keyword.constraints}**

@@ -295,6 +295,40 @@ std::vector<int> kmp(const std::string& s) {
     return kmp(s2);
 }
 
+// Reference:
+// https://oi-wiki.org/string/manacher/
+template <class T> std::vector<int> manacher(const std::vector<T>& ss) {
+    int nn = int(ss.size());
+    if (nn == 0) return {};
+    int n = 2*nn+2;
+    std::vector<T> s(n+1);
+    s[0] = '$';
+    for(int i = 0; i < nn; i++) {
+        s[i*2+1] = '.';
+        s[i*2+2] = ss[i];
+    }
+    s[n-1] = '.';
+    s[n] = 0;
+    std::vector<int> r(n);
+    r[0] = 0;
+    int mx = 0, mi = 0;
+    for (int i = 1; i < n; i++) {
+        for (r[i]=mx>i?std::min(r[2*mi-i],mx-i):1;s[i+r[i]]==s[i-r[i]];++r[i]);
+        if (i+r[i]>mx)mx=i+r[i],mi=i;
+    }
+    return r;
+}
+
+std::vector<int> manacher(const std::string& s) {
+    int n = int(s.size());
+    std::vector<int> s2(n);
+    for (int i = 0; i < n; i++) {
+        s2[i] = s[i];
+    }
+   // std::cout << "??" << std::endl;
+    return manacher(s2);
+}
+
 }  // namespace atcoder
 
 #endif  // ATCODER_STRING_HPP

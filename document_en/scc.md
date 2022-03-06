@@ -45,7 +45,7 @@ It returns the list of the "list of the vertices" that satisfies the following.
 
 - Each vertex is in exactly one "list of the vertices".
 - Each "list of the vertices" corresponds to the vertex set of a strongly connected component. The order of the vertices in the list is undefined.
-- The list of "list of the vertices" are sorted in topological order, i.e., for two vertices $u, v$ in different strongly connected components, if there is a directed path from $u$ to $v$, the list contains $u$ appears earlier than the list contains $v$.
+- The list of "list of the vertices" are sorted in topological order, i.e., for two vertices $u, v$ in different strongly connected components, if there is a directed path from $u$ to $v$, the list containing $u$ appears earlier than the list containing $v$.
 
 **@{keyword.complexity}**
 

@@ -32,7 +32,7 @@ template <class Cap> struct mf_graph {
 
     struct edge {
         int from, to;
-        Cap cap, flow;
+        Cap cap;
     };
 
     edge get_edge(int i) {

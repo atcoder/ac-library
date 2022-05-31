@@ -274,6 +274,12 @@ std::vector<long long> convolution_ll(const std::vector<long long>& a,
         internal::inv_gcd(MOD1 * MOD3, MOD2).second;
     static constexpr unsigned long long i3 =
         internal::inv_gcd(MOD1 * MOD2, MOD3).second;
+        
+    static constexpr int MAX_AB_BIT = 24;
+    static_assert(MOD1 % (1ull << MAX_AB_BIT) == 1);
+    static_assert(MOD2 % (1ull << MAX_AB_BIT) == 1);
+    static_assert(MOD3 % (1ull << MAX_AB_BIT) == 1);
+    assert(a.size() + b.size() - 1 <= (1ull << MAX_AB_BIT));
 
     auto c1 = convolution<MOD1>(a, b);
     auto c2 = convolution<MOD2>(a, b);

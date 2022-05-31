@@ -199,6 +199,7 @@ template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution_fft(std::vector<mint> a, std::vector<mint> b) {
     int n = int(a.size()), m = int(b.size());
     int z = 1 << internal::ceil_pow2(n + m - 1);
+    assert(mint::mod() % z == 1);
     a.resize(z);
     internal::butterfly(a);
     b.resize(z);

@@ -50,6 +50,7 @@ It adds an edge oriented from the vertex `from` to the vertex `to` with the capa
 **@{keyword.constraints}**
 
 - $s \neq t$
+- $0 \leq s, t \lt n$
 - The answer should be in `Cap`.
 
 **@{keyword.complexity}**

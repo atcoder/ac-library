@@ -33,6 +33,10 @@ Copy `atcoder` folder into it, i.e., put it so that the path will be as follows.
 
 - `C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include\atcoder\dsu.hpp`
 
+ACL supports only 64-bit projects.
+32bit projects does not work and will error with *'_umul128': identifier not found*.
+Please change to `x64` by clicking on the menu at the top of Visual Studio labeled `x86`.
+
 ## How to Submit to Other Online Judge Systems
 
 We prepared the script `expander.py` (python3.5 or later).

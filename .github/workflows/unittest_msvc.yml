@@ -12,7 +12,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: windows-latest
+          - os: windows-2022
+            msvc: "Visual Studio 17 2022"
+          - os: windows-2019
             msvc: "Visual Studio 16 2019"
           - os: windows-2016
             msvc: "Visual Studio 15 2017"

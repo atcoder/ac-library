@@ -20,7 +20,6 @@ jobs:
           pip install --user -r tools/requirements.txt
       - name: Generate documents (and remove markdown)
         run: |
-          echo "$VERSION" &&
           cd tools &&
           ./generate_document.py --tag $VERSION &&
           ./generate_zip.py &&

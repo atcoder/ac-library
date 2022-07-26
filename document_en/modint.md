@@ -35,6 +35,7 @@ If the mod is not fixed, you can use `modint` as follows.
 #include <iostream>
 
 using namespace std;
+using namespace atcoder;
 
 using mint = modint;
 // or: typedef modint mint;

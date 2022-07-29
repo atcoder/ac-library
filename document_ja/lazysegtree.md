@@ -19,7 +19,7 @@
 
 ```cpp
 (1) lazy_segtree<S, op, e, F, mapping, composition, id> seg(int n);
-(2) lazy_segtree<S, op, e, F, mapping, composition, id> seg(vector<T> v);
+(2) lazy_segtree<S, op, e, F, mapping, composition, id> seg(vector<S> v);
 ```
 
 - モノイドの型 `S`

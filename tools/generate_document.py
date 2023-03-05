@@ -8,7 +8,8 @@ from pathlib import Path
 
 import markdown
 import toml
-from jinja2 import DictLoader, Environment, Template, escape
+from jinja2 import DictLoader, Environment, Template
+from markupsafe import escape
 
 logger: Logger = getLogger(__name__)
 

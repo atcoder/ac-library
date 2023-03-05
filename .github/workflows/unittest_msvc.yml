@@ -16,12 +16,10 @@ jobs:
             msvc: "Visual Studio 17 2022"
           - os: windows-2019
             msvc: "Visual Studio 16 2019"
-          - os: windows-2016
-            msvc: "Visual Studio 15 2017"
 
     steps:
       - name: Setup MSBuild.exe
-        uses: microsoft/setup-msbuild@v1.0.2
+        uses: microsoft/setup-msbuild@v1.1
       - uses: actions/checkout@v2
         with:
           submodules: recursive

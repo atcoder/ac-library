@@ -10,7 +10,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 if(NOT MSVC)
     message("Not MSVC")
-    add_compile_options(-Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion -Werror)
+    # no-implicit-int-float-conversion: for suppressing warning from gtest
+    add_compile_options(-Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion -Wno-implicit-int-float-conversion -Werror)
     add_compile_options(-fsanitize=undefined,address -fno-sanitize-recover=all)
     add_link_options(-fsanitize=undefined,address)
 else()

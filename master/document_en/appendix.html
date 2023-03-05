@@ -67,15 +67,15 @@
 <li>Specify the place of <code>atcoder</code> folder by the environment variable <code>CPLUS_INCLUDE_PATH</code> as <code>CPLUS_INCLUDE_PATH="/path/to/ac-library"</code>. (On Windows, type like <code>C:\path\to\ac-library</code> in the field of the variable <code>CPLUS_INCLUDE_PATH</code> on the <a href="https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png">Window of Environment Variables</a>. Note that, you should use backslashes, not slashes.) Then, you can compile just by <code>g++ main.cpp -std=c++14</code>.</li>
 </ul>
 <h3>Visual Studio</h3>
-<p>Visual Studio 2017 / 2019 is supported. Update it if you are using old Visual Studio.</p>
+<p>Visual Studio 2019 / 2022 is supported. Update it if you are using old Visual Studio.</p>
 <p>If Visual Studio is installed, there is a folder like the following.</p>
 <ul>
+<li><code>C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include</code></li>
 <li><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include</code></li>
-<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2017\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.10.25017)\include</code></li>
 </ul>
 <p>Copy <code>atcoder</code> folder into it, i.e., put it so that the path will be as follows.</p>
 <ul>
-<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include\atcoder\dsu.hpp</code></li>
+<li><code>C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include\atcoder\dsu.hpp</code></li>
 </ul>
 <h2>How to Submit to Other Online Judge Systems</h2>
 <p>We prepared the script <code>expander.py</code> (python3.5 or later).

@@ -67,15 +67,15 @@
 <li>環境変数 <code>CPLUS_INCLUDE_PATH</code> で、<code>CPLUS_INCLUDE_PATH="/path/to/ac-library"</code>のように<code>atcoder</code>フォルダの場所を指定する。(Windowsの場合は、<a href="https://img.atcoder.jp/practice2/01333b7c5575b09b5868376ef242aa52.png">ユーザー環境変数の設定画面</a> で、変数の欄に <code>CPLUS_INCLUDE_PATH</code> 値の欄に <code>C:\path\to\ac-library</code>　などと入力する。スラッシュではなくバックスラッシュを用いることに注意。なお、バックスラッシュは環境によっては円記号として表示されることがあります)。すると普通に<code>g++ main.cpp -std=c++14</code>とコンパイルできる。</li>
 </ul>
 <h3>Visual Studioへのインストール方法</h3>
-<p>古いVisual Studioを使っている場合、アップデートしてください。Visual Studio 2017 / 2019をサポートしています。</p>
+<p>古いVisual Studioを使っている場合、アップデートしてください。Visual Studio 2019 / 2022をサポートしています。</p>
 <p>Visual Studioがインストールされているならば、以下のようなフォルダがあるはずです。</p>
 <ul>
+<li><code>C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include</code></li>
 <li><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include</code></li>
-<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2017\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.10.25017)\include</code></li>
 </ul>
 <p>このなかに丸ごと <code>atcoder</code> フォルダをコピーしてください。つまり、</p>
 <ul>
-<li><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include\atcoder\dsu.hpp</code></li>
+<li><code>C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include\atcoder\dsu.hpp</code></li>
 </ul>
 <p>となるように配置してください。</p>
 <h2>他のジャッジへの提出方法</h2>

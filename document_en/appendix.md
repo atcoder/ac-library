@@ -31,7 +31,7 @@ If Visual Studio is installed, there is a folder like the following.
 
 Copy `atcoder` folder into it, i.e., put it so that the path will be as follows.
 
-- `C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include\atcoder/dsu.hpp`
+- `C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include\atcoder\dsu.hpp`
 
 ## How to Submit to Other Online Judge Systems
 

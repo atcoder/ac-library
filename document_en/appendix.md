@@ -22,16 +22,16 @@ If you don't want to copy `atcoder` folder manually, do as follows.
 
 ### Visual Studio
 
-Visual Studio 2017 / 2019 is supported. Update it if you are using old Visual Studio.
+Visual Studio 2019 / 2022 is supported. Update it if you are using old Visual Studio.
 
 If Visual Studio is installed, there is a folder like the following.
 
+- `C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include`
 - `C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include`
-- `C:\Program Files (x86)\Microsoft Visual Studio\2017\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.10.25017)\include`
 
 Copy `atcoder` folder into it, i.e., put it so that the path will be as follows.
 
-- `C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include\atcoder\dsu.hpp`
+- `C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include\atcoder\dsu.hpp`
 
 ## How to Submit to Other Online Judge Systems
 

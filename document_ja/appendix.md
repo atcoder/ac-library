@@ -22,16 +22,16 @@
 
 ### Visual Studioへのインストール方法
 
-古いVisual Studioを使っている場合、アップデートしてください。Visual Studio 2017 / 2019をサポートしています。
+古いVisual Studioを使っている場合、アップデートしてください。Visual Studio 2019 / 2022をサポートしています。
 
 Visual Studioがインストールされているならば、以下のようなフォルダがあるはずです。
 
+- `C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include`
 - `C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include`
-- `C:\Program Files (x86)\Microsoft Visual Studio\2017\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.10.25017)\include`
 
 このなかに丸ごと `atcoder` フォルダをコピーしてください。つまり、
 
-- `C:\Program Files (x86)\Microsoft Visual Studio\2019\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.27.29110)\include\atcoder\dsu.hpp`
+- `C:\Program Files\Microsoft Visual Studio\2022\(Community, Professional or Enterprise)\VC\Tools\MSVC\(Some number, e.g. 14.35.32215)\include\atcoder\dsu.hpp`
 
 となるように配置してください。
 

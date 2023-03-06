@@ -13,7 +13,7 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest]
         cxx: [g++, clang++]
-        stdcxx: [14, 17]
+        stdcxx: ["14", "17", "20"]
 
     steps:
       - uses: actions/checkout@v2

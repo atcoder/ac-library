@@ -50,6 +50,7 @@ int graph.add_edge(int from, int to, Cap cap);
 **@{keyword.constraints}**
 
 - $s \neq t$
+- $0 \leq s, t \lt n$
 - 返り値が `Cap` に収まる
 
 **@{keyword.complexity}**

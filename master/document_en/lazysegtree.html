@@ -61,7 +61,7 @@
 <p>For simplicity, in this document, we assume that the oracles <code>op</code>, <code>e</code>, <code>mapping</code>, <code>composition</code>, and <code>id</code> work in constant time. If these oracles work in $O(T)$ time, each time complexity appear in this document is multipled by $O(T)$.</p>
 <h2>Constructor</h2>
 <pre><code class="language-cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
-(2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;T&gt; v);
+(2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;S&gt; v);
 </code></pre>
 <p>The following should be defined.</p>
 <ul>

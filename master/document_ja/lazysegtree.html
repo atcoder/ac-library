@@ -62,7 +62,7 @@
 <p>また、このライブラリはオラクルとして<code>op, e, mapping, composition, id</code>を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
 <pre><code class="language-cpp">(1) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(int n);
-(2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;T&gt; v);
+(2) lazy_segtree&lt;S, op, e, F, mapping, composition, id&gt; seg(vector&lt;S&gt; v);
 </code></pre>
 <ul>
 <li>モノイドの型 <code>S</code></li>

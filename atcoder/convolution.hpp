@@ -277,9 +277,9 @@ std::vector<long long> convolution_ll(const std::vector<long long>& a,
         internal::inv_gcd(MOD1 * MOD2, MOD3).second;
         
     static constexpr int MAX_AB_BIT = 24;
-    static_assert(MOD1 % (1ull << MAX_AB_BIT) == 1);
-    static_assert(MOD2 % (1ull << MAX_AB_BIT) == 1);
-    static_assert(MOD3 % (1ull << MAX_AB_BIT) == 1);
+    static_assert(MOD1 % (1ull << MAX_AB_BIT) == 1, "MOD1 isn't enough to support an array length of 2^24.");
+    static_assert(MOD2 % (1ull << MAX_AB_BIT) == 1, "MOD2 isn't enough to support an array length of 2^24.");
+    static_assert(MOD3 % (1ull << MAX_AB_BIT) == 1, "MOD3 isn't enough to support an array length of 2^24.");
     assert(a.size() + b.size() - 1 <= (1ull << MAX_AB_BIT));
 
     auto c1 = convolution<MOD1>(a, b);

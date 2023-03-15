@@ -45,3 +45,4 @@ if __name__ == "__main__":
         zipf.write('combined.cpp', 'all_combined.cpp');
 
         zipf.write('../expander.py', 'expander.py')
+        zipf.write('../LICENSE', 'LICENSE')

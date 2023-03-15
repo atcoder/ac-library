@@ -56,5 +56,4 @@ You can also see all versions in [The Release](https://github.com/atcoder/ac-lib
 
 ## License
 
-- The header files in `atcoder` folder are licensed under a [CC0](https://creativecommons.org/publicdomain/zero/1.0/legalcode) license.
-- TODO: We haven't determined the license of other files.
+This library is released under the [CC0](https://creativecommons.org/publicdomain/zero/1.0/legalcode), except for the third-party libraries that are located under `/document_(en|ja)/lib` directory. Please refer [/document_en/lib/LICENSE.md](./document_en/lib/LICENSE.md) for details.

@@ -199,6 +199,7 @@ template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution_fft(std::vector<mint> a, std::vector<mint> b) {
     int n = int(a.size()), m = int(b.size());
     int z = 1 << internal::ceil_pow2(n + m - 1);
+    assert(mint::mod() % z == 1);
     a.resize(z);
     internal::butterfly(a);
     b.resize(z);
@@ -274,6 +275,12 @@ std::vector<long long> convolution_ll(const std::vector<long long>& a,
         internal::inv_gcd(MOD1 * MOD3, MOD2).second;
     static constexpr unsigned long long i3 =
         internal::inv_gcd(MOD1 * MOD2, MOD3).second;
+        
+    static constexpr int MAX_AB_BIT = 24;
+    static_assert(MOD1 % (1ull << MAX_AB_BIT) == 1, "MOD1 isn't enough to support an array length of 2^24.");
+    static_assert(MOD2 % (1ull << MAX_AB_BIT) == 1, "MOD2 isn't enough to support an array length of 2^24.");
+    static_assert(MOD3 % (1ull << MAX_AB_BIT) == 1, "MOD3 isn't enough to support an array length of 2^24.");
+    assert(a.size() + b.size() - 1 <= (1ull << MAX_AB_BIT));
 
     auto c1 = convolution<MOD1>(a, b);
     auto c2 = convolution<MOD2>(a, b);

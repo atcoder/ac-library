@@ -28,3 +28,4 @@ if __name__ == "__main__":
             zipf.write(f, f.relative_to(Path('..')))
 
         zipf.write('../expander.py', 'expander.py')
+        zipf.write('../LICENSE', 'LICENSE')

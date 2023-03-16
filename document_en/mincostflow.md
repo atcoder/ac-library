@@ -76,6 +76,7 @@ It returns $g$ as the list of the changepoints, that satisfies the followings.
 Let $x$ be the maximum cost among all edges.
 
 - $s \neq t$
+- $0 \leq s, t \lt n$
 - You can't call `min_cost_slope` or `min_cost_max_flow` multiple times.
 - The total amount of the flow is in `Cap`.
 - The total cost of the flow is in `Cost`.

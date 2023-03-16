@@ -19,9 +19,9 @@ The documents of master branch are as follows:
 
 Our goal of this project is to achieve that
 
-- **every AtCoder users** can use this library with **minimum efforts of studying about PC**
-- maximize convenience for **the usage in competitive programming**. We completely ignore other usages.
-- no bugs. This is a fantasy, but we pursue this.
+- Enable **every AtCoder users** to use this library with **minimum efforts of studying about PC**
+- Maximize convenience for **the usage in competitive programming**. We completely ignore other usages.
+- No bugs. This is a fantasy, but we pursue this.
 
 By this policy, we ignore some manners of C++ intentionally. For example,
 
@@ -46,7 +46,7 @@ We accept issues/PRs **only from AtCoder users**.
 
 We would appreciate it if you would report our mistakes like a typo, or, more importantly, bugs!
 
-As mentioned above, we haven't decided which way to go. Therefore we close feature requests for now.
+As mentioned above, we haven't decided which way to go. Therefore we are not accepting feature requests for now, and issues will be closed.
 
 ## Releases
 

@@ -107,6 +107,7 @@ vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 <p>辺のコストの最大を $x$ として</p>
 <ul>
 <li>$s \neq t$</li>
+<li>$0 \leq s, t \lt n$</li>
 <li><code>min_cost_slope</code>や<code>min_cost_max_flow</code>を合わせて複数回呼んだときの挙動は未定義</li>
 <li><code>s</code>から<code>t</code>へ流したフローの流量が <code>Cap</code> に収まる。</li>
 <li>流したフローのコストの総和が <code>Cost</code> に収まる。</li>

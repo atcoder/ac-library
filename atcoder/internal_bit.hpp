@@ -5,10 +5,6 @@
 #include <intrin.h>
 #endif
 
-#if __cplusplus >= 202002L
-#include <bit>
-#endif
-
 namespace atcoder {
 
 namespace internal {

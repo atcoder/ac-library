@@ -8,34 +8,52 @@ using namespace atcoder;
 using ll = long long;
 using ull = unsigned long long;
 
-TEST(BitTest, CeilPow2) {
-    ASSERT_EQ(0, internal::ceil_pow2(0));
-    ASSERT_EQ(0, internal::ceil_pow2(1));
-    ASSERT_EQ(1, internal::ceil_pow2(2));
-    ASSERT_EQ(2, internal::ceil_pow2(3));
-    ASSERT_EQ(2, internal::ceil_pow2(4));
-    ASSERT_EQ(3, internal::ceil_pow2(5));
-    ASSERT_EQ(3, internal::ceil_pow2(6));
-    ASSERT_EQ(3, internal::ceil_pow2(7));
-    ASSERT_EQ(3, internal::ceil_pow2(8));
-    ASSERT_EQ(4, internal::ceil_pow2(9));
-    ASSERT_EQ(30, internal::ceil_pow2(1 << 30));
-    ASSERT_EQ(31, internal::ceil_pow2((1 << 30) + 1));
-    ASSERT_EQ(31, internal::ceil_pow2(std::numeric_limits<int>::max()));
+TEST(BitTest, BitCeil) {
+    ASSERT_EQ(1, internal::bit_ceil(0U));
+    ASSERT_EQ(1, internal::bit_ceil(1U));
+    ASSERT_EQ(2, internal::bit_ceil(2U));
+    ASSERT_EQ(4, internal::bit_ceil(3U));
+    ASSERT_EQ(4, internal::bit_ceil(4U));
+    ASSERT_EQ(8, internal::bit_ceil(5U));
+    ASSERT_EQ(8, internal::bit_ceil(6U));
+    ASSERT_EQ(8, internal::bit_ceil(7U));
+    ASSERT_EQ(8, internal::bit_ceil(8U));
+    ASSERT_EQ(16, internal::bit_ceil(9U));
+    ASSERT_EQ(1U << 30, internal::bit_ceil(1U << 30));
+    ASSERT_EQ(1U << 31, internal::bit_ceil((1U << 30) + 1));
+    ASSERT_EQ(1U << 31, internal::bit_ceil((1U << 31) - 1));
+    ASSERT_EQ(1U << 31, internal::bit_ceil(1U << 31));
 }
 
-TEST(BitTest, BSF) {
-    ASSERT_EQ(0, internal::bsf(1));
-    ASSERT_EQ(1, internal::bsf(2));
-    ASSERT_EQ(0, internal::bsf(3));
-    ASSERT_EQ(2, internal::bsf(4));
-    ASSERT_EQ(0, internal::bsf(5));
-    ASSERT_EQ(1, internal::bsf(6));
-    ASSERT_EQ(0, internal::bsf(7));
-    ASSERT_EQ(3, internal::bsf(8));
-    ASSERT_EQ(0, internal::bsf(9));
-    ASSERT_EQ(30, internal::bsf(1U << 30));
-    ASSERT_EQ(0, internal::bsf((1U << 31) - 1));
-    ASSERT_EQ(31, internal::bsf(1U << 31));
-    ASSERT_EQ(0, internal::bsf(std::numeric_limits<unsigned int>::max()));
+TEST(BitTest, CountrZero) {
+    ASSERT_EQ(0, internal::countr_zero(1U));
+    ASSERT_EQ(1, internal::countr_zero(2U));
+    ASSERT_EQ(0, internal::countr_zero(3U));
+    ASSERT_EQ(2, internal::countr_zero(4U));
+    ASSERT_EQ(0, internal::countr_zero(5U));
+    ASSERT_EQ(1, internal::countr_zero(6U));
+    ASSERT_EQ(0, internal::countr_zero(7U));
+    ASSERT_EQ(3, internal::countr_zero(8U));
+    ASSERT_EQ(0, internal::countr_zero(9U));
+    ASSERT_EQ(30, internal::countr_zero(1U << 30));
+    ASSERT_EQ(0, internal::countr_zero((1U << 31) - 1));
+    ASSERT_EQ(31, internal::countr_zero(1U << 31));
+    ASSERT_EQ(0, internal::countr_zero(std::numeric_limits<unsigned int>::max()));
+}
+
+TEST(BitTest, CountrZeroConstexpr) {
+    ASSERT_EQ(0, internal::countr_zero_constexpr(1U));
+    ASSERT_EQ(1, internal::countr_zero_constexpr(2U));
+    ASSERT_EQ(0, internal::countr_zero_constexpr(3U));
+    ASSERT_EQ(2, internal::countr_zero_constexpr(4U));
+    ASSERT_EQ(0, internal::countr_zero_constexpr(5U));
+    ASSERT_EQ(1, internal::countr_zero_constexpr(6U));
+    ASSERT_EQ(0, internal::countr_zero_constexpr(7U));
+    ASSERT_EQ(3, internal::countr_zero_constexpr(8U));
+    ASSERT_EQ(0, internal::countr_zero_constexpr(9U));
+    ASSERT_EQ(30, internal::countr_zero_constexpr(1U << 30));
+    ASSERT_EQ(0, internal::countr_zero_constexpr((1U << 31) - 1));
+    ASSERT_EQ(31, internal::countr_zero_constexpr(1U << 31));
+    ASSERT_EQ(0,
+              internal::countr_zero_constexpr(std::numeric_limits<unsigned int>::max()));
 }

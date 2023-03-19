@@ -5,9 +5,19 @@
 #include <intrin.h>
 #endif
 
+#if __cplusplus >= 202002L
+#include <bit>
+#endif
+
 namespace atcoder {
 
 namespace internal {
+
+#if __cplusplus >= 202002L
+
+using std::bit_ceil;
+
+#else
 
 // @return same with std::bit::bit_ceil
 unsigned int bit_ceil(unsigned int n) {
@@ -15,6 +25,8 @@ unsigned int bit_ceil(unsigned int n) {
     while (x < (unsigned int)(n)) x *= 2;
     return x;
 }
+
+#endif
 
 // @param n `1 <= n`
 // @return same with std::bit::countr_zero

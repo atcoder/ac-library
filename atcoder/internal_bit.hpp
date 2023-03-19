@@ -5,29 +5,23 @@
 #include <intrin.h>
 #endif
 
+#if __cplusplus >= 202002L
+#include <bit>
+#endif
+
 namespace atcoder {
 
 namespace internal {
 
-// @param n `0 <= n`
-// @return minimum non-negative `x` s.t. `n <= 2**x`
-int ceil_pow2(int n) {
-    int x = 0;
-    while ((1U << x) < (unsigned int)(n)) x++;
+unsigned int bit_ceil(unsigned int n) {
+    unsigned int x = 1;
+    while (x < (unsigned int)(n)) x *= 2;
     return x;
 }
 
 // @param n `1 <= n`
 // @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
-constexpr int bsf_constexpr(unsigned int n) {
-    int x = 0;
-    while (!(n & (1 << x))) x++;
-    return x;
-}
-
-// @param n `1 <= n`
-// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
-int bsf(unsigned int n) {
+int countr_zero(unsigned int n) {
 #ifdef _MSC_VER
     unsigned long index;
     _BitScanForward(&index, n);
@@ -35,6 +29,14 @@ int bsf(unsigned int n) {
 #else
     return __builtin_ctz(n);
 #endif
+}
+
+// @param n `1 <= n`
+// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
+constexpr int countr_zero_constexpr(unsigned int n) {
+    int x = 0;
+    while (!(n & (1 << x))) x++;
+    return x;
 }
 
 }  // namespace internal

@@ -9,6 +9,7 @@ namespace atcoder {
 
 namespace internal {
 
+// @return same with std::bit::bit_ceil
 unsigned int bit_ceil(unsigned int n) {
     unsigned int x = 1;
     while (x < (unsigned int)(n)) x *= 2;
@@ -16,7 +17,7 @@ unsigned int bit_ceil(unsigned int n) {
 }
 
 // @param n `1 <= n`
-// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
+// @return same with std::bit::countr_zero
 int countr_zero(unsigned int n) {
 #ifdef _MSC_VER
     unsigned long index;
@@ -28,7 +29,7 @@ int countr_zero(unsigned int n) {
 }
 
 // @param n `1 <= n`
-// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
+// @return same with std::bit::countr_zero
 constexpr int countr_zero_constexpr(unsigned int n) {
     int x = 0;
     while (!(n & (1 << x))) x++;

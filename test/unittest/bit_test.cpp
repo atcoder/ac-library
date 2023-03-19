@@ -19,9 +19,10 @@ TEST(BitTest, BitCeil) {
     ASSERT_EQ(8, internal::bit_ceil(7U));
     ASSERT_EQ(8, internal::bit_ceil(8U));
     ASSERT_EQ(16, internal::bit_ceil(9U));
-    ASSERT_EQ(1U<<30, internal::bit_ceil(1U << 30));
-    ASSERT_EQ(1U<<31, internal::bit_ceil((1U << 30) + 1));
-    ASSERT_EQ(1U<<31, internal::bit_ceil((1U << 31) - 1));
+    ASSERT_EQ(1U << 30, internal::bit_ceil(1U << 30));
+    ASSERT_EQ(1U << 31, internal::bit_ceil((1U << 30) + 1));
+    ASSERT_EQ(1U << 31, internal::bit_ceil((1U << 31) - 1));
+    ASSERT_EQ(1U << 31, internal::bit_ceil(1U << 31));
 }
 
 TEST(BitTest, CountrZero) {

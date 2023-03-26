@@ -3,7 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
-#include <iostream>
+#include <functional>
 #include <vector>
 
 #include "atcoder/internal_bit"

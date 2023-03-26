@@ -144,3 +144,28 @@ TEST(SegtreeTest, Assign) {
     seg seg0;
     seg0 = seg(10);
 }
+
+#if __cplusplus >= 201703L
+
+std::string op_const(const std::string& a, const std::string& b) {
+    assert(a == "$" || b == "$" || a <= b);
+    if (a == "$") return b;
+    if (b == "$") return a;
+    return a + b;
+}
+
+TEST(SegtreeTest, ConstFunc) {
+    segtree<std::string, op_const, e> s1(10);
+}
+
+#endif
+
+#if __cplusplus >= 202002L
+
+TEST(SegtreeTest, LambdaFunc) {
+    segtree<std::string, [](std::string a, std::string b) {
+        return a + b;
+    }, []() { return ""; }> s1(10);
+}
+
+#endif

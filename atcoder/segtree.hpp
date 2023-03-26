@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "atcoder/internal_bit"
+
 namespace atcoder {
 
 #if __cplusplus >= 201703L

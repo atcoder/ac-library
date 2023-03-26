@@ -221,12 +221,11 @@ std::vector<mint> convolution(std::vector<mint>&& a, std::vector<mint>&& b) {
     if (!n || !m) return {};
 
     int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
-    assert(mint::mod() % z == 1);
+    assert((mint::mod() - 1) % z == 0);
 
     if (std::min(n, m) <= 60) return convolution_naive(a, b);
     return internal::convolution_fft(a, b);
 }
-
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution(const std::vector<mint>& a,
                               const std::vector<mint>& b) {
@@ -234,7 +233,7 @@ std::vector<mint> convolution(const std::vector<mint>& a,
     if (!n || !m) return {};
 
     int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
-    assert(mint::mod() % z == 1);
+    assert((mint::mod() - 1) % z == 0);
 
     if (std::min(n, m) <= 60) return convolution_naive(a, b);
     return internal::convolution_fft(a, b);
@@ -250,7 +249,7 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
     using mint = static_modint<mod>;
 
     int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
-    assert(mint::mod() % z == 1);
+    assert((mint::mod() - 1) % z == 0);
 
     std::vector<mint> a2(n), b2(m);
     for (int i = 0; i < n; i++) {

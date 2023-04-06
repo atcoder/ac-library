@@ -55,8 +55,9 @@ It adds an edge oriented from the vertex `from` to the vertex `to` with the capa
 
 **@{keyword.complexity}**
 
-- $O(\min(n^{\frac{2}{3}}m, m^{\frac{3}{2}}))$ (if all the capacities are $1$) or
-- $O(n^2 m)$ (general),
+- $O((n + m) \sqrt{m})$ (if all the capacities are $1$),
+- $O(n^2 m)$ (general), or
+- $O(F(n + m))$, where $F$ is the returned value
 
 where $m$ is the number of added edges.
 

@@ -91,8 +91,9 @@
 </ul>
 <p><strong>Complexity</strong></p>
 <ul>
-<li>$O(\min(n^{\frac{2}{3}}m, m^{\frac{3}{2}}))$ (if all the capacities are $1$) or</li>
-<li>$O(n^2 m)$ (general),</li>
+<li>$O((n + m) \sqrt{m})$ (if all the capacities are $1$),</li>
+<li>$O(n^2 m)$ (general), or</li>
+<li>$O(F(n + m))$, where $F$ is the returned value</li>
 </ul>
 <p>where $m$ is the number of added edges.</p>
 <h2>min_cut</h2>

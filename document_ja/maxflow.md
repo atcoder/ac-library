@@ -57,8 +57,9 @@ int graph.add_edge(int from, int to, Cap cap);
 
 $m$ を追加された辺数として
 
-- $O(\min(n^{\frac{2}{3}}m, m^{\frac{3}{2}}))$ (辺の容量がすべて $1$ の時)
+- $O((n + m) \sqrt{m})$ (辺の容量がすべて $1$ の時)
 - $O(n^2 m)$
+- 返り値を $F$ として $O(F(n + m))$
 
 ## min_cut
 

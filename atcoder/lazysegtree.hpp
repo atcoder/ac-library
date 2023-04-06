@@ -3,12 +3,37 @@
 
 #include <algorithm>
 #include <cassert>
-#include <iostream>
+#include <functional>
 #include <vector>
 
 #include "atcoder/internal_bit"
 
 namespace atcoder {
+
+#if __cplusplus >= 201703L
+
+template <class S,
+          auto op,
+          auto e,
+          class F,
+          auto mapping,
+          auto composition,
+          auto id>
+struct lazy_segtree {
+    static_assert(std::is_convertible_v<decltype(op), std::function<S(S, S)>>,
+                  "op must work as S(S, S)");
+    static_assert(std::is_convertible_v<decltype(e), std::function<S()>>,
+                  "e must work as S()");
+    static_assert(
+        std::is_convertible_v<decltype(mapping), std::function<S(F, S)>>,
+        "mapping must work as F(F, S)");
+    static_assert(
+        std::is_convertible_v<decltype(composition), std::function<F(F, F)>>,
+        "compostiion must work as F(F, F)");
+    static_assert(std::is_convertible_v<decltype(id), std::function<F()>>,
+                  "id must work as F()");
+
+#else
 
 template <class S,
           S (*op)(S, S),
@@ -18,6 +43,9 @@ template <class S,
           F (*composition)(F, F),
           F (*id)()>
 struct lazy_segtree {
+
+#endif
+
   public:
     lazy_segtree() : lazy_segtree(0) {}
     explicit lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}

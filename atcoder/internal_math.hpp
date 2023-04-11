@@ -26,7 +26,7 @@ struct barrett {
     unsigned int _m;
     unsigned long long im;
 
-    // @param m `1 <= m < 2^31`
+    // @param m `1 <= m`
     explicit barrett(unsigned int m) : _m(m), im((unsigned long long)(-1) / m + 1) {}
 
     // @return m
@@ -55,9 +55,8 @@ struct barrett {
         unsigned long long x =
             (unsigned long long)(((unsigned __int128)(z)*im) >> 64);
 #endif
-        unsigned int v = (unsigned int)(z - x * _m);
-        if (_m <= v) v += _m;
-        return v;
+        unsigned long long y = x * _m;
+        return (unsigned int)(z - y + (z < y ? _m : 0));
     }
 };
 

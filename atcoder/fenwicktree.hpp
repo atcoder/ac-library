@@ -20,7 +20,7 @@ template <class T> struct fenwick_tree {
         int i, j = -1;
         while (++j < _n)
             data[j] = p += U(v[j]);
-        while (--j >= 0)
+        while (--j > 1)
             if ((i = j & (j + 1)) > 0)
                 data[j] -= data[i - 1];
     }

@@ -15,6 +15,15 @@ template <class T> struct fenwick_tree {
   public:
     fenwick_tree() : _n(0) {}
     explicit fenwick_tree(int n) : _n(n), data(n) {}
+    explicit fenwick_tree(const std::vector<T> &v) : _n(v.size()), data(v.size()) {
+        U p = 0;
+        int i, j = -1;
+        while (++j < _n)
+            data[j] = p += U(v[j]);
+        while (--j >= 0)
+            if ((i = j & (j + 1)) > 0)
+                data[j] -= data[i - 1];
+    }
 
     void add(int p, T x) {
         assert(0 <= p && p < _n);

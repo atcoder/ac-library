@@ -29,7 +29,7 @@ struct lazy_segtree {
         "mapping must work as F(F, S)");
     static_assert(
         std::is_convertible_v<decltype(composition), std::function<F(F, F)>>,
-        "compostiion must work as F(F, F)");
+        "composition must work as F(F, F)");
     static_assert(std::is_convertible_v<decltype(id), std::function<F()>>,
                   "id must work as F()");
 

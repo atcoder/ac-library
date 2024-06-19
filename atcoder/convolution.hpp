@@ -130,7 +130,7 @@ void butterfly_inv(std::vector<mint>& a) {
                     auto r = a[i + offset + p];
                     a[i + offset] = l + r;
                     a[i + offset + p] =
-                        (unsigned long long)(mint::mod() + l.val() - r.val()) *
+                        (unsigned long long)((unsigned int)(l.val() - r.val()) + mint::mod()) *
                         irot.val();
                     ;
                 }

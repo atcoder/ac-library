@@ -48,7 +48,7 @@ struct static_modint : internal::static_modint_base {
         _v = (unsigned int)(v % umod());
     }
 
-    unsigned int val() const { return _v; }
+    int val() const { return _v; }
 
     mint& operator++() {
         _v++;
@@ -165,7 +165,7 @@ template <int id> struct dynamic_modint : internal::modint_base {
         _v = (unsigned int)(v % mod());
     }
 
-    unsigned int val() const { return _v; }
+    int val() const { return _v; }
 
     mint& operator++() {
         _v++;

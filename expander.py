@@ -63,14 +63,18 @@ class Expander:
             result.append(line)
         return result
 
-    def expand(self, source: str) -> str:
+    def expand(self, source: str, origname) -> str:
         self.included = set()
         result = []  # type: List[str]
+        linenum = 0
         for line in source.splitlines():
+            linenum += 1
             m = self.atcoder_include.match(line)
             if m:
                 acl_path = self.find_acl(m.group(1))
                 result.extend(self.expand_acl(acl_path))
+                if origname:
+                    result.append('#line ' + str(linenum + 1) + ' "' + origname + '"')
                 continue
 
             result.append(line)
@@ -88,6 +92,8 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--console',
                         action='store_true', help='Print to Console')
     parser.add_argument('--lib', help='Path to Atcoder Library')
+    parser.add_argument('--origname', help='report line numbers from the original ' +
+                                           'source file in GCC/Clang error messages')
     opts = parser.parse_args()
 
     lib_paths = []
@@ -99,7 +105,7 @@ if __name__ == "__main__":
     lib_paths.append(Path.cwd())
     expander = Expander(lib_paths)
     source = open(opts.source).read()
-    output = expander.expand(source)
+    output = expander.expand(source, opts.origname)
 
     if opts.console:
         print(output)

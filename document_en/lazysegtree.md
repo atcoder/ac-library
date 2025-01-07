@@ -126,7 +126,7 @@ It returns `op(a[0], ..., a[n - 1])`, assuming the properties of the monoid. It 
 
 ```cpp
 (1) int seg.max_right<g>(int l)
-(2 ) int seg.max_right<G>(int l, G g)
+(2💻) int seg.max_right<G>(int l, G g)
 ```
 
 - (1): It applies a binary search on the segment tree. The function `bool g(S x)` should be defined.  
@@ -153,7 +153,7 @@ If `g` is monotone, this is the maximum `r` that satisfies `g(op(a[l], a[l + 1],
 
 ```cpp
 (1) int seg.min_left<g>(int r)
-(2 ) int seg.min_left<G>(int r, G g)
+(2💻) int seg.min_left<G>(int r, G g)
 ```
 
 - (1): It applies a binary search on the segment tree. The function `bool g(S x)` should be defined.  

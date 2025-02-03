@@ -213,10 +213,12 @@ std::vector<int> suffix_array(const std::string& s) {
 template <class T>
 std::vector<int> lcp_array(const std::vector<T>& s,
                            const std::vector<int>& sa) {
+    assert(s.size() == sa.size());
     int n = int(s.size());
     assert(n >= 1);
     std::vector<int> rnk(n);
     for (int i = 0; i < n; i++) {
+        assert(0 <= sa[i] && sa[i] < n);
         rnk[sa[i]] = i;
     }
     std::vector<int> lcp(n - 1);

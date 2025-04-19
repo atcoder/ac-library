@@ -1,0 +1,4 @@
+constraints = '制約'
+complexity = '計算量'
+examples = '使用例'
+info = '*このドキュメントの内容は AtCoder にインストールされているものとバージョンが異なる可能性があります。 AtCoder にインストールされているバージョンは [こちら](https://atcoder.github.io/ac-library/production/document_ja/) を参照してください*'

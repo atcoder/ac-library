@@ -1,6 +1,6 @@
 # Fenwick Tree
 
-Given an array of length $N$, it processes the following queries in $O(\log N)$ time.
+Given an array of length $n$, it processes the following queries in $O(\log n)$ time.
 
 - Updating an element
 - Calculating the sum of the elements of an interval

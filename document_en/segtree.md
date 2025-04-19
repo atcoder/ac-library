@@ -5,7 +5,7 @@ It is the data structure for [monoids](https://en.wikipedia.org/wiki/Monoid) $(S
 - associativity: $(a \cdot b) \cdot c$ = $a \cdot (b \cdot c)$ for all $a, b, c \in S$
 - existence of the identity element: $a \cdot e$ = $e \cdot a$ = $a$ for all $a \in S$
 
-Given an array $S$ of length $N$, it processes the following queries in $O(\log N)$ time (see [Appendix](./appendix.html) for further details).
+Given an array $S$ of length $n$, it processes the following queries in $O(\log n)$ time (see [Appendix](./appendix.html) for further details).
 
 - Updating an element
 - Calculating the product of the elements of an interval

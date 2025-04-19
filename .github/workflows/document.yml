@@ -37,7 +37,7 @@ jobs:
           publish_dir: ./tools/generated
           destination_dir: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Upload zip
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ac-library
           path: tools/ac-library.zip

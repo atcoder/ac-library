@@ -99,7 +99,7 @@ vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 It returns $g$ as the list of the changepoints, that satisfies the followings.</p>
 <ul>
 <li>The first element of the list is $(0, 0)$.</li>
-<li>Both of <code>.first</code> and <code>.second</code> are strictly increasing.</li>
+<li><code>.first</code> is strictly increasing and <code>.second</code> is non-decreasing.</li>
 <li>No three changepoints are on the same line.</li>
 <li>(1) The last element of the list is $(x, g(x))$, where $x$ is the maximum amount of the $s-t$ flow.</li>
 <li>(2) The last element of the list is $(y, g(y))$, where $y = \min(x, \mathrm{flow\_limit})$.</li>

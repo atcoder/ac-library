@@ -98,7 +98,7 @@ vector&lt;pair&lt;Cap, Cost&gt;&gt; graph.slope(int s, int t, Cap flow_limit);
 <p>返り値に流量とコストの関係の折れ線が入る。全ての $x$ について、流量 $x$ の時の最小コストを $g(x)$ とすると、$(x, g(x))$ は返り値を折れ線として見たものに含まれる。</p>
 <ul>
 <li>返り値の最初の要素は $(0, 0)$</li>
-<li>返り値の<code>.first</code>、<code>.second</code>は共に狭義単調増加</li>
+<li>返り値の<code>.first</code> は狭義単調増加、<code>.second</code>は広義単調増加</li>
 <li>3点が同一線上にあることはない</li>
 <li>(1) 返り値の最後の要素は最大流量 $x$ として $(x, g(x))$</li>
 <li>(2) 返り値の最後の要素は $y = \min(x, \mathrm{flow\_limit})$ として $(y, g(y))$</li>

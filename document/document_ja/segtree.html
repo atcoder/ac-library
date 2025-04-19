@@ -53,12 +53,12 @@
 <li>単位元の存在: $a \cdot e$ = $e \cdot a$ = $a$ for all $a \in S$</li>
 </ul>
 <p>を満たす代数構造に対し使用できるデータ構造です。</p>
-<p>長さ $N$ の $S$ の配列に対し、</p>
+<p>長さ $n$ の $S$ の配列に対し、</p>
 <ul>
 <li>要素の $1$ 点変更</li>
 <li>区間の要素の総積の取得</li>
 </ul>
-<p>を $O(\log N)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
+<p>を $O(\log n)$ で行うことが出来ます。詳細な要件は <a href="./appendix.html">Appendix</a> を参照してください。</p>
 <p>また、このライブラリはオラクルとして<code>op, e</code>の2種類を使用しますが、これらが定数時間で動くものと仮定したときの計算量を記述します。オラクル内部の計算量が $O(f(n))$ である場合はすべての計算量が $O(f(n))$ 倍となります。</p>
 <h2>コンストラクタ</h2>
 <pre><code class="language-cpp">(1) segtree&lt;S, op, e&gt; seg(int n)

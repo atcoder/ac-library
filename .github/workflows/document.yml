@@ -31,9 +31,9 @@ jobs:
           VERSION: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Publish to github pages
         if: ${{ github.event_name == 'push' }}
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          deploy_key: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./tools/generated
           destination_dir: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Upload zip

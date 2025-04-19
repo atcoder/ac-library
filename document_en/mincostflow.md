@@ -66,7 +66,7 @@ Let $g$ be a function such that $g(x)$ is the cost of the minimum cost $s-t$ flo
 It returns $g$ as the list of the changepoints, that satisfies the followings.
 
 - The first element of the list is $(0, 0)$.
-- Both of `.first` and `.second` are strictly increasing.
+- `.first` is strictly increasing and `.second` is non-descreasing.
 - No three changepoints are on the same line.
 - (1) The last element of the list is $(x, g(x))$, where $x$ is the maximum amount of the $s-t$ flow.
 - (2) The last element of the list is $(y, g(y))$, where $y = \min(x, \mathrm{flow\\_limit})$.

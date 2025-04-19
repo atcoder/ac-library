@@ -33,7 +33,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v4
         with:
-          deploy_key: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./tools/generated
           destination_dir: ${{ steps.version.outputs.VERSION_NAME }}
       - name: Upload zip

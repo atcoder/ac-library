@@ -21,9 +21,14 @@ using std::bit_ceil;
 
 // @return same with std::bit::bit_ceil
 unsigned int bit_ceil(unsigned int n) {
-    unsigned int x = 1;
-    while (x < (unsigned int)(n)) x *= 2;
-    return x;
+    if (n == 0) return 1;
+    n--;
+    n |= n >> 1;
+    n |= n >> 2;
+    n |= n >> 4;
+    n |= n >> 8;
+    n |= n >> 16;
+    return n + 1;
 }
 
 #endif

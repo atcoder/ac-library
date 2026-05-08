@@ -1,5 +1,6 @@
 #include "atcoder/internal_type_traits"
 
+#include <climits>
 #include <type_traits>
 
 #include <gtest/gtest.h>
@@ -44,7 +45,12 @@ static_assert(internal::is_unsigned_int<unsigned long long>::value, "");
 static_assert(!internal::is_signed_int<A>::value, "");
 static_assert(!internal::is_unsigned_int<A>::value, "");
 
+#if CHAR_MIN < 0
 static_assert(is_same<unsigned char, internal::to_unsigned_t<char>>::value, "");
+#else
+static_assert(is_same<char, internal::to_unsigned_t<char>>::value, "");
+#endif
+
 static_assert(
     is_same<unsigned char, internal::to_unsigned_t<signed char>>::value,
     "");

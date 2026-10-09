@@ -27,6 +27,30 @@ class Expander:
             return True
         return False
 
+    def in_block_comment_after(self, line: str, in_comment: bool) -> bool:
+        # returns whether a /* */ comment is still open at the end of line
+        i = 0
+        quote = None  # type: Optional[str]
+        while i < len(line):
+            if in_comment:
+                if line.startswith('*/', i):
+                    in_comment = False
+                    i += 1
+            elif quote:
+                if line[i] == '\\':
+                    i += 1
+                elif line[i] == quote:
+                    quote = None
+            elif line.startswith('//', i):
+                break
+            elif line.startswith('/*', i):
+                in_comment = True
+                i += 1
+            elif line[i] in '"\'':
+                quote = line[i]
+            i += 1
+        return in_comment
+
     def __init__(self, lib_paths: List[Path]):
         self.lib_paths = lib_paths
 
@@ -67,9 +91,11 @@ class Expander:
         self.included = set()
         result = []  # type: List[str]
         linenum = 0
+        in_comment = False
         for line in source.splitlines():
             linenum += 1
-            m = self.atcoder_include.match(line)
+            m = None if in_comment else self.atcoder_include.match(line)
+            in_comment = self.in_block_comment_after(line, in_comment)
             if m:
                 acl_path = self.find_acl(m.group(1))
                 result.extend(self.expand_acl(acl_path))

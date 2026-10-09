@@ -42,6 +42,10 @@ class Test(unittest.TestCase):
         self.compile_test(Path('test/expander/comment_out.cpp'),
                           expander_args=['--lib', str(Path.cwd().resolve())])
 
+    def test_comment_out_multiline(self):
+        self.compile_test(Path('test/expander/comment_out_multiline.cpp'),
+                          expander_args=['--lib', str(Path.cwd().resolve())])
+
     def test_env_value(self):
         env = environ.copy()
         env['CPLUS_INCLUDE_PATH'] = str(Path.cwd().resolve())
